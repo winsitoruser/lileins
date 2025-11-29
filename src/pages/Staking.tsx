@@ -373,16 +373,31 @@ function StakingPageInner() {
                 whileHover={{ scale: 1.08, y: -3 }}
                 className="flex items-center gap-4 cursor-pointer"
               >
-                <motion.div
-                  animate={{
-                    rotate: [0, 8, -8, 0],
-                    y: [0, -5, 0],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-5xl"
-                >
-                  🧪
-                </motion.div>
+                <div className="relative">
+                  <motion.div
+                    animate={{
+                      rotate: [0, 360],
+                      scale: [1, 1.1, 1]
+                    }}
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    className="w-14 h-14 md:w-16 md:h-16 relative z-10"
+                  >
+                    <img 
+                      src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
+                      alt="Little Einstein" 
+                      className="w-full h-full object-contain drop-shadow-2xl"
+                    />
+                  </motion.div>
+                  {/* Glow effect */}
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.3, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl"
+                  />
+                </div>
                 <div>
                   <h1 className="text-2xl md:text-3xl font-black text-primary flex items-center gap-2">
                     Little Einstein

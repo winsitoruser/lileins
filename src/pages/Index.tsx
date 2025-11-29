@@ -255,25 +255,27 @@ export default function Index() {
                 <div className="relative">
                   <motion.div
                     animate={{ 
-                      rotate: [0, 8, -8, 0],
-                      y: [0, -5, 0]
+                      rotate: [0, 360],
+                      scale: [1, 1.1, 1]
                     }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-5xl md:text-6xl relative z-10"
+                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    className="w-14 h-14 md:w-16 md:h-16 relative z-10"
                   >
-                    🧪
+                    <img 
+                      src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
+                      alt="Little Einstein" 
+                      className="w-full h-full object-contain drop-shadow-2xl"
+                    />
                   </motion.div>
-                  {/* Bubbling effect */}
+                  {/* Glow effect */}
                   <motion.div
                     animate={{ 
-                      scale: [0, 1, 0],
-                      y: [-20, -40, -60]
+                      scale: [1, 1.3, 1],
+                      opacity: [0.3, 0.6, 0.3]
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute top-0 left-1/2 text-2xl"
-                  >
-                    💧
-                  </motion.div>
+                    className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl"
+                  />
                 </div>
                 <div>
                   <h1 className="text-2xl md:text-3xl font-black text-primary flex items-center gap-2">
@@ -2036,26 +2038,27 @@ export default function Index() {
               <div className="relative">
                 <motion.div
                   animate={{ 
-                    rotate: [0, 10, -10, 0],
-                    y: [0, -8, 0]
+                    rotate: [0, 360],
+                    scale: [1, 1.15, 1]
                   }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-7xl relative z-10"
+                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                  className="w-20 h-20 relative z-10"
                 >
-                  🧪
+                  <img 
+                    src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
+                    alt="Little Einstein" 
+                    className="w-full h-full object-contain drop-shadow-2xl"
+                  />
                 </motion.div>
-                {/* Chemical bubbles */}
+                {/* Glow effect */}
                 <motion.div
                   animate={{ 
-                    scale: [0, 1.5, 0],
-                    y: [-10, -40, -70],
-                    opacity: [0, 0.8, 0]
+                    scale: [1, 1.5, 1],
+                    opacity: [0.3, 0.7, 0.3]
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute top-0 left-1/2 text-3xl"
-                >
-                  💧
-                </motion.div>
+                  className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full blur-2xl"
+                />
               </div>
               <div className="text-left">
                 <h3 className="text-3xl font-black text-primary flex items-center gap-2">
