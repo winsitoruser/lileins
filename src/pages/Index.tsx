@@ -43,34 +43,117 @@ export default function Index() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-accent/20 via-background to-primary/10 relative overflow-hidden">
-      {/* Cute Floating Bubbles */}
+      {/* Scientific Laboratory Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(15)].map((_, i) => (
+        {/* Floating Einstein Formulas */}
+        {[
+          "E=mc²", "a²+b²=c²", "π=3.14", "∑F=ma", 
+          "√x²+y²", "∫dx", "∂f/∂x", "α+β=γ",
+          "E=hv", "PV=nRT", "F=G(m₁m₂/r²)", "λ=h/p"
+        ].map((formula, i) => (
           <motion.div
-            key={i}
+            key={`formula-${i}`}
             animate={{
-              y: [0, -100, 0],
-              x: [0, Math.random() * 50 - 25, 0],
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3]
+              y: [0, -150, 0],
+              x: [0, Math.random() * 80 - 40, 0],
+              rotate: [0, 360],
+              opacity: [0.2, 0.5, 0.2]
             }}
             transition={{
-              duration: 5 + Math.random() * 5,
+              duration: 10 + Math.random() * 10,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "easeInOut"
+            }}
+            className="absolute text-xl md:text-3xl font-black text-primary/40"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`
+            }}
+          >
+            {formula}
+          </motion.div>
+        ))}
+
+        {/* Cute Floating Bubbles - Lab Style */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={`bubble-${i}`}
+            animate={{
+              y: [0, -120, 0],
+              x: [0, Math.random() * 60 - 30, 0],
+              scale: [1, 1.3, 1],
+              opacity: [0.3, 0.7, 0.3]
+            }}
+            transition={{
+              duration: 6 + Math.random() * 6,
               repeat: Infinity,
               delay: Math.random() * 5
             }}
-            className="absolute rounded-full bg-gradient-to-br from-primary/30 to-accent/30"
+            className="absolute rounded-full bg-gradient-to-br from-accent/40 to-secondary/40 border-2 border-primary/20"
             style={{
-              width: `${30 + Math.random() * 80}px`,
-              height: `${30 + Math.random() * 80}px`,
+              width: `${20 + Math.random() * 60}px`,
+              height: `${20 + Math.random() * 60}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`
             }}
           />
         ))}
         
+        {/* Lab Equipment Icons */}
+        {[...Array(10)].map((_, i) => {
+          const icons = ["🧪", "⚗️", "🔬", "⚛️", "🧬"];
+          return (
+            <motion.div
+              key={`lab-${i}`}
+              animate={{
+                y: [0, -80, 0],
+                rotate: [0, 360],
+                scale: [1, 1.4, 1],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 8 + Math.random() * 8,
+                repeat: Infinity,
+                delay: Math.random() * 4
+              }}
+              className="absolute text-4xl"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`
+              }}
+            >
+              {icons[i % icons.length]}
+            </motion.div>
+          );
+        })}
+
+        {/* DNA Helix Animation */}
+        {[...Array(3)].map((_, i) => (
+          <motion.div
+            key={`dna-${i}`}
+            animate={{
+              y: [0, -200, 0],
+              rotate: [0, 720],
+              opacity: [0.2, 0.4, 0.2]
+            }}
+            transition={{
+              duration: 15 + i * 5,
+              repeat: Infinity,
+              delay: i * 3
+            }}
+            className="absolute text-6xl"
+            style={{
+              left: `${20 + i * 30}%`,
+              top: `${Math.random() * 100}%`
+            }}
+          >
+            🧬
+          </motion.div>
+        ))}
+
         {/* Cute Stars & Hearts */}
-        {[...Array(15)].map((_, i) => (
+        {[...Array(12)].map((_, i) => (
           <motion.div
             key={`star-${i}`}
             animate={{
@@ -83,7 +166,7 @@ export default function Index() {
               repeat: Infinity,
               delay: Math.random() * 3
             }}
-            className="absolute text-2xl"
+            className="absolute text-3xl"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`
@@ -92,26 +175,87 @@ export default function Index() {
             {i % 3 === 0 ? "⭐" : i % 3 === 1 ? "💜" : "✨"}
           </motion.div>
         ))}
+
+        {/* Atomic Particles */}
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={`atom-${i}`}
+            animate={{
+              x: [0, 100, -100, 0],
+              y: [0, -100, 100, 0],
+              scale: [1, 1.2, 0.8, 1],
+              opacity: [0.4, 0.7, 0.4]
+            }}
+            transition={{
+              duration: 12 + Math.random() * 8,
+              repeat: Infinity,
+              delay: Math.random() * 5
+            }}
+            className="absolute w-3 h-3 rounded-full bg-gradient-to-r from-primary to-accent shadow-lg"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`
+            }}
+          />
+        ))}
       </div>
 
-      {/* Super Cute Header */}
-      <header className="relative z-10 bg-gradient-to-r from-card/90 via-primary/5 to-accent/5 backdrop-blur-md border-b-4 border-primary/30 shadow-xl">
-        <div className="container mx-auto px-4 py-6">
+      {/* Super Cute Header with Lab Theme */}
+      <header className="relative z-10 bg-gradient-to-r from-card/90 via-primary/5 to-accent/5 backdrop-blur-md border-b-4 border-primary/30 shadow-xl overflow-hidden">
+        {/* Lab Equipment Background in Header */}
+        <div className="absolute inset-0 opacity-20 pointer-events-none">
+          <motion.div
+            animate={{ x: [-20, 20, -20] }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute left-10 top-1/2 text-4xl"
+          >
+            ⚗️
+          </motion.div>
+          <motion.div
+            animate={{ y: [-10, 10, -10], rotate: [0, 360] }}
+            transition={{ duration: 10, repeat: Infinity }}
+            className="absolute right-20 top-1/2 text-3xl"
+          >
+            🔬
+          </motion.div>
+          <motion.div
+            animate={{ scale: [1, 1.2, 1] }}
+            transition={{ duration: 3, repeat: Infinity }}
+            className="absolute left-1/2 top-2 text-2xl"
+          >
+            ⚛️
+          </motion.div>
+        </div>
+        
+        <div className="container mx-auto px-4 py-6 relative z-10">
           <div className="flex justify-between items-center">
             <motion.div 
               whileHover={{ scale: 1.08, y: -3 }}
               className="flex items-center gap-4"
             >
-              <motion.div
-                animate={{ 
-                  rotate: [0, 8, -8, 0],
-                  y: [0, -5, 0]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-6xl"
-              >
-                🧪
-              </motion.div>
+              <div className="relative">
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 8, -8, 0],
+                    y: [0, -5, 0]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-6xl relative z-10"
+                >
+                  🧪
+                </motion.div>
+                {/* Bubbling effect */}
+                <motion.div
+                  animate={{ 
+                    scale: [0, 1, 0],
+                    y: [-20, -40, -60]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute top-0 left-1/2 text-2xl"
+                >
+                  💧
+                </motion.div>
+              </div>
               <div>
                 <h1 className="text-3xl font-black text-primary flex items-center gap-2">
                   Little Einstein
@@ -122,10 +266,24 @@ export default function Index() {
                     ✨
                   </motion.span>
                 </h1>
-                <p className="text-lg text-secondary font-black">$LILEIN 💜</p>
+                <p className="text-lg text-secondary font-black flex items-center gap-1">
+                  $LILEIN 💜
+                  <motion.span
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                    className="text-sm"
+                  >
+                    ⚛️
+                  </motion.span>
+                </p>
               </div>
             </motion.div>
-            <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-lg rounded-full px-10 py-6 shadow-2xl border-4 border-white/70">
+            <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-lg rounded-full px-10 py-6 shadow-2xl border-4 border-white/70 relative overflow-hidden">
+              <motion.span
+                animate={{ x: [-100, 400] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+              />
               Connect Wallet 🚀
             </Button>
           </div>
@@ -221,14 +379,38 @@ export default function Index() {
               className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-full blur-3xl"
             />
             
+            {/* Floating Einstein Formulas Around Characters */}
+            {["E=mc²", "π=3.14", "a²+b²", "∑F=ma"].map((formula, i) => (
+              <motion.div
+                key={`hero-formula-${i}`}
+                animate={{
+                  y: [0, -20, 0],
+                  rotate: [0, 360],
+                  opacity: [0.4, 0.8, 0.4]
+                }}
+                transition={{
+                  duration: 5 + i,
+                  repeat: Infinity,
+                  delay: i * 0.5
+                }}
+                className="absolute text-2xl md:text-4xl font-black text-primary/50"
+                style={{
+                  left: i % 2 === 0 ? "-10%" : "100%",
+                  top: `${20 + i * 15}%`
+                }}
+              >
+                {formula}
+              </motion.div>
+            ))}
+            
             {/* Main Einstein Characters Circle */}
             <div className="relative z-10 grid grid-cols-2 gap-6 max-w-lg mx-auto">
               {[
-                { img: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF", emoji: "💎" },
-                { img: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM", emoji: "📈" },
-                { img: "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T", emoji: "🔥" },
-                { img: "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB", emoji: "🚀" }
-              ].map(({ img, emoji }, i) => (
+                { img: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF", emoji: "💎", lab: "⚗️" },
+                { img: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM", emoji: "📈", lab: "🔬" },
+                { img: "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T", emoji: "🔥", lab: "🧪" },
+                { img: "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB", emoji: "🚀", lab: "⚛️" }
+              ].map(({ img, emoji, lab }, i) => (
                 <motion.div
                   key={i}
                   animate={{
@@ -255,6 +437,16 @@ export default function Index() {
                     >
                       {emoji}
                     </motion.div>
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        y: [0, -10, 0]
+                      }}
+                      transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                      className="absolute -bottom-2 -left-2 text-3xl"
+                    >
+                      {lab}
+                    </motion.div>
                   </div>
                   {/* Cute glow */}
                   <motion.div
@@ -269,30 +461,34 @@ export default function Index() {
               ))}
             </div>
             
-            {/* Floating hearts around */}
-            {[...Array(8)].map((_, i) => (
-              <motion.div
-                key={`heart-${i}`}
-                animate={{
-                  y: [0, -30, 0],
-                  x: [0, Math.random() * 20 - 10, 0],
-                  scale: [1, 1.3, 1],
-                  opacity: [0.5, 1, 0.5]
-                }}
-                transition={{
-                  duration: 2 + Math.random() * 2,
-                  repeat: Infinity,
-                  delay: i * 0.3
-                }}
-                className="absolute text-3xl"
-                style={{ 
-                  left: `${10 + Math.random() * 80}%`, 
-                  top: `${10 + Math.random() * 80}%`
-                }}
-              >
-                {i % 2 === 0 ? "💜" : "✨"}
-              </motion.div>
-            ))}
+            {/* Lab Equipment & Formulas floating around */}
+            {[...Array(6)].map((_, i) => {
+              const elements = ["🧬", "⚛️", "💜", "✨", "🔬", "⚗️"];
+              return (
+                <motion.div
+                  key={`hero-float-${i}`}
+                  animate={{
+                    y: [0, -40, 0],
+                    x: [0, Math.random() * 30 - 15, 0],
+                    rotate: [0, 360],
+                    scale: [1, 1.4, 1],
+                    opacity: [0.4, 0.8, 0.4]
+                  }}
+                  transition={{
+                    duration: 4 + Math.random() * 3,
+                    repeat: Infinity,
+                    delay: i * 0.5
+                  }}
+                  className="absolute text-4xl"
+                  style={{ 
+                    left: `${10 + Math.random() * 80}%`, 
+                    top: `${10 + Math.random() * 80}%`
+                  }}
+                >
+                  {elements[i]}
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -605,14 +801,92 @@ export default function Index() {
         transition={{ duration: 0.8 }}
         className="relative z-10 container mx-auto px-4 py-20"
       >
-        <div className="text-center space-y-4 mb-16">
-          <div className="text-6xl mb-4">🧪</div>
-          <h2 className="text-4xl md:text-6xl font-black">
+        <div className="text-center space-y-4 mb-16 relative">
+          {/* Lab Equipment Animation */}
+          <div className="flex justify-center gap-4 items-center mb-4">
+            <motion.div
+              animate={{ 
+                rotate: [0, -10, 10, 0],
+                y: [0, -5, 0]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-5xl"
+            >
+              ⚗️
+            </motion.div>
+            <motion.div
+              animate={{ 
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.2, 1]
+              }}
+              transition={{ duration: 2.5, repeat: Infinity }}
+              className="text-6xl"
+            >
+              🧪
+            </motion.div>
+            <motion.div
+              animate={{ 
+                rotate: [0, 360],
+                y: [0, -8, 0]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="text-5xl"
+            >
+              🔬
+            </motion.div>
+          </div>
+          
+          <h2 className="text-4xl md:text-6xl font-black relative">
             The Genius <span className="text-primary">Formula!</span> 💜
+            {/* Floating formulas around title */}
+            <motion.span
+              animate={{ 
+                y: [0, -10, 0],
+                rotate: [0, 15, -15, 0]
+              }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="absolute -left-10 top-0 text-2xl text-primary/40 hidden md:inline"
+            >
+              E=mc²
+            </motion.span>
+            <motion.span
+              animate={{ 
+                y: [0, -15, 0],
+                rotate: [0, -15, 15, 0]
+              }}
+              transition={{ duration: 3.5, repeat: Infinity }}
+              className="absolute -right-10 bottom-0 text-2xl text-accent/40 hidden md:inline"
+            >
+              π=3.14
+            </motion.span>
           </h2>
           <p className="text-2xl text-foreground/70 max-w-2xl mx-auto font-medium">
             Scientific distribution for maximum cuteness gains! 📊✨
           </p>
+          
+          {/* Floating atoms around */}
+          {[...Array(4)].map((_, i) => (
+            <motion.div
+              key={`atom-tokenomics-${i}`}
+              animate={{
+                y: [0, -30, 0],
+                rotate: [0, 360],
+                opacity: [0.3, 0.6, 0.3]
+              }}
+              transition={{
+                duration: 5 + i,
+                repeat: Infinity,
+                delay: i * 0.5
+              }}
+              className="absolute text-3xl"
+              style={{
+                left: `${10 + i * 25}%`,
+                top: i % 2 === 0 ? "-5%" : "100%"
+              }}
+            >
+              ⚛️
+            </motion.div>
+          ))}
         </div>
 
         <div className="max-w-4xl mx-auto">
@@ -873,24 +1147,67 @@ export default function Index() {
         </Card>
       </motion.section>
 
-      {/* Cute Footer */}
-      <footer className="relative z-10 bg-card/80 backdrop-blur-md border-t-4 border-primary/20 mt-20">
-        <div className="container mx-auto px-4 py-12">
+      {/* Cute Footer with Lab Theme */}
+      <footer className="relative z-10 bg-card/80 backdrop-blur-md border-t-4 border-primary/20 mt-20 overflow-hidden">
+        {/* Lab Equipment Background in Footer */}
+        <div className="absolute inset-0 opacity-10 pointer-events-none">
+          {[...Array(6)].map((_, i) => {
+            const icons = ["🧪", "⚗️", "🔬", "⚛️", "🧬", "💜"];
+            return (
+              <motion.div
+                key={`footer-lab-${i}`}
+                animate={{
+                  y: [0, -30, 0],
+                  rotate: [0, 360],
+                  opacity: [0.3, 0.5, 0.3]
+                }}
+                transition={{
+                  duration: 8 + i * 2,
+                  repeat: Infinity,
+                  delay: i
+                }}
+                className="absolute text-6xl"
+                style={{
+                  left: `${10 + i * 15}%`,
+                  top: `${Math.random() * 100}%`
+                }}
+              >
+                {icons[i]}
+              </motion.div>
+            );
+          })}
+        </div>
+        
+        <div className="container mx-auto px-4 py-12 relative z-10">
           <div className="text-center space-y-6">
             <motion.div 
               whileHover={{ scale: 1.08, y: -5 }}
               className="inline-flex items-center gap-4 mb-4"
             >
-              <motion.div
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                  y: [0, -8, 0]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-7xl"
-              >
-                🧪
-              </motion.div>
+              <div className="relative">
+                <motion.div
+                  animate={{ 
+                    rotate: [0, 10, -10, 0],
+                    y: [0, -8, 0]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-7xl relative z-10"
+                >
+                  🧪
+                </motion.div>
+                {/* Chemical bubbles */}
+                <motion.div
+                  animate={{ 
+                    scale: [0, 1.5, 0],
+                    y: [-10, -40, -70],
+                    opacity: [0, 0.8, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute top-0 left-1/2 text-3xl"
+                >
+                  💧
+                </motion.div>
+              </div>
               <div className="text-left">
                 <h3 className="text-3xl font-black text-primary flex items-center gap-2">
                   Little Einstein
@@ -902,7 +1219,16 @@ export default function Index() {
                     ✨
                   </motion.span>
                 </h3>
-                <p className="text-lg text-secondary font-black">$LILEIN 💜</p>
+                <p className="text-lg text-secondary font-black flex items-center gap-2">
+                  $LILEIN 💜
+                  <motion.span
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 5, repeat: Infinity }}
+                    className="text-xl"
+                  >
+                    ⚛️
+                  </motion.span>
+                </p>
               </div>
             </motion.div>
             
