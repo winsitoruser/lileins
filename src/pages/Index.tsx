@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
-import { Atom, Beaker, Brain, FlaskConical, Heart, Rocket, SparklesIcon, Star, Users, Zap } from "lucide-react";
+import { Atom, Beaker, Brain, Calculator, FlaskConical, Heart, Rocket, SparklesIcon, Star, Users, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
+import { Input } from "@/components/ui/input.tsx";
 import { useState, useEffect } from "react";
 
 export default function Index() {
@@ -14,6 +15,21 @@ export default function Index() {
     minutes: 32,
     seconds: 45
   });
+  const [investmentAmount, setInvestmentAmount] = useState<string>("1000");
+  
+  // Calculator multipliers
+  const currentMultiplier = 2.38; // 238% up
+  const targetMultiplier = 10; // 10x target
+  
+  const calculateValues = (amount: string) => {
+    const numAmount = parseFloat(amount) || 0;
+    return {
+      current: (numAmount * currentMultiplier).toFixed(2),
+      target: (numAmount * targetMultiplier).toFixed(2)
+    };
+  };
+  
+  const calculatedValues = calculateValues(investmentAmount);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -628,8 +644,13 @@ export default function Index() {
               </p>
             </div>
 
-            {/* Profit Calculator */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12 relative">
+            {/* Interactive Profit Calculator */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-12 relative"
+            >
               {/* Floating Astronauts around calculator */}
               <motion.div
                 animate={{
@@ -659,89 +680,132 @@ export default function Index() {
                   className="w-20 h-20 opacity-60"
                 />
               </motion.div>
-              {[
-                {
-                  investment: "$100",
-                  current: "$238",
-                  future: "$1,000 - $2,000",
-                  multiple: "10x Target",
-                  emoji: "💰",
-                  gradient: "from-primary to-accent"
-                },
-                {
-                  investment: "$500",
-                  current: "$1,190",
-                  future: "$5,000 - $10,000",
-                  multiple: "10x Target",
-                  emoji: "💎",
-                  gradient: "from-accent to-secondary"
-                },
-                {
-                  investment: "$1,000",
-                  current: "$2,380",
-                  future: "$10,000 - $20,000",
-                  multiple: "10x Target",
-                  emoji: "👑",
-                  gradient: "from-secondary to-primary"
-                }
-              ].map((calc, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.2 }}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                >
-                  <Card className="border-4 border-white bg-gradient-to-br from-white to-primary/5 shadow-2xl rounded-3xl overflow-hidden">
-                    <CardContent className="p-8 text-center space-y-4">
-                      <motion.div
-                        animate={{ rotate: [0, 360] }}
-                        transition={{ duration: 3, repeat: Infinity }}
-                        className="text-6xl"
-                      >
-                        {calc.emoji}
-                      </motion.div>
-                      
-                      <div className="space-y-2">
-                        <p className="text-sm text-foreground/60 font-bold">Your Investment</p>
-                        <p className="text-3xl font-black text-primary">{calc.investment}</p>
+
+              <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl rounded-3xl overflow-hidden max-w-3xl mx-auto">
+                <CardContent className="p-8 md:p-12">
+                  {/* Calculator Title */}
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-center mb-8"
+                  >
+                    <motion.div
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                      className="inline-block text-6xl mb-4"
+                    >
+                      🧮
+                    </motion.div>
+                    <h3 className="text-4xl md:text-5xl font-black text-primary mb-2">
+                      Profit Calculator
+                    </h3>
+                    <p className="text-lg text-foreground/70 font-bold">
+                      Calculate your genius gains! 💎
+                    </p>
+                  </motion.div>
+
+                  {/* Input Section */}
+                  <div className="space-y-6 mb-8">
+                    <div className="space-y-3">
+                      <label className="text-xl font-black text-foreground flex items-center gap-2">
+                        <span className="text-3xl">💰</span>
+                        Enter Your Investment Amount ($)
+                      </label>
+                      <div className="relative">
+                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-3xl font-black text-primary">
+                          $
+                        </span>
+                        <Input
+                          type="number"
+                          value={investmentAmount}
+                          onChange={(e) => setInvestmentAmount(e.target.value)}
+                          placeholder="1000"
+                          className="text-3xl font-black text-center h-20 rounded-2xl border-4 border-primary/30 bg-white shadow-xl pl-12 pr-6"
+                        />
                       </div>
+                    </div>
+                  </div>
 
+                  {/* Results Display */}
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {/* Current Value Card */}
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="bg-gradient-to-br from-accent/20 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl"
+                    >
                       <motion.div
-                        animate={{ y: [0, -5, 0] }}
-                        transition={{ duration: 1, repeat: Infinity }}
-                        className="text-4xl"
+                        animate={{ 
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 10, -10, 0]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="text-5xl mb-3 text-center"
                       >
-                        ⬇️
+                        📈
                       </motion.div>
-
-                      <div className="space-y-2">
-                        <p className="text-sm text-foreground/60 font-bold">Current Value</p>
-                        <p className="text-3xl font-black text-accent">{calc.current}</p>
-                      </div>
-
+                      <p className="text-center text-sm text-foreground/60 font-bold mb-2">
+                        Current Value (238% Up!)
+                      </p>
                       <motion.div
-                        animate={{ y: [0, -5, 0] }}
-                        transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
-                        className="text-4xl"
+                        key={calculatedValues.current}
+                        initial={{ scale: 1.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="text-4xl font-black text-center text-accent"
+                      >
+                        ${calculatedValues.current}
+                      </motion.div>
+                      <div className="mt-3 bg-gradient-to-r from-accent to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
+                        +138% Gain! 🎉
+                      </div>
+                    </motion.div>
+
+                    {/* Target Value Card */}
+                    <motion.div
+                      whileHover={{ scale: 1.05, y: -5 }}
+                      className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-3xl p-6 border-4 border-white shadow-xl"
+                    >
+                      <motion.div
+                        animate={{ 
+                          y: [0, -10, 0],
+                          scale: [1, 1.3, 1]
+                        }}
+                        transition={{ duration: 1.5, repeat: Infinity }}
+                        className="text-5xl mb-3 text-center"
                       >
                         🚀
                       </motion.div>
-
-                      <div className="space-y-2">
-                        <p className="text-sm text-foreground/60 font-bold">Future Potential</p>
-                        <p className="text-3xl font-black text-secondary">{calc.future}</p>
+                      <p className="text-center text-sm text-foreground/60 font-bold mb-2">
+                        10x Target Value
+                      </p>
+                      <motion.div
+                        key={calculatedValues.target}
+                        initial={{ scale: 1.5, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        className="text-4xl font-black text-center text-secondary"
+                      >
+                        ${calculatedValues.target}
+                      </motion.div>
+                      <div className="mt-3 bg-gradient-to-r from-secondary to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
+                        +900% Potential! 🌙
                       </div>
+                    </motion.div>
+                  </div>
 
-                      <div className={`bg-gradient-to-r ${calc.gradient} text-white px-4 py-2 rounded-full font-black text-lg shadow-lg`}>
-                        {calc.multiple}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
+                  {/* Formula Display */}
+                  <motion.div
+                    animate={{ opacity: [0.5, 1, 0.5] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="mt-8 text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-4 border-2 border-primary/20"
+                  >
+                    <p className="text-sm text-foreground/70 font-bold flex items-center justify-center gap-2">
+                      <span className="text-2xl">🧪</span>
+                      Einstein Formula: Investment × Multiplier = Profit
+                      <span className="text-2xl">⚛️</span>
+                    </p>
+                  </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Rocket Launch Section */}
             <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-8 md:p-12 border-4 border-white shadow-xl mb-8">
