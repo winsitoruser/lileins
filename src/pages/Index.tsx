@@ -69,8 +69,8 @@ export default function Index() {
           />
         ))}
         
-        {/* Cute Stars */}
-        {[...Array(20)].map((_, i) => (
+        {/* Cute Stars & Hearts */}
+        {[...Array(15)].map((_, i) => (
           <motion.div
             key={`star-${i}`}
             animate={{
@@ -83,43 +83,50 @@ export default function Index() {
               repeat: Infinity,
               delay: Math.random() * 3
             }}
-            className="absolute"
+            className="absolute text-2xl"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`
             }}
           >
-            <Star className="w-4 h-4 text-secondary fill-secondary" />
+            {i % 3 === 0 ? "⭐" : i % 3 === 1 ? "💜" : "✨"}
           </motion.div>
         ))}
       </div>
 
-      {/* Chubby Header */}
-      <header className="relative z-10 bg-card/80 backdrop-blur-md border-b-4 border-primary/20 shadow-lg">
-        <div className="container mx-auto px-4 py-5">
+      {/* Super Cute Header */}
+      <header className="relative z-10 bg-gradient-to-r from-card/90 via-primary/5 to-accent/5 backdrop-blur-md border-b-4 border-primary/30 shadow-xl">
+        <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <motion.div 
-              whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
-              className="flex items-center gap-3"
+              whileHover={{ scale: 1.08, y: -3 }}
+              className="flex items-center gap-4"
             >
               <motion.div
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="w-16 h-16 rounded-full shadow-2xl overflow-hidden border-4 border-white"
+                animate={{ 
+                  rotate: [0, 8, -8, 0],
+                  y: [0, -5, 0]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-6xl"
               >
-                <img 
-                  src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                  alt="Little Einstein Coin" 
-                  className="w-full h-full object-cover"
-                />
+                🧪
               </motion.div>
               <div>
-                <h1 className="text-2xl font-black text-primary">Little Einstein</h1>
-                <p className="text-sm text-secondary font-bold">$LILEIN 💜</p>
+                <h1 className="text-3xl font-black text-primary flex items-center gap-2">
+                  Little Einstein
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                  >
+                    ✨
+                  </motion.span>
+                </h1>
+                <p className="text-lg text-secondary font-black">$LILEIN 💜</p>
               </div>
             </motion.div>
-            <Button className="bg-gradient-to-r from-primary to-accent hover:scale-105 transition-transform text-white font-bold rounded-full px-8 shadow-xl border-4 border-white/50">
-              Connect Wallet ✨
+            <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-lg rounded-full px-10 py-6 shadow-2xl border-4 border-white/70">
+              Connect Wallet 🚀
             </Button>
           </div>
         </div>
@@ -208,69 +215,82 @@ export default function Index() {
             <motion.div
               animate={{ 
                 rotate: 360,
-                scale: [1, 1.1, 1]
+                scale: [1, 1.15, 1]
               }}
               transition={{ duration: 20, repeat: Infinity }}
-              className="absolute inset-0 bg-gradient-to-r from-primary/30 via-accent/30 to-secondary/30 rounded-full blur-3xl"
+              className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-full blur-3xl"
             />
             
-            {/* Main Golden Coin */}
-            <div className="relative z-10 bg-gradient-to-br from-[#f4e4b8] to-[#d4af37] rounded-full p-4 shadow-2xl border-8 border-white">
-              <motion.img 
-                animate={{ 
-                  y: [0, -20, 0],
-                  rotate: [0, 10, -10, 0]
-                }}
-                transition={{ duration: 4, repeat: Infinity }}
-                src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                alt="Little Einstein Coin" 
-                className="w-full max-w-md mx-auto drop-shadow-2xl"
-              />
-              
-              {/* Glow effect */}
-              <motion.div
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0.8, 0.5]
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute inset-0 bg-gradient-to-r from-[#ffd700] to-[#ffed4e] rounded-full blur-xl -z-10"
-              />
+            {/* Main Einstein Characters Circle */}
+            <div className="relative z-10 grid grid-cols-2 gap-6 max-w-lg mx-auto">
+              {[
+                { img: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF", emoji: "💎" },
+                { img: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM", emoji: "📈" },
+                { img: "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T", emoji: "🔥" },
+                { img: "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB", emoji: "🚀" }
+              ].map(({ img, emoji }, i) => (
+                <motion.div
+                  key={i}
+                  animate={{
+                    y: [0, -15, 0],
+                    rotate: [0, 5, -5, 0]
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    delay: i * 0.3
+                  }}
+                  whileHover={{ scale: 1.15, rotate: 0, y: -20 }}
+                  className="relative group cursor-pointer"
+                >
+                  <div className="bg-white rounded-3xl p-3 border-6 border-primary/30 shadow-2xl overflow-hidden relative">
+                    <img src={img} alt="" className="w-full h-full object-cover rounded-2xl" />
+                    <motion.div
+                      animate={{ 
+                        scale: [1, 1.3, 1],
+                        rotate: [0, 20, -20, 0]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="absolute -top-2 -right-2 text-4xl"
+                    >
+                      {emoji}
+                    </motion.div>
+                  </div>
+                  {/* Cute glow */}
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.2, 1],
+                      opacity: [0.3, 0.6, 0.3]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-3xl blur-xl -z-10"
+                  />
+                </motion.div>
+              ))}
             </div>
             
-            {/* Cute Character Badges */}
-            {[
-              { img: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF", label: "💎 Diamond Hands", x: -20, y: -35, delay: 0 },
-              { img: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM", label: "📈 To The Moon", x: 40, y: -15, delay: 0.5 },
-              { img: "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T", label: "🔥 Hot Token", x: -30, y: 35, delay: 1 },
-              { img: "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB", label: "🚀 Early Bird", x: 35, y: 40, delay: 1.5 }
-            ].map(({ img, label, x, y, delay }, i) => (
+            {/* Floating hearts around */}
+            {[...Array(8)].map((_, i) => (
               <motion.div
-                key={i}
+                key={`heart-${i}`}
                 animate={{
-                  y: [y, y - 20, y],
-                  rotate: [0, 10, -10, 0],
-                  scale: [1, 1.1, 1]
+                  y: [0, -30, 0],
+                  x: [0, Math.random() * 20 - 10, 0],
+                  scale: [1, 1.3, 1],
+                  opacity: [0.5, 1, 0.5]
                 }}
                 transition={{
-                  duration: 2.5,
+                  duration: 2 + Math.random() * 2,
                   repeat: Infinity,
-                  delay
+                  delay: i * 0.3
                 }}
-                whileHover={{ scale: 1.2, rotate: 0 }}
-                className="absolute group cursor-pointer"
+                className="absolute text-3xl"
                 style={{ 
-                  left: `${50 + x}%`, 
-                  top: `${50 + y}%`,
-                  transform: 'translate(-50%, -50%)'
+                  left: `${10 + Math.random() * 80}%`, 
+                  top: `${10 + Math.random() * 80}%`
                 }}
               >
-                <div className="w-20 h-20 bg-white backdrop-blur-sm border-4 border-primary/40 rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
-                  <img src={img} alt={label} className="w-full h-full object-cover" />
-                </div>
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
-                  {label}
-                </div>
+                {i % 2 === 0 ? "💜" : "✨"}
               </motion.div>
             ))}
           </motion.div>
@@ -291,30 +311,28 @@ export default function Index() {
             >
               <div className="flex justify-center gap-4 items-center mb-4">
                 <motion.div
-                  animate={{ rotate: [0, 360] }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  className="w-16 h-16 rounded-full shadow-xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 10, -10, 0]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-6xl"
                 >
-                  <img 
-                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                    alt="Coin" 
-                    className="w-full h-full object-cover"
-                  />
+                  🎉
                 </motion.div>
                 <h2 className="text-4xl md:text-5xl font-black text-primary">Presale Progress</h2>
                 <motion.div
-                  animate={{ rotate: [360, 0] }}
-                  transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                  className="w-16 h-16 rounded-full shadow-xl"
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, -10, 10, 0]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-6xl"
                 >
-                  <img 
-                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                    alt="Coin" 
-                    className="w-full h-full object-cover"
-                  />
+                  💜
                 </motion.div>
               </div>
-              <p className="text-xl text-foreground/70 font-bold">Join the cutest experiment in crypto! 🧪💜</p>
+              <p className="text-xl text-foreground/70 font-bold">Join the cutest experiment in crypto! 🧪✨</p>
             </motion.div>
 
             {/* Chubby Progress Bar */}
@@ -423,32 +441,28 @@ export default function Index() {
         className="relative z-10 container mx-auto px-4 py-12"
       >
         <div className="bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 border-4 border-white shadow-xl relative overflow-hidden">
-          {/* Floating coins in background */}
-          {[...Array(3)].map((_, i) => (
+          {/* Floating cute elements in background */}
+          {[...Array(6)].map((_, i) => (
             <motion.div
               key={i}
               animate={{
                 y: [0, -30, 0],
                 x: [0, 20, 0],
                 rotate: [0, 360],
-                opacity: [0.1, 0.2, 0.1]
+                opacity: [0.2, 0.4, 0.2]
               }}
               transition={{
-                duration: 8 + i * 2,
+                duration: 6 + i * 1.5,
                 repeat: Infinity,
-                delay: i * 2
+                delay: i * 1.5
               }}
-              className="absolute w-32 h-32"
+              className="absolute text-6xl"
               style={{
-                left: `${20 + i * 30}%`,
-                top: `${-20 + i * 20}%`
+                left: `${10 + i * 15}%`,
+                top: `${-10 + i * 15}%`
               }}
             >
-              <img 
-                src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                alt="" 
-                className="w-full h-full object-cover opacity-30"
-              />
+              {["💎", "🚀", "⭐", "💜", "✨", "🔥"][i]}
             </motion.div>
           ))}
           
@@ -782,29 +796,27 @@ export default function Index() {
               
               <div className="flex justify-center gap-3 items-center mb-6">
                 <motion.div
-                  animate={{ rotate: [0, 360], scale: [1, 1.2, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="w-12 h-12 rounded-full shadow-xl"
+                  animate={{ 
+                    rotate: [0, 360],
+                    scale: [1, 1.3, 1]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-5xl"
                 >
-                  <img 
-                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                    alt="Coin" 
-                    className="w-full h-full object-cover"
-                  />
+                  🔥
                 </motion.div>
                 <div className="inline-block bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-black text-lg shadow-xl">
-                  🔥 250+ Investors Joined in Last Hour! 🔥
+                  250+ Investors Joined in Last Hour! 💎
                 </div>
                 <motion.div
-                  animate={{ rotate: [360, 0], scale: [1, 1.2, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                  className="w-12 h-12 rounded-full shadow-xl"
+                  animate={{ 
+                    rotate: [0, 360],
+                    scale: [1, 1.3, 1]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  className="text-5xl"
                 >
-                  <img 
-                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                    alt="Coin" 
-                    className="w-full h-full object-cover"
-                  />
+                  🚀
                 </motion.div>
               </div>
               
@@ -866,23 +878,31 @@ export default function Index() {
         <div className="container mx-auto px-4 py-12">
           <div className="text-center space-y-6">
             <motion.div 
-              whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
-              className="inline-flex items-center gap-3 mb-4"
+              whileHover={{ scale: 1.08, y: -5 }}
+              className="inline-flex items-center gap-4 mb-4"
             >
               <motion.div
-                animate={{ rotate: [0, 360] }}
-                transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                className="w-20 h-20 rounded-full shadow-2xl overflow-hidden border-4 border-white"
+                animate={{ 
+                  rotate: [0, 10, -10, 0],
+                  y: [0, -8, 0]
+                }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="text-7xl"
               >
-                <img 
-                  src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
-                  alt="Little Einstein Coin" 
-                  className="w-full h-full object-cover"
-                />
+                🧪
               </motion.div>
               <div className="text-left">
-                <h3 className="text-2xl font-black text-primary">Little Einstein</h3>
-                <p className="text-sm text-secondary font-bold">$LILEIN 💜</p>
+                <h3 className="text-3xl font-black text-primary flex items-center gap-2">
+                  Little Einstein
+                  <motion.span
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="text-4xl"
+                  >
+                    ✨
+                  </motion.span>
+                </h3>
+                <p className="text-lg text-secondary font-black">$LILEIN 💜</p>
               </div>
             </motion.div>
             
