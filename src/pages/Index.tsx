@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function Index() {
   const [raised, setRaised] = useState(2847500);
@@ -294,14 +295,16 @@ export default function Index() {
                 </p>
               </div>
             </motion.div>
-            <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-lg rounded-full px-10 py-6 shadow-2xl border-4 border-white/70 relative overflow-hidden">
-              <motion.span
-                animate={{ x: [-100, 400] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-              />
-              Connect Wallet 🚀
-            </Button>
+            <Link to="/staking">
+              <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-lg rounded-full px-10 py-6 shadow-2xl border-4 border-white/70 relative overflow-hidden">
+                <motion.span
+                  animate={{ x: [-100, 400] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                />
+                Stake Now 🔬
+              </Button>
+            </Link>
           </div>
         </div>
       </header>
