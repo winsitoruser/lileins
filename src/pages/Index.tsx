@@ -245,58 +245,99 @@ export default function Index() {
         </div>
         
         <div className="container mx-auto px-4 py-6 relative z-10">
-          <div className="flex justify-between items-center">
-            <motion.div 
-              whileHover={{ scale: 1.08, y: -3 }}
-              className="flex items-center gap-4"
-            >
-              <div className="relative">
-                <motion.div
-                  animate={{ 
-                    rotate: [0, 8, -8, 0],
-                    y: [0, -5, 0]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-6xl relative z-10"
-                >
-                  🧪
-                </motion.div>
-                {/* Bubbling effect */}
-                <motion.div
-                  animate={{ 
-                    scale: [0, 1, 0],
-                    y: [-20, -40, -60]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute top-0 left-1/2 text-2xl"
-                >
-                  💧
-                </motion.div>
-              </div>
-              <div>
-                <h1 className="text-3xl font-black text-primary flex items-center gap-2">
-                  Little Einstein
-                  <motion.span
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            {/* Logo */}
+            <Link to="/">
+              <motion.div 
+                whileHover={{ scale: 1.08, y: -3 }}
+                className="flex items-center gap-4 cursor-pointer"
+              >
+                <div className="relative">
+                  <motion.div
+                    animate={{ 
+                      rotate: [0, 8, -8, 0],
+                      y: [0, -5, 0]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-5xl md:text-6xl relative z-10"
                   >
-                    ✨
-                  </motion.span>
-                </h1>
-                <p className="text-lg text-secondary font-black flex items-center gap-1">
-                  $LILEIN 💜
-                  <motion.span
-                    animate={{ rotate: [0, 360] }}
-                    transition={{ duration: 4, repeat: Infinity }}
-                    className="text-sm"
+                    🧪
+                  </motion.div>
+                  {/* Bubbling effect */}
+                  <motion.div
+                    animate={{ 
+                      scale: [0, 1, 0],
+                      y: [-20, -40, -60]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="absolute top-0 left-1/2 text-2xl"
                   >
-                    ⚛️
-                  </motion.span>
-                </p>
-              </div>
-            </motion.div>
+                    💧
+                  </motion.div>
+                </div>
+                <div>
+                  <h1 className="text-2xl md:text-3xl font-black text-primary flex items-center gap-2">
+                    Little Einstein
+                    <motion.span
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 1, repeat: Infinity }}
+                    >
+                      ✨
+                    </motion.span>
+                  </h1>
+                  <p className="text-sm md:text-lg text-secondary font-black flex items-center gap-1">
+                    $LILEIN 💜
+                    <motion.span
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                      className="text-sm"
+                    >
+                      ⚛️
+                    </motion.span>
+                  </p>
+                </div>
+              </motion.div>
+            </Link>
+
+            {/* Navigation Menu */}
+            <nav className="flex items-center gap-2 md:gap-6">
+              <Link to="/">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
+                >
+                  🏠 Home
+                </motion.div>
+              </Link>
+              <Link to="/staking">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
+                >
+                  🔬 Staking
+                </motion.div>
+              </Link>
+              <a href="#tokenomics">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
+                >
+                  📊 Tokenomics
+                </motion.div>
+              </a>
+              <a href="#roadmap">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
+                >
+                  🗺️ Roadmap
+                </motion.div>
+              </a>
+            </nav>
+
+            {/* CTA Button */}
             <Link to="/staking">
-              <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-lg rounded-full px-10 py-6 shadow-2xl border-4 border-white/70 relative overflow-hidden">
+              <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-sm md:text-lg rounded-full px-6 md:px-10 py-4 md:py-6 shadow-2xl border-4 border-white/70 relative overflow-hidden">
                 <motion.span
                   animate={{ x: [-100, 400] }}
                   transition={{ duration: 2, repeat: Infinity }}

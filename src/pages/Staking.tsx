@@ -171,7 +171,8 @@ function StakingPageInner() {
       {/* Header */}
       <header className="relative z-10 bg-gradient-to-r from-card/90 via-primary/5 to-accent/5 backdrop-blur-md border-b-4 border-primary/30 shadow-xl">
         <div className="container mx-auto px-4 py-6">
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            {/* Logo */}
             <Link to="/">
               <motion.div
                 whileHover={{ scale: 1.08, y: -3 }}
@@ -201,6 +202,44 @@ function StakingPageInner() {
                 </div>
               </motion.div>
             </Link>
+
+            {/* Navigation Menu */}
+            <nav className="flex items-center gap-2 md:gap-6">
+              <Link to="/">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
+                >
+                  🏠 Home
+                </motion.div>
+              </Link>
+              <Link to="/staking">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base bg-primary/20 text-primary transition-all"
+                >
+                  🔬 Staking
+                </motion.div>
+              </Link>
+              <a href="/#tokenomics">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
+                >
+                  📊 Tokenomics
+                </motion.div>
+              </a>
+              <a href="/#roadmap">
+                <motion.div 
+                  whileHover={{ scale: 1.1, y: -2 }}
+                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
+                >
+                  🗺️ Roadmap
+                </motion.div>
+              </a>
+            </nav>
+
+            {/* Back Button */}
             <Link to="/">
               <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black rounded-full px-6 md:px-10 py-4 md:py-6 shadow-2xl border-4 border-white/70">
                 ← Back
