@@ -108,7 +108,7 @@ export default function Index() {
                 className="w-16 h-16 rounded-full shadow-2xl overflow-hidden border-4 border-white"
               >
                 <img 
-                  src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                  src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                   alt="Little Einstein Coin" 
                   className="w-full h-full object-cover"
                 />
@@ -222,7 +222,7 @@ export default function Index() {
                   rotate: [0, 10, -10, 0]
                 }}
                 transition={{ duration: 4, repeat: Infinity }}
-                src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                 alt="Little Einstein Coin" 
                 className="w-full max-w-md mx-auto drop-shadow-2xl"
               />
@@ -296,7 +296,7 @@ export default function Index() {
                   className="w-16 h-16 rounded-full shadow-xl"
                 >
                   <img 
-                    src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                     alt="Coin" 
                     className="w-full h-full object-cover"
                   />
@@ -308,7 +308,7 @@ export default function Index() {
                   className="w-16 h-16 rounded-full shadow-xl"
                 >
                   <img 
-                    src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                     alt="Coin" 
                     className="w-full h-full object-cover"
                   />
@@ -445,7 +445,7 @@ export default function Index() {
               }}
             >
               <img 
-                src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                 alt="" 
                 className="w-full h-full object-cover opacity-30"
               />
@@ -787,7 +787,7 @@ export default function Index() {
                   className="w-12 h-12 rounded-full shadow-xl"
                 >
                   <img 
-                    src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                     alt="Coin" 
                     className="w-full h-full object-cover"
                   />
@@ -801,7 +801,7 @@ export default function Index() {
                   className="w-12 h-12 rounded-full shadow-xl"
                 >
                   <img 
-                    src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                    src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                     alt="Coin" 
                     className="w-full h-full object-cover"
                   />
@@ -875,7 +875,7 @@ export default function Index() {
                 className="w-20 h-20 rounded-full shadow-2xl overflow-hidden border-4 border-white"
               >
                 <img 
-                  src="https://cdn.hercules.app/file_upGpiPSxM0SBtpNoPH9azx0s" 
+                  src="https://cdn.hercules.app/file_abD52MXVO6CXpvJ4ZzZ2qyjp" 
                   alt="Little Einstein Coin" 
                   className="w-full h-full object-cover"
                 />
