@@ -10,18 +10,27 @@ import { Skeleton } from "@/components/ui/skeleton.tsx";
 import { useState } from "react";
 import { toast } from "sonner";
 import { ConvexError } from "convex/values";
-import { 
-  Coins, 
-  TrendingUp, 
-  Clock, 
-  Gift, 
-  Rocket, 
-  Sparkles, 
+import {
+  Coins,
+  TrendingUp,
+  Clock,
+  Gift,
+  Rocket,
+  Sparkles,
   Users,
   Lock,
   Unlock,
   FlaskConical,
-  Atom
+  Atom,
+  Shield,
+  Zap,
+  Target,
+  Trophy,
+  ChevronDown,
+  Calculator,
+  Gauge,
+  PiggyBank,
+  Wallet,
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Id } from "@/convex/_generated/dataModel.d.ts";
@@ -33,6 +42,127 @@ const STAKING_OPTIONS = [
   { days: 365, apy: 50, emoji: "🌟", label: "Einstein", color: "from-yellow-400 to-orange-500" },
 ];
 
+const BENEFITS = [
+  {
+    icon: TrendingUp,
+    emoji: "📈",
+    title: "High Returns",
+    description: "Earn up to 50% APY with our Einstein tier staking program",
+  },
+  {
+    icon: Shield,
+    emoji: "🛡️",
+    title: "Secure & Safe",
+    description: "Smart contracts audited and secured by blockchain technology",
+  },
+  {
+    icon: Zap,
+    emoji: "⚡",
+    title: "Instant Rewards",
+    description: "Rewards calculated in real-time and claimable anytime",
+  },
+  {
+    icon: PiggyBank,
+    emoji: "💰",
+    title: "Passive Income",
+    description: "Earn rewards 24/7 while holding your tokens",
+  },
+  {
+    icon: Unlock,
+    emoji: "🔓",
+    title: "Flexible Unstaking",
+    description: "Unstake anytime and receive your tokens plus rewards",
+  },
+  {
+    icon: Users,
+    emoji: "👥",
+    title: "Community Growth",
+    description: "Join thousands of Einstein stakers earning together",
+  },
+];
+
+const FAQS = [
+  {
+    question: "What is staking?",
+    answer:
+      "Staking is the process of locking your $LILEIN tokens for a specific period to earn rewards. It's like a savings account where you deposit tokens and earn interest (APY) on them.",
+  },
+  {
+    question: "How do I start staking?",
+    answer:
+      "Simply connect your wallet, choose your preferred staking duration (30, 90, 180, or 365 days), enter the amount of $LILEIN tokens you want to stake, and click 'Stake Tokens'. Your rewards will start accumulating immediately!",
+  },
+  {
+    question: "Can I unstake before the duration ends?",
+    answer:
+      "Yes! You can unstake your tokens anytime. However, staking for the full duration ensures you maximize your rewards according to the APY tier you selected.",
+  },
+  {
+    question: "How are rewards calculated?",
+    answer:
+      "Rewards are calculated based on your staked amount, the APY of your chosen tier, and the time elapsed. The formula is: Rewards = (Staked Amount × APY × Days Elapsed) / 365. Rewards compound in real-time!",
+  },
+  {
+    question: "What are the different staking tiers?",
+    answer:
+      "We offer 4 tiers: Starter (30 days, 12% APY), Growth (90 days, 24% APY), Diamond (180 days, 36% APY), and Einstein (365 days, 50% APY). Longer durations offer higher returns!",
+  },
+  {
+    question: "Can I have multiple stakes?",
+    answer:
+      "Absolutely! You can create as many stakes as you want with different amounts and durations. Each stake is tracked separately with its own rewards.",
+  },
+  {
+    question: "Is my stake secure?",
+    answer:
+      "Yes! All stakes are secured by smart contracts on the blockchain. Your tokens remain in your control and can be unstaked at any time. We don't have custody of your funds.",
+  },
+  {
+    question: "When can I claim my rewards?",
+    answer:
+      "You can claim your rewards anytime! Rewards accumulate every second and can be claimed without unstaking. Or, you can unstake to receive both your original tokens and all accumulated rewards.",
+  },
+];
+
+function FAQItem({ faq, index }: { faq: { question: string; answer: string }; index: number }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.1 }}
+    >
+      <Card className="border-4 border-primary/20 bg-white shadow-lg hover:shadow-xl transition-all">
+        <CardContent className="p-6">
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-full flex justify-between items-center text-left"
+          >
+            <h3 className="text-lg md:text-xl font-black text-primary pr-4">{faq.question}</h3>
+            <motion.div
+              animate={{ rotate: isOpen ? 180 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="flex-shrink-0"
+            >
+              <ChevronDown className="w-6 h-6 text-primary" />
+            </motion.div>
+          </button>
+          <motion.div
+            initial={false}
+            animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <p className="text-foreground/70 font-medium leading-relaxed mt-4">{faq.answer}</p>
+          </motion.div>
+        </CardContent>
+      </Card>
+    </motion.div>
+  );
+}
+
 function StakingPageInner() {
   const stakes = useQuery(api.stakes.getUserStakes, {});
   const stats = useQuery(api.stakes.getStakingStats, {});
@@ -43,6 +173,10 @@ function StakingPageInner() {
   const [stakeAmount, setStakeAmount] = useState<string>("1000");
   const [selectedDuration, setSelectedDuration] = useState<number>(90);
   const [isStaking, setIsStaking] = useState(false);
+
+  // Calculator state
+  const [calcAmount, setCalcAmount] = useState<string>("5000");
+  const [calcDuration, setCalcDuration] = useState<number>(90);
 
   const handleStake = async () => {
     const amount = parseFloat(stakeAmount);
@@ -109,14 +243,50 @@ function StakingPageInner() {
     selectedDuration
   );
 
+  // Calculator calculations
+  const calcOption = STAKING_OPTIONS.find((o) => o.days === calcDuration);
+  const calcRewards = calculateProjectedRewards(parseFloat(calcAmount) || 0, calcDuration);
+  const calcTotal = (parseFloat(calcAmount) || 0) + calcRewards;
+  const calcDailyRewards = calcRewards / calcDuration;
+
   const activeStakes = stakes?.filter((s) => s.isActive) || [];
   const inactiveStakes = stakes?.filter((s) => !s.isActive) || [];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-accent/20 via-background to-primary/10 relative overflow-hidden">
-      {/* Scientific Background */}
+      {/* Enhanced Scientific Laboratory Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {["E=mc²", "a²+b²=c²", "π=3.14", "∑F=ma", "√x²+y²", "∫dx", "∂f/∂x", "α+β=γ"].map(
+        {/* Beakers and Lab Equipment */}
+        {[...Array(12)].map((_, i) => {
+          const equipments = ["🧪", "⚗️", "🔬", "⚛️", "🧬", "💧", "🌡️", "⚖️"];
+          return (
+            <motion.div
+              key={`equipment-${i}`}
+              animate={{
+                y: [0, -100, 0],
+                x: [0, Math.random() * 50 - 25, 0],
+                rotate: [0, 360],
+                scale: [1, 1.3, 1],
+                opacity: [0.2, 0.5, 0.2],
+              }}
+              transition={{
+                duration: 8 + Math.random() * 8,
+                repeat: Infinity,
+                delay: Math.random() * 4,
+              }}
+              className="absolute text-3xl md:text-5xl"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+            >
+              {equipments[i % equipments.length]}
+            </motion.div>
+          );
+        })}
+
+        {/* Floating Formulas */}
+        {["E=mc²", "a²+b²=c²", "π≈3.14", "∑F=ma", "√x²+y²", "∫dx", "∂f/∂x", "Δx·Δp≥ℏ/2"].map(
           (formula, i) => (
             <motion.div
               key={`formula-${i}`}
@@ -124,15 +294,15 @@ function StakingPageInner() {
                 y: [0, -150, 0],
                 x: [0, Math.random() * 80 - 40, 0],
                 rotate: [0, 360],
-                opacity: [0.2, 0.5, 0.2],
+                opacity: [0.1, 0.4, 0.1],
               }}
               transition={{
-                duration: 10 + Math.random() * 10,
+                duration: 12 + Math.random() * 10,
                 repeat: Infinity,
                 delay: Math.random() * 5,
                 ease: "easeInOut",
               }}
-              className="absolute text-xl md:text-3xl font-black text-primary/40"
+              className="absolute text-xl md:text-4xl font-black text-primary/30"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
@@ -143,28 +313,53 @@ function StakingPageInner() {
           )
         )}
 
-        {[...Array(15)].map((_, i) => (
+        {/* Bubbles with Chemical Reactions */}
+        {[...Array(25)].map((_, i) => (
           <motion.div
             key={`bubble-${i}`}
             animate={{
-              y: [0, -120, 0],
+              y: [0, -150, 0],
               x: [0, Math.random() * 60 - 30, 0],
-              scale: [1, 1.3, 1],
-              opacity: [0.3, 0.7, 0.3],
+              scale: [1, 1.4, 1],
+              opacity: [0.2, 0.6, 0.2],
             }}
             transition={{
               duration: 6 + Math.random() * 6,
               repeat: Infinity,
               delay: Math.random() * 5,
             }}
-            className="absolute rounded-full bg-gradient-to-br from-accent/40 to-secondary/40 border-2 border-primary/20"
+            className="absolute rounded-full bg-gradient-to-br from-accent/30 to-secondary/30 border-2 border-primary/20"
             style={{
-              width: `${20 + Math.random() * 60}px`,
-              height: `${20 + Math.random() * 60}px`,
+              width: `${20 + Math.random() * 80}px`,
+              height: `${20 + Math.random() * 80}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
             }}
           />
+        ))}
+
+        {/* Glowing Atoms */}
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={`atom-${i}`}
+            animate={{
+              scale: [1, 1.5, 1],
+              rotate: [0, 360],
+              opacity: [0.3, 0.7, 0.3],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 3,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+            }}
+            className="absolute"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          >
+            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-primary to-accent shadow-lg" />
+          </motion.div>
         ))}
       </div>
 
@@ -206,7 +401,7 @@ function StakingPageInner() {
             {/* Navigation Menu */}
             <nav className="flex items-center gap-2 md:gap-6">
               <Link to="/">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, y: -2 }}
                   className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
                 >
@@ -214,7 +409,7 @@ function StakingPageInner() {
                 </motion.div>
               </Link>
               <Link to="/staking">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, y: -2 }}
                   className="px-4 py-2 rounded-full font-black text-sm md:text-base bg-primary/20 text-primary transition-all"
                 >
@@ -222,7 +417,7 @@ function StakingPageInner() {
                 </motion.div>
               </Link>
               <a href="/#tokenomics">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, y: -2 }}
                   className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
                 >
@@ -230,7 +425,7 @@ function StakingPageInner() {
                 </motion.div>
               </a>
               <a href="/#roadmap">
-                <motion.div 
+                <motion.div
                   whileHover={{ scale: 1.1, y: -2 }}
                   className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
                 >
@@ -280,21 +475,24 @@ function StakingPageInner() {
           {[
             {
               label: "Total Staked",
-              value: stats ? `${stats.totalStaked.toFixed(0)} $LILEIN` : "Loading...",
+              value: stats ? `${stats.totalStaked.toLocaleString()} $LILEIN` : "Loading...",
               icon: Lock,
               emoji: "💰",
+              gradient: "from-yellow-400 to-orange-500",
             },
             {
               label: "Total Rewards",
               value: stats ? `${stats.totalRewards.toFixed(2)} $LILEIN` : "Loading...",
               icon: Gift,
               emoji: "🎁",
+              gradient: "from-pink-400 to-rose-500",
             },
             {
               label: "Active Stakers",
               value: stats ? `${stats.activeStakers}` : "Loading...",
               icon: Users,
               emoji: "👥",
+              gradient: "from-purple-400 to-indigo-500",
             },
           ].map((stat, i) => (
             <motion.div
@@ -304,8 +502,9 @@ function StakingPageInner() {
               transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <Card className="border-4 border-primary/20 bg-white shadow-xl">
-                <CardContent className="p-6 text-center">
+              <Card className="border-6 border-white bg-gradient-to-br from-white to-primary/5 shadow-2xl overflow-hidden relative">
+                <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-10`} />
+                <CardContent className="p-6 text-center relative z-10">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
@@ -314,18 +513,212 @@ function StakingPageInner() {
                     {stat.emoji}
                   </motion.div>
                   <p className="text-sm text-foreground/60 font-bold mb-2">{stat.label}</p>
-                  <p className="text-2xl font-black text-primary">{stat.value}</p>
+                  <p className="text-xl md:text-2xl font-black text-primary">{stat.value}</p>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
         </div>
 
-        {/* Staking Options */}
+        {/* Advanced Staking Calculator */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="mb-12"
+        >
+          <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl overflow-hidden relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-50" />
+            <CardHeader className="relative z-10">
+              <CardTitle className="text-3xl md:text-5xl font-black text-center flex items-center justify-center gap-3">
+                <motion.span
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                >
+                  🧮
+                </motion.span>
+                Advanced Staking Calculator
+              </CardTitle>
+              <p className="text-center text-foreground/70 font-bold mt-2">
+                Calculate your potential earnings before you stake! 📊
+              </p>
+            </CardHeader>
+            <CardContent className="p-6 md:p-8 relative z-10">
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Left: Input Section */}
+                <div className="space-y-6">
+                  <div>
+                    <label className="text-lg font-black text-foreground flex items-center gap-2 mb-3">
+                      <Calculator className="w-5 h-5 text-primary" />
+                      Staking Amount ($LILEIN)
+                    </label>
+                    <div className="relative">
+                      <Wallet className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
+                      <Input
+                        type="number"
+                        value={calcAmount}
+                        onChange={(e) => setCalcAmount(e.target.value)}
+                        placeholder="5000"
+                        className="text-2xl font-black text-center h-16 rounded-2xl border-4 border-primary/30 bg-white shadow-xl pl-12"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-lg font-black text-foreground flex items-center gap-2 mb-3">
+                      <Clock className="w-5 h-5 text-primary" />
+                      Select Duration
+                    </label>
+                    <div className="grid grid-cols-2 gap-3">
+                      {STAKING_OPTIONS.map((option) => (
+                        <motion.button
+                          key={option.days}
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                          onClick={() => setCalcDuration(option.days)}
+                          className={`rounded-xl p-4 border-4 shadow-lg transition-all ${
+                            calcDuration === option.days
+                              ? "border-primary bg-gradient-to-br " +
+                                option.color +
+                                " text-white"
+                              : "border-primary/20 bg-white hover:border-primary/40"
+                          }`}
+                        >
+                          <p className="text-2xl mb-1">{option.emoji}</p>
+                          <p className="font-black text-sm">{option.days}d</p>
+                          <p className="text-xs opacity-80">{option.apy}% APY</p>
+                        </motion.button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Results Section */}
+                <div className="space-y-4">
+                  <div className="bg-gradient-to-br from-accent/20 to-secondary/20 rounded-2xl p-6 border-4 border-white shadow-xl">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Gauge className="w-5 h-5 text-primary" />
+                      <p className="text-sm font-bold text-foreground/70">Selected Plan</p>
+                    </div>
+                    <p className="text-3xl font-black text-primary mb-1">
+                      {calcOption?.label} 🌟
+                    </p>
+                    <p className="text-lg font-bold text-foreground/70">
+                      {calcDuration} Days • {calcOption?.apy}% APY
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-2xl p-6 border-4 border-white shadow-xl">
+                    <div className="flex items-center gap-2 mb-3">
+                      <TrendingUp className="w-5 h-5 text-green-600" />
+                      <p className="text-sm font-bold text-foreground/70">Total Rewards</p>
+                    </div>
+                    <motion.p
+                      key={calcRewards}
+                      initial={{ scale: 1.2, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="text-4xl font-black text-green-600 mb-1"
+                    >
+                      +{calcRewards.toFixed(2)} $LILEIN
+                    </motion.p>
+                    <p className="text-sm font-bold text-foreground/60">
+                      ~{calcDailyRewards.toFixed(2)} $LILEIN per day
+                    </p>
+                  </div>
+
+                  <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl p-6 border-4 border-white shadow-xl">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Trophy className="w-5 h-5 text-primary" />
+                      <p className="text-sm font-bold text-foreground/70">Final Value</p>
+                    </div>
+                    <motion.p
+                      key={calcTotal}
+                      initial={{ scale: 1.2, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="text-4xl font-black text-primary"
+                    >
+                      {calcTotal.toFixed(2)} $LILEIN
+                    </motion.p>
+                    <p className="text-sm font-bold text-green-600 mt-2">
+                      +{((calcRewards / (parseFloat(calcAmount) || 1)) * 100).toFixed(1)}% Gain
+                      🚀
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <motion.div
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="mt-6 text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-4 border-2 border-primary/20"
+              >
+                <p className="text-sm text-foreground/70 font-bold">
+                  💡 Tip: Longer staking periods = Higher APY = More rewards!
+                </p>
+              </motion.div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Why Choose Staking Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
+          className="mb-12"
+        >
+          <div className="text-center mb-8">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="inline-block text-6xl mb-4"
+            >
+              💎
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">
+              Why Stake with Little Einstein? 🧪
+            </h2>
+            <p className="text-lg md:text-xl text-foreground/70 font-bold max-w-3xl mx-auto">
+              Join the smartest community in crypto and earn rewards with our genius-level staking
+              program!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {BENEFITS.map((benefit, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+              >
+                <Card className="border-4 border-primary/20 bg-white shadow-xl h-full">
+                  <CardContent className="p-6 text-center">
+                    <motion.div
+                      animate={{ scale: [1, 1.3, 1], rotate: [0, 10, -10, 0] }}
+                      transition={{ duration: 3, repeat: Infinity, delay: i * 0.2 }}
+                      className="text-6xl mb-4"
+                    >
+                      {benefit.emoji}
+                    </motion.div>
+                    <h3 className="text-xl font-black text-primary mb-3">{benefit.title}</h3>
+                    <p className="text-foreground/70 font-medium leading-relaxed">
+                      {benefit.description}
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Staking Form */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
         >
           <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl mb-12">
             <CardHeader>
@@ -336,7 +729,7 @@ function StakingPageInner() {
                 >
                   ⚛️
                 </motion.span>
-                Create New Stake
+                Start Staking Now
               </CardTitle>
             </CardHeader>
             <CardContent className="p-6 md:p-8">
@@ -552,6 +945,7 @@ function StakingPageInner() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
+            className="mb-12"
           >
             <h2 className="text-2xl md:text-3xl font-black text-foreground/60 mb-6 flex items-center gap-3">
               <Unlock className="w-6 h-6" />
@@ -587,6 +981,70 @@ function StakingPageInner() {
             </div>
           </motion.div>
         )}
+
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="mb-12"
+        >
+          <div className="text-center mb-8">
+            <motion.div
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 6, repeat: Infinity }}
+              className="inline-block text-6xl mb-4"
+            >
+              ❓
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">
+              Frequently Asked Questions 🤔
+            </h2>
+            <p className="text-lg md:text-xl text-foreground/70 font-bold max-w-3xl mx-auto">
+              Got questions? We've got answers! Find everything you need to know about staking.
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-4">
+            {FAQS.map((faq, i) => (
+              <FAQItem key={i} faq={faq} index={i} />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Final CTA */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="text-center"
+        >
+          <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl p-8 md:p-12">
+            <motion.div
+              animate={{ rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-7xl mb-6"
+            >
+              🚀
+            </motion.div>
+            <h2 className="text-3xl md:text-5xl font-black text-primary mb-4">
+              Ready to Start Earning? 💰
+            </h2>
+            <p className="text-lg md:text-xl text-foreground/70 font-bold mb-8 max-w-2xl mx-auto">
+              Join thousands of Einstein stakers and start earning genius-level rewards today!
+            </p>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl px-12 h-16 md:h-20 rounded-full shadow-2xl border-4 border-white"
+              >
+                <Sparkles className="mr-2 w-6 h-6" />
+                Stake Now 🧪
+              </Button>
+            </motion.div>
+          </Card>
+        </motion.div>
       </div>
     </div>
   );
