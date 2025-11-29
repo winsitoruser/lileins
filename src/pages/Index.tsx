@@ -1,10 +1,20 @@
-import { motion } from "motion/react";
-import { Atom, Beaker, Brain, Calculator, FlaskConical, Heart, Rocket, SparklesIcon, Star, Users, Zap } from "lucide-react";
+import { motion, useScroll, useTransform } from "motion/react";
+import { Atom, Beaker, Brain, Calculator, FlaskConical, Heart, Rocket, SparklesIcon, Star, Users, Zap, X, Droplets, Search, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog.tsx";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { WalletButton } from "@/components/wallet/WalletButton.tsx";
+import { useWallet } from "@/hooks/useWallet.ts";
+import * as animations from "@/lib/animations.ts";
 
 export default function Index() {
   const [raised, setRaised] = useState(2847500);
@@ -17,6 +27,9 @@ export default function Index() {
     seconds: 45
   });
   const [investmentAmount, setInvestmentAmount] = useState<string>("1000");
+  const [showMoonCalculator, setShowMoonCalculator] = useState(false);
+  const [moonInvestment, setMoonInvestment] = useState<string>("100");
+  const [targetPrice, setTargetPrice] = useState<number>(1.0); // Dynamic target price
   
   // Calculator multipliers
   const currentMultiplier = 2.38; // 238% up
@@ -31,6 +44,29 @@ export default function Index() {
   };
   
   const calculatedValues = calculateValues(investmentAmount);
+  
+  // Moon Calculator - Projection with dynamic target
+  const presalePrice = 0.00042; // Current presale price
+  
+  const calculateMoonProjection = (investment: string, targetPriceValue: number) => {
+    const amount = parseFloat(investment) || 0;
+    const tokensReceived = amount / presalePrice;
+    const valueAtTarget = tokensReceived * targetPriceValue;
+    const multiplier = targetPriceValue / presalePrice;
+    const profit = valueAtTarget - amount;
+    const roi = ((profit / amount) * 100);
+    
+    return {
+      investment: amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      tokens: tokensReceived.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
+      valueAtTarget: valueAtTarget.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      multiplier: multiplier.toFixed(0),
+      profit: profit.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
+      roi: roi.toFixed(0)
+    };
+  };
+  
+  const moonProjection = calculateMoonProjection(moonInvestment, targetPrice);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -237,9 +273,21 @@ export default function Index() {
             </Link>
 
             {/* Navigation Menu */}
-            <nav className="hidden md:flex items-center gap-8">
+            <nav className="hidden md:flex items-center gap-6">
               <Link to="/" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
                 Home
+              </Link>
+              <Link to="/einswap" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors flex items-center gap-1">
+                <Beaker className="w-4 h-4" />
+                EinSwap
+              </Link>
+              <Link to="/pools" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors flex items-center gap-1">
+                <Droplets className="w-4 h-4" />
+                Pools
+              </Link>
+              <Link to="/explorer" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors flex items-center gap-1">
+                <Search className="w-4 h-4" />
+                Explorer
               </Link>
               <Link to="/staking" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
                 Staking
@@ -252,12 +300,8 @@ export default function Index() {
               </a>
             </nav>
 
-            {/* CTA Button */}
-            <Link to="/staking">
-              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-6">
-                Stake Now
-              </Button>
-            </Link>
+            {/* Connect Wallet / Account Button */}
+            <WalletButton />
           </div>
         </div>
       </header>
@@ -266,17 +310,13 @@ export default function Index() {
       <section className="relative z-10 container mx-auto px-4 py-12 md:py-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            variants={animations.fadeInUp}
+            initial="hidden"
+            animate="visible"
             className="space-y-6"
           >
             <motion.div 
-              animate={{ 
-                scale: [1, 1.05, 1],
-                rotate: [0, 2, -2, 0]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
+              animate={animations.subtlePulse}
               className="inline-block"
             >
               <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-full font-bold text-sm shadow-xl border-4 border-white/50">
@@ -303,22 +343,39 @@ export default function Index() {
               Join our adorable lab where science meets memes! Little Einstein is bringing genius-level gains with maximum cuteness! 💜
             </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div 
+              variants={animations.fadeIn}
+              initial="hidden"
+              animate="visible"
+              transition={{ delay: 0.3 }}
+              className="flex flex-wrap gap-4 pt-4"
+            >
+              <motion.div 
+                whileHover={animations.buttonHover} 
+                whileTap={animations.buttonTap}
+              >
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-black text-xl px-10 h-16 rounded-full shadow-2xl border-4 border-white/50">
                   <Rocket className="mr-2 w-6 h-6" />
                   Buy $LILEIN 🎉
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <motion.div 
+                whileHover={animations.buttonHover} 
+                whileTap={animations.buttonTap}
+              >
                 <Button size="lg" className="border-4 border-primary/30 hover:bg-primary/10 text-xl h-16 px-10 rounded-full font-bold bg-white shadow-xl text-foreground">
                   <Heart className="mr-2 w-6 h-6 fill-primary text-primary" />
                   Join Community
                 </Button>
               </motion.div>
-            </div>
+            </motion.div>
 
-            <div className="flex gap-6 pt-6">
+            <motion.div 
+              variants={animations.staggerContainer}
+              initial="hidden"
+              animate="visible"
+              className="flex gap-6 pt-6"
+            >
               {[
                 { label: "Raised", value: "$2.8M+", emoji: "💰" },
                 { label: "Holders", value: "12K+", emoji: "👥" },
@@ -326,20 +383,22 @@ export default function Index() {
               ].map((stat, i) => (
                 <motion.div
                   key={i}
-                  whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
-                  className="bg-white rounded-3xl p-4 shadow-xl border-4 border-primary/20"
+                  variants={animations.staggerItem}
+                  whileHover={animations.hoverLift}
+                  className="bg-white rounded-3xl p-4 shadow-xl border-4 border-primary/20 cursor-pointer"
                 >
                   <p className="text-3xl font-black text-primary">{stat.value}</p>
                   <p className="text-sm text-foreground/60 font-bold">{stat.label} {stat.emoji}</p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            variants={animations.scaleIn}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 0.2 }}
             className="relative"
           >
             <motion.div
@@ -385,16 +444,13 @@ export default function Index() {
               ].map(({ img, emoji, lab }, i) => (
                 <motion.div
                   key={i}
-                  animate={{
-                    y: [0, -15, 0],
-                    rotate: [0, 5, -5, 0]
-                  }}
+                  animate={animations.floatingAnimation}
                   transition={{
-                    duration: 2.5,
+                    duration: 2.5 + i * 0.5,
                     repeat: Infinity,
                     delay: i * 0.3
                   }}
-                  whileHover={{ scale: 1.15, rotate: 0, y: -20 }}
+                  whileHover={animations.hoverScale}
                   className="relative group cursor-pointer"
                 >
                   <div className="bg-white rounded-3xl p-3 border-6 border-primary/30 shadow-2xl overflow-hidden relative">
@@ -467,10 +523,7 @@ export default function Index() {
 
       {/* Einstein to the Moon - Profit Section */}
       <motion.section
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+        {...animations.scrollFadeIn}
         className="relative z-10 container mx-auto px-4 py-20"
       >
         <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 md:p-16 border-8 border-white shadow-2xl overflow-hidden relative">
@@ -600,67 +653,40 @@ export default function Index() {
               </p>
             </div>
 
-            {/* Interactive Profit Calculator */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-12 relative"
-            >
-              {/* Floating Astronauts around calculator */}
-              <motion.div
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 10, -10, 0]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
-                className="absolute -left-10 top-10 hidden lg:block"
-              >
-                <img 
-                  src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
-                  alt="Astronaut"
-                  className="w-20 h-20 opacity-60"
-                />
-              </motion.div>
-              <motion.div
-                animate={{
-                  y: [0, -25, 0],
-                  rotate: [0, -10, 10, 0]
-                }}
-                transition={{ duration: 3.5, repeat: Infinity }}
-                className="absolute -right-10 bottom-10 hidden lg:block"
-              >
-                <img 
-                  src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
-                  alt="Astronaut"
-                  className="w-20 h-20 opacity-60"
-                />
-              </motion.div>
-
-              <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl rounded-3xl overflow-hidden max-w-3xl mx-auto">
-                <CardContent className="p-8 md:p-12">
-                  {/* Calculator Title */}
-                  <motion.div
-                    animate={{ scale: [1, 1.05, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-center mb-8"
-                  >
-                    <motion.div
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      className="inline-block text-6xl mb-4"
-                    >
-                      🧮
-                    </motion.div>
-                    <h3 className="text-4xl md:text-5xl font-black text-primary mb-2">
-                      Profit Calculator
-                    </h3>
-                    <p className="text-lg text-foreground/70 font-bold">
-                      Calculate your genius gains! 💎
-                    </p>
-                  </motion.div>
-
-                  {/* Input Section */}
+            {/* Calculator Modal (Hidden Trigger) */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <div className="hidden">
+                  <Button>Open Calculator</Button>
+                </div>
+              </DialogTrigger>
+                  
+                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-white via-primary/5 to-accent/5 border-4 border-primary/30">
+                    <DialogHeader>
+                      <DialogTitle className="text-center">
+                        <motion.div
+                          animate={{ scale: [1, 1.05, 1] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="text-center mb-4"
+                        >
+                          <motion.div
+                            animate={{ rotate: [0, 360] }}
+                            transition={{ duration: 4, repeat: Infinity }}
+                            className="inline-block text-5xl mb-3"
+                          >
+                            🧮
+                          </motion.div>
+                          <h3 className="text-3xl md:text-4xl font-black text-primary mb-2">
+                            Profit Calculator
+                          </h3>
+                          <p className="text-base text-foreground/70 font-bold">
+                            Calculate your genius gains! 💎
+                          </p>
+                        </motion.div>
+                      </DialogTitle>
+                    </DialogHeader>
+                    
+                    {/* Input Section */}
                   <div className="space-y-6 mb-8">
                     <div className="space-y-3">
                       <label className="text-xl font-black text-foreground flex items-center gap-2">
@@ -774,9 +800,146 @@ export default function Index() {
                       Please do your own research and invest responsibly.
                     </p>
                   </motion.div>
-                </CardContent>
-              </Card>
-            </motion.div>
+                  </DialogContent>
+                </Dialog>
+
+            {/* Presale Progress Box - Full Width */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <Card className="border-8 border-white bg-gradient-to-br from-card via-accent/5 to-primary/5 shadow-2xl overflow-hidden rounded-3xl">
+                  <CardContent className="p-8 md:p-12">
+                    <motion.div 
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="text-center mb-8"
+                    >
+                      <div className="flex justify-center gap-4 items-center mb-4">
+                        <motion.div
+                          animate={{ 
+                            scale: [1, 1.2, 1],
+                            rotate: [0, 10, -10, 0]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="text-6xl"
+                        >
+                          🎉
+                        </motion.div>
+                        <h2 className="text-3xl md:text-4xl font-black text-primary">Presale Progress</h2>
+                        <motion.div
+                          animate={{ 
+                            scale: [1, 1.2, 1],
+                            rotate: [0, -10, 10, 0]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                          className="text-6xl"
+                        >
+                          💜
+                        </motion.div>
+                      </div>
+                      <p className="text-base md:text-lg text-foreground/70 font-bold">Join the cutest experiment in crypto! 🧪✨</p>
+                    </motion.div>
+
+                    {/* Chubby Progress Bar */}
+                    <div className="space-y-6 mb-8">
+                      <div className="relative h-16 bg-muted rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${progress}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 2, ease: "easeOut" }}
+                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full"
+                        >
+                          <motion.div
+                            animate={{ x: ["0%", "100%"] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                          />
+                          <motion.div
+                            animate={{ y: [0, -5, 0] }}
+                            transition={{ duration: 0.5, repeat: Infinity }}
+                            className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl"
+                          >
+                            🚀
+                          </motion.div>
+                        </motion.div>
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <span className="text-2xl font-black text-white drop-shadow-lg">
+                            {progress.toFixed(1)}% Complete! 🎉
+                          </span>
+                        </div>
+                      </div>
+                      <div className="flex justify-between">
+                        <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border-4 border-primary/20">
+                          <span className="text-2xl md:text-3xl font-black text-primary">
+                            ${(raised / 1000000).toFixed(2)}M 💰
+                          </span>
+                        </div>
+                        <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border-4 border-primary/20">
+                          <span className="text-2xl md:text-3xl font-black text-foreground/60">
+                            ${(target / 1000000).toFixed(1)}M 🎯
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Cute Countdown */}
+                    <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 border-4 border-white shadow-xl mb-8">
+                      <p className="text-center text-base md:text-lg text-foreground/80 font-bold mb-4">
+                        ⏰ Hurry! Presale Ends In:
+                      </p>
+                      <div className="grid grid-cols-4 gap-4">
+                        {[
+                          { label: "Days", value: countdown.days, emoji: "📅" },
+                          { label: "Hours", value: countdown.hours, emoji: "⏰" },
+                          { label: "Minutes", value: countdown.minutes, emoji: "⏱️" },
+                          { label: "Seconds", value: countdown.seconds, emoji: "⚡" }
+                        ].map(({ label, value, emoji }) => (
+                          <motion.div 
+                            key={label}
+                            whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+                            className="bg-white rounded-2xl p-4 md:p-6 border-4 border-primary/30 shadow-lg text-center"
+                          >
+                            <div className="text-3xl md:text-4xl font-black text-primary font-mono mb-1">
+                              {value.toString().padStart(2, '0')}
+                            </div>
+                            <div className="text-xs md:text-sm text-foreground/60 font-bold">{label}</div>
+                            <div className="text-2xl mt-1">{emoji}</div>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Price Info */}
+                    <div className="grid md:grid-cols-2 gap-4 mb-8">
+                      <div className="bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm md:text-base font-bold text-foreground/70">Current Price 💎</span>
+                          <span className="text-2xl md:text-3xl font-black text-primary">$0.00042</span>
+                        </div>
+                      </div>
+                      <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm md:text-base font-bold text-foreground/70">Next Price 📈</span>
+                          <span className="text-2xl md:text-3xl font-black text-secondary">$0.00055</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Big Buy Button */}
+                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                      <Button size="lg" className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl h-16 md:h-20 rounded-full shadow-2xl border-4 border-white">
+                        <Rocket className="mr-3 w-8 h-8" />
+                        Buy $LILEIN Now! 🎉
+                        <SparklesIcon className="ml-3 w-8 h-8" />
+                      </Button>
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
             {/* Rocket Launch Section */}
             <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-8 md:p-12 border-4 border-white shadow-xl mb-8">
@@ -814,6 +977,18 @@ export default function Index() {
                       </motion.div>
                     ))}
                   </div>
+                  
+                  {/* Moon Calculator Button */}
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button 
+                      onClick={() => setShowMoonCalculator(true)}
+                      size="lg" 
+                      className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white mt-6"
+                    >
+                      <Calculator className="mr-2 w-6 h-6" />
+                      Moon Calculator 🌙
+                    </Button>
+                  </motion.div>
                 </div>
 
                 <div className="relative flex items-center justify-center min-h-[400px]">
@@ -933,6 +1108,7 @@ export default function Index() {
 
       {/* Tokenomics Section */}
       <motion.section
+        id="tokenomics"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -968,8 +1144,8 @@ export default function Index() {
                 {[
                   { label: "Token Name", value: "Little Einstein", icon: "🧪" },
                   { label: "Symbol", value: "$LILEIN", icon: "💎" },
-                  { label: "Total Supply", value: "1,000,000,000", icon: "📈" },
-                  { label: "Network", value: "BSC (BEP-20)", icon: "⚡" }
+                  { label: "Total Supply", value: "100,000,000,000", icon: "📈" },
+                  { label: "Network", value: "BASE L2", icon: "⚡" }
                 ].map((info, i) => (
                   <motion.div
                     key={i}
@@ -1254,142 +1430,6 @@ export default function Index() {
         </div>
       </motion.section>
 
-      {/* Super Cute Presale Box */}
-      <motion.section 
-        {...bounceAnimation}
-        className="relative z-10 container mx-auto px-4 py-12"
-      >
-        <Card className="border-8 border-white bg-gradient-to-br from-card via-accent/5 to-primary/5 shadow-2xl overflow-hidden rounded-3xl">
-          <CardContent className="p-8 md:p-12">
-            <motion.div 
-              animate={{ scale: [1, 1.05, 1] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="text-center mb-8"
-            >
-              <div className="flex justify-center gap-4 items-center mb-4">
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 10, -10, 0]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-6xl"
-                >
-                  🎉
-                </motion.div>
-                <h2 className="text-4xl md:text-5xl font-black text-primary">Presale Progress</h2>
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.2, 1],
-                    rotate: [0, -10, 10, 0]
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-6xl"
-                >
-                  💜
-                </motion.div>
-              </div>
-              <p className="text-xl text-foreground/70 font-bold">Join the cutest experiment in crypto! 🧪✨</p>
-            </motion.div>
-
-            {/* Chubby Progress Bar */}
-            <div className="space-y-6 mb-8">
-              <div className="relative h-16 bg-muted rounded-full overflow-hidden border-4 border-white shadow-xl">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${progress}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 2, ease: "easeOut" }}
-                  className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full"
-                >
-                  <motion.div
-                    animate={{ x: ["0%", "100%"] }}
-                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                  />
-                  <motion.div
-                    animate={{ y: [0, -5, 0] }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl"
-                  >
-                    🚀
-                  </motion.div>
-                </motion.div>
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-2xl font-black text-white drop-shadow-lg">
-                    {progress.toFixed(1)}% Complete! 🎉
-                  </span>
-                </div>
-              </div>
-              <div className="flex justify-between">
-                <div className="bg-white rounded-2xl px-6 py-3 shadow-lg border-4 border-primary/20">
-                  <span className="text-3xl font-black text-primary">
-                    ${(raised / 1000000).toFixed(2)}M 💰
-                  </span>
-                </div>
-                <div className="bg-white rounded-2xl px-6 py-3 shadow-lg border-4 border-primary/20">
-                  <span className="text-3xl font-black text-foreground/60">
-                    ${(target / 1000000).toFixed(1)}M 🎯
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Cute Countdown */}
-            <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 border-4 border-white shadow-xl mb-8">
-              <p className="text-center text-lg text-foreground/80 font-bold mb-6">
-                ⏰ Hurry! Presale Ends In:
-              </p>
-              <div className="grid grid-cols-4 gap-4">
-                {[
-                  { label: "Days", value: countdown.days, emoji: "📅" },
-                  { label: "Hours", value: countdown.hours, emoji: "⏰" },
-                  { label: "Minutes", value: countdown.minutes, emoji: "⏱️" },
-                  { label: "Seconds", value: countdown.seconds, emoji: "⚡" }
-                ].map(({ label, value, emoji }) => (
-                  <motion.div 
-                    key={label}
-                    whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
-                    className="bg-white rounded-2xl p-4 md:p-6 border-4 border-primary/30 shadow-lg text-center"
-                  >
-                    <div className="text-4xl md:text-5xl font-black text-primary font-mono mb-1">
-                      {value.toString().padStart(2, '0')}
-                    </div>
-                    <div className="text-xs md:text-sm text-foreground/60 font-bold">{label}</div>
-                    <div className="text-2xl mt-1">{emoji}</div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            {/* Price Info */}
-            <div className="grid md:grid-cols-2 gap-4 mb-8">
-              <div className="bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold text-foreground/70">Current Price 💎</span>
-                  <span className="text-3xl font-black text-primary">$0.00042</span>
-                </div>
-              </div>
-              <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold text-foreground/70">Next Price 📈</span>
-                  <span className="text-3xl font-black text-secondary">$0.00055</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Big Buy Button */}
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button size="lg" className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-2xl md:text-3xl h-20 rounded-full shadow-2xl border-4 border-white">
-                <Rocket className="mr-3 w-8 h-8" />
-                Buy $LILEIN Now! 🎉
-                <SparklesIcon className="ml-3 w-8 h-8" />
-              </Button>
-            </motion.div>
-          </CardContent>
-        </Card>
-      </motion.section>
-
       {/* Trust Badges Section - Investor Friendly */}
       <motion.section 
         initial={{ opacity: 0, y: 30 }}
@@ -1445,24 +1485,28 @@ export default function Index() {
       </motion.section>
 
       {/* Why Invest Section */}
-      <motion.section 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
+      <motion.section
+        {...animations.scrollFadeIn}
         className="relative z-10 container mx-auto px-4 py-20"
       >
         <div className="text-center space-y-4 mb-16">
-          <motion.div className="flex justify-center gap-3 mb-4">
-            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity }}>
-              💎
-            </motion.div>
-            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}>
-              🚀
-            </motion.div>
-            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }}>
-              📈
-            </motion.div>
+          <motion.div 
+            variants={animations.staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex justify-center gap-3 mb-4 text-5xl"
+          >
+            {['💎', '🚀', '�'].map((emoji, i) => (
+              <motion.div 
+                key={i}
+                variants={animations.staggerItem}
+                animate={animations.floatingAnimation}
+                transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.3 }}
+              >
+                {emoji}
+              </motion.div>
+            ))}
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-balance">
             Why Smart Investors Choose <span className="text-primary">$LILEIN!</span>
@@ -1472,13 +1516,20 @@ export default function Index() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <motion.div 
+          variants={animations.staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-8"
+        >
           {[
             {
               emoji: "🔐",
               title: "100% Secure",
               description: "Audited by top firms! Liquidity locked! Your investment is SAFU!",
               badge: "✅ Verified",
+              color: "from-green-500 to-emerald-600",
               char: "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB"
             },
             {
@@ -1486,6 +1537,7 @@ export default function Index() {
               title: "12K+ Holders",
               description: "Fastest growing community! Join thousands of smart investors!",
               badge: "🔥 Trending",
+              color: "from-orange-500 to-red-600",
               char: "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T"
             },
             {
@@ -1493,6 +1545,7 @@ export default function Index() {
               title: "1000x Potential",
               description: "Early stage gem! Strategic tokenomics for massive gains!",
               badge: "💎 Gem",
+              color: "from-purple-500 to-pink-600",
               char: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM"
             },
             {
@@ -1500,6 +1553,7 @@ export default function Index() {
               title: "Low Tax (3/3)",
               description: "Minimal fees, maximum profits! More gains in your pocket!",
               badge: "💰 Profit",
+              color: "from-yellow-500 to-amber-600",
               char: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF"
             },
             {
@@ -1507,6 +1561,7 @@ export default function Index() {
               title: "Passive Income",
               description: "Staking rewards up to 25% APY! Earn while you sleep!",
               badge: "🤑 Rewards",
+              color: "from-blue-500 to-cyan-600",
               char: "https://cdn.hercules.app/file_qJXZyBLaxE0xJtlA4o5mQFkf"
             },
             {
@@ -1514,208 +1569,84 @@ export default function Index() {
               title: "Major CEX Soon",
               description: "Binance & Coinbase listings coming! Get in before the pump!",
               badge: "🌟 Coming",
+              color: "from-indigo-500 to-violet-600",
               char: "https://cdn.hercules.app/file_l2LLX68sCT6FX97121lGTIKy"
             }
           ].map((feature, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
-              whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+              variants={animations.staggerItem}
+              whileHover={animations.hoverLift}
+              className="group"
             >
-              <Card className="h-full border-4 border-white bg-gradient-to-br from-white to-primary/5 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-3xl relative overflow-hidden">
-                <div className="absolute top-4 right-4 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-full text-xs font-black shadow-lg">
+              <Card className="h-full border-4 border-white bg-gradient-to-br from-white via-primary/5 to-accent/10 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-3xl relative overflow-hidden group-hover:border-primary/30">
+                {/* Gradient Border Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" 
+                  style={{ 
+                    background: `linear-gradient(135deg, transparent 0%, var(--tw-gradient-stops))`,
+                    padding: '4px',
+                    margin: '-4px'
+                  }}
+                />
+                
+                {/* Badge */}
+                <motion.div 
+                  className={`absolute top-4 right-4 bg-gradient-to-r ${feature.color} text-white px-4 py-2 rounded-full text-xs font-black shadow-lg`}
+                  whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                  transition={{ duration: 0.3 }}
+                >
                   {feature.badge}
-                </div>
-                <CardContent className="p-8 space-y-4 text-center">
-                  <div className="relative">
+                </motion.div>
+                <CardContent className="p-8 space-y-4 text-center relative z-10">
+                  <div className="relative mb-6 min-h-[140px]">
+                    {/* Glow Effect - Behind everything */}
                     <motion.div 
-                      animate={{ 
-                        scale: [1, 1.2, 1],
-                        rotate: [0, 10, -10, 0]
-                      }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="text-6xl mb-4 relative z-10"
+                      className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full opacity-0 group-hover:opacity-20 blur-3xl transition-opacity z-0"
+                      style={{ background: `linear-gradient(135deg, ${feature.color.split(' ')[0].replace('from-', '')}, ${feature.color.split(' ')[1].replace('to-', '')})` }}
+                    />
+                    
+                    {/* Character Background - More visible */}
+                    <motion.div 
+                      className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 opacity-30 group-hover:opacity-60 transition-opacity z-10"
+                      animate={animations.gentleRotate}
+                      transition={{ duration: 5 + i, repeat: Infinity }}
+                    >
+                      <img src={feature.char} alt="" className="w-full h-full object-contain drop-shadow-lg" />
+                    </motion.div>
+                    
+                    {/* Floating Emoji - On top */}
+                    <motion.div 
+                      animate={animations.floatingAnimation}
+                      transition={{ duration: 2.5 + i * 0.3, repeat: Infinity }}
+                      className="text-7xl mb-4 relative z-20 drop-shadow-2xl"
                     >
                       {feature.emoji}
                     </motion.div>
-                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-24 opacity-30">
-                      <img src={feature.char} alt="" className="w-full h-full object-contain" />
-                    </div>
                   </div>
-                  <h3 className="text-2xl font-black text-primary">{feature.title}</h3>
-                  <p className="text-foreground/70 font-medium text-lg">{feature.description}</p>
+                  
+                  <h3 className="text-2xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-foreground/70 font-medium text-base leading-relaxed">
+                    {feature.description}
+                  </p>
+                  
+                  {/* Learn More Link */}
+                  <motion.div
+                    className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity"
+                    initial={{ y: 10 }}
+                    whileHover={{ y: 0 }}
+                  >
+                    <span className={`text-sm font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent cursor-pointer inline-flex items-center gap-1`}>
+                      Learn More →
+                    </span>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>
           ))}
-        </div>
-      </motion.section>
-
-      {/* Tokenomics - Cute Style */}
-      <motion.section 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="relative z-10 container mx-auto px-4 py-20"
-      >
-        <div className="text-center space-y-4 mb-16 relative">
-          {/* Lab Equipment Animation */}
-          <div className="flex justify-center gap-4 items-center mb-4">
-            <motion.div
-              animate={{ 
-                rotate: [0, -10, 10, 0],
-                y: [0, -5, 0]
-              }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="text-5xl"
-            >
-              ⚗️
-            </motion.div>
-            <motion.div
-              animate={{ 
-                rotate: [0, 10, -10, 0],
-                scale: [1, 1.2, 1]
-              }}
-              transition={{ duration: 2.5, repeat: Infinity }}
-              className="text-6xl"
-            >
-              🧪
-            </motion.div>
-            <motion.div
-              animate={{ 
-                rotate: [0, 360],
-                y: [0, -8, 0]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="text-5xl"
-            >
-              🔬
-            </motion.div>
-          </div>
-          
-          <h2 className="text-4xl md:text-6xl font-black relative">
-            The Genius <span className="text-primary">Formula!</span> 💜
-            {/* Floating formulas around title */}
-            <motion.span
-              animate={{ 
-                y: [0, -10, 0],
-                rotate: [0, 15, -15, 0]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-              className="absolute -left-10 top-0 text-2xl text-primary/40 hidden md:inline"
-            >
-              E=mc²
-            </motion.span>
-            <motion.span
-              animate={{ 
-                y: [0, -15, 0],
-                rotate: [0, -15, 15, 0]
-              }}
-              transition={{ duration: 3.5, repeat: Infinity }}
-              className="absolute -right-10 bottom-0 text-2xl text-accent/40 hidden md:inline"
-            >
-              π=3.14
-            </motion.span>
-          </h2>
-          <p className="text-2xl text-foreground/70 max-w-2xl mx-auto font-medium">
-            Scientific distribution for maximum cuteness gains! 📊✨
-          </p>
-          
-          {/* Floating atoms around */}
-          {[...Array(4)].map((_, i) => (
-            <motion.div
-              key={`atom-tokenomics-${i}`}
-              animate={{
-                y: [0, -30, 0],
-                rotate: [0, 360],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{
-                duration: 5 + i,
-                repeat: Infinity,
-                delay: i * 0.5
-              }}
-              className="absolute text-3xl"
-              style={{
-                left: `${10 + i * 25}%`,
-                top: i % 2 === 0 ? "-5%" : "100%"
-              }}
-            >
-              ⚛️
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          <Card className="border-8 border-white bg-gradient-to-br from-card to-primary/5 shadow-2xl rounded-3xl">
-            <CardContent className="p-8 md:p-12">
-              <div className="space-y-6">
-                {[
-                  { label: "Presale 🎉", value: "40%", color: "from-primary to-primary/60" },
-                  { label: "Liquidity Pool 💧", value: "25%", color: "from-accent to-accent/60" },
-                  { label: "Staking Rewards 🎁", value: "20%", color: "from-secondary to-secondary/60" },
-                  { label: "Team & Dev 👨‍💻", value: "10%", color: "from-chart-4 to-chart-4/60" },
-                  { label: "Marketing 📢", value: "5%", color: "from-chart-5 to-chart-5/60" }
-                ].map(({ label, value, color }, i) => (
-                  <motion.div 
-                    key={i}
-                    initial={{ opacity: 0, x: -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="space-y-3"
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="text-xl font-black text-foreground">{label}</span>
-                      <span className="text-3xl font-black text-primary">{value}</span>
-                    </div>
-                    <div className="h-6 bg-muted rounded-full overflow-hidden border-4 border-white shadow-lg">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: value }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, ease: "easeOut", delay: i * 0.1 }}
-                        className={`h-full bg-gradient-to-r ${color} relative`}
-                      >
-                        <motion.div
-                          animate={{ x: ["0%", "100%"] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                        />
-                      </motion.div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div className="mt-12 grid md:grid-cols-2 gap-6">
-                {[
-                  { label: "Total Supply 📊", value: "100B $LILEIN" },
-                  { label: "Starting Price 💎", value: "$0.00042" },
-                  { label: "Launch Price 🚀", value: "$0.00080" },
-                  { label: "Network ⛓️", value: "Ethereum" },
-                  { label: "Tax Rate 💰", value: "3% Buy / 3% Sell" },
-                  { label: "Min Buy 🎯", value: "$25" }
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.05 }}
-                    className="bg-gradient-to-br from-white to-primary/10 rounded-2xl p-6 border-4 border-primary/20 shadow-lg"
-                  >
-                    <div className="flex justify-between items-center">
-                      <span className="text-lg font-bold text-foreground/70">{item.label}</span>
-                      <span className="text-xl font-black text-primary">{item.value}</span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        </motion.div>
       </motion.section>
 
       {/* FOMO Section with Characters */}
@@ -2023,6 +1954,200 @@ export default function Index() {
           </div>
         </div>
       </footer>
+
+      {/* Moon Calculator Modal */}
+      {showMoonCalculator && (
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4" onClick={() => setShowMoonCalculator(false)}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9 }}
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border-8 border-primary/20"
+          >
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-primary via-accent to-secondary p-6 relative">
+              <button
+                onClick={() => setShowMoonCalculator(false)}
+                className="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors"
+              >
+                <X className="w-6 h-6 text-foreground" />
+              </button>
+              <div className="text-center">
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="inline-block text-6xl mb-3"
+                >
+                  🌙
+                </motion.div>
+                <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
+                  Moon Calculator
+                </h2>
+                <p className="text-white/90 font-bold">
+                  Calculate your potential gains at different price targets! 🚀
+                </p>
+              </div>
+            </div>
+
+            {/* Modal Content */}
+            <div className="p-8 space-y-6">
+              {/* Input Section */}
+              <div>
+                <label className="block text-lg font-black text-foreground mb-3">
+                  💰 Your Investment (USD)
+                </label>
+                <Input
+                  type="number"
+                  value={moonInvestment}
+                  onChange={(e) => setMoonInvestment(e.target.value)}
+                  placeholder="Enter amount..."
+                  className="text-2xl font-black h-16 border-4 border-primary/20 rounded-2xl"
+                />
+              </div>
+
+              {/* Target Price Selector */}
+              <div>
+                <label className="block text-lg font-black text-foreground mb-3">
+                  🎯 Target Price (USD)
+                </label>
+                <div className="space-y-4">
+                  {/* Quick Select Buttons */}
+                  <div className="flex flex-wrap gap-2">
+                    {[
+                      { label: "$0.002", value: 0.002 },
+                      { label: "$0.01", value: 0.01 },
+                      { label: "$0.05", value: 0.05 },
+                      { label: "$0.10", value: 0.10 },
+                      { label: "$0.50", value: 0.50 },
+                      { label: "$1.00", value: 1.00 }
+                    ].map((preset) => (
+                      <Button
+                        key={preset.value}
+                        onClick={() => setTargetPrice(preset.value)}
+                        className={`rounded-full font-bold px-4 py-2 ${
+                          targetPrice === preset.value
+                            ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                            : "bg-white border-2 border-primary/20 text-foreground hover:bg-primary/5"
+                        }`}
+                      >
+                        {preset.label}
+                      </Button>
+                    ))}
+                  </div>
+                  
+                  {/* Slider */}
+                  <div className="space-y-2">
+                    <input
+                      type="range"
+                      min="0.002"
+                      max="1"
+                      step="0.001"
+                      value={targetPrice}
+                      onChange={(e) => setTargetPrice(parseFloat(e.target.value))}
+                      className="w-full h-3 bg-gradient-to-r from-primary via-accent to-secondary rounded-full appearance-none cursor-pointer"
+                      style={{
+                        background: `linear-gradient(to right, rgb(var(--primary)) 0%, rgb(var(--accent)) 50%, rgb(var(--secondary)) 100%)`
+                      }}
+                    />
+                    <div className="flex justify-between text-xs font-bold text-foreground/60">
+                      <span>$0.002</span>
+                      <span className="text-primary text-lg font-black">${targetPrice.toFixed(3)}</span>
+                      <span>$1.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Current Price Info */}
+              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+                <div className="grid grid-cols-2 gap-4">
+                  <div>
+                    <p className="text-sm font-bold text-foreground/60 mb-1">Current Price</p>
+                    <p className="text-2xl font-black text-primary">${presalePrice}</p>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-foreground/60 mb-1">Target Price</p>
+                    <p className="text-2xl font-black text-accent">${targetPrice.toFixed(3)}</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Projection Results */}
+              <div className="space-y-4">
+                <h3 className="text-2xl font-black text-primary flex items-center gap-2">
+                  <span className="text-3xl">🎯</span>
+                  Your Moon Projection
+                </h3>
+
+                {/* Results Cards */}
+                <div className="space-y-3">
+                  <div className="bg-white rounded-2xl p-4 border-4 border-primary/20 shadow-lg flex justify-between items-center">
+                    <span className="font-black text-foreground">💵 Investment</span>
+                    <span className="text-xl font-black text-primary">${moonProjection.investment}</span>
+                  </div>
+
+                  <div className="bg-white rounded-2xl p-4 border-4 border-accent/20 shadow-lg flex justify-between items-center">
+                    <span className="font-black text-foreground">🪙 Tokens Received</span>
+                    <span className="text-xl font-black text-accent">{moonProjection.tokens} LILEIN</span>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-2xl p-4 border-4 border-white shadow-lg flex justify-between items-center">
+                    <span className="font-black text-foreground">🌙 Value at ${targetPrice.toFixed(3)}</span>
+                    <span className="text-xl font-black text-green-600">${moonProjection.valueAtTarget}</span>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-4 border-4 border-white shadow-lg flex justify-between items-center">
+                    <span className="font-black text-foreground">💰 Profit</span>
+                    <span className="text-xl font-black text-green-600">+${moonProjection.profit}</span>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-6 border-4 border-white shadow-lg">
+                    <div className="text-center">
+                      <p className="text-sm font-bold text-foreground/60 mb-2">Potential Multiplier</p>
+                      <motion.p 
+                        animate={{ scale: [1, 1.1, 1] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                        className="text-5xl font-black text-primary mb-2"
+                      >
+                        {moonProjection.multiplier}x
+                      </motion.p>
+                      <p className="text-xl font-black text-accent">
+                        {moonProjection.roi}% ROI 🚀
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Disclaimer */}
+              <div className="bg-yellow-50 border-4 border-yellow-200 rounded-2xl p-4">
+                <div className="flex items-start gap-2">
+                  <span className="text-2xl">⚠️</span>
+                  <div>
+                    <p className="text-sm font-bold text-foreground/80">
+                      <strong>Disclaimer:</strong> These are hypothetical projections based on the token reaching your selected target price. 
+                      Cryptocurrency investments carry risks. Past performance does not guarantee future results. 
+                      Always do your own research (DYOR) and invest responsibly.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* CTA Button */}
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                <Button 
+                  size="lg"
+                  className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white"
+                >
+                  <Rocket className="mr-2 w-6 h-6" />
+                  Join Presale Now! 🎉
+                </Button>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      )}
     </div>
   );
 }

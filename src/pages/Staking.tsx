@@ -163,7 +163,7 @@ function FAQItem({ faq, index }: { faq: { question: string; answer: string }; in
   );
 }
 
-function StakingPageInner() {
+function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
   const stakes = useQuery(api.stakes.getUserStakes, {});
   const stats = useQuery(api.stakes.getStakingStats, {});
   const createStake = useMutation(api.stakes.createStake);
@@ -398,40 +398,164 @@ function StakingPageInner() {
               </a>
             </nav>
 
-            {/* Back Button */}
-            <Link to="/">
-              <Button size="sm" variant="outline" className="font-bold rounded-full px-6">
-                ← Back
-              </Button>
-            </Link>
+            {/* Connect Wallet / Back Button */}
+            <div className="flex items-center gap-3">
+              {!isConnected ? (
+                <SignInButton>
+                  <Button className="bg-gradient-to-r from-primary to-accent text-white font-bold rounded-full px-6 shadow-lg">
+                    <Wallet className="mr-2 w-4 h-4" />
+                    Connect Wallet
+                  </Button>
+                </SignInButton>
+              ) : (
+                <div className="flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full border-2 border-green-400">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-sm font-bold text-green-700">Connected</span>
+                </div>
+              )}
+              <Link to="/">
+                <Button size="sm" variant="outline" className="font-bold rounded-full px-6">
+                  ← Back
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-12">
-        {/* Hero Section */}
+        {/* Enhanced Hero Section with Einstein Character */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-12"
+          className="mb-12"
         >
-          <motion.div
-            animate={{
-              rotate: [0, 360],
-            }}
-            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="inline-block text-6xl md:text-8xl mb-4"
-          >
-            🔬
-          </motion.div>
-          <h1 className="text-4xl md:text-6xl font-black text-balance mb-4">
-            <span className="text-primary">Stake</span> Your{" "}
-            <span className="text-secondary">$LILEIN</span> 🧪
-          </h1>
-          <p className="text-lg md:text-2xl text-foreground/70 font-bold max-w-2xl mx-auto">
-            Earn genius-level rewards by staking your Little Einstein tokens! 💎
-          </p>
+          <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl overflow-hidden">
+            <CardContent className="p-8 md:p-12">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                {/* Left: Text Content */}
+                <div className="text-center md:text-left">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", duration: 0.8 }}
+                    className="inline-block mb-4"
+                  >
+                    <div className="bg-gradient-to-r from-yellow-400 to-orange-500 text-white px-6 py-2 rounded-full font-black text-sm shadow-lg">
+                      🔥 UP TO 50% APY
+                    </div>
+                  </motion.div>
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-balance mb-4 leading-tight">
+                    <span className="text-primary">Stake</span> & Earn{" "}
+                    <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Genius Rewards</span> 🧪
+                  </h1>
+                  <p className="text-lg md:text-xl text-foreground/70 font-bold mb-6">
+                    Lock your $LILEIN tokens and watch your portfolio grow with our scientifically-designed staking tiers!
+                  </p>
+                  <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg border-2 border-primary/20"
+                    >
+                      <Trophy className="w-5 h-5 text-yellow-500" />
+                      <span className="font-black text-sm">4 Staking Tiers</span>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg border-2 border-primary/20"
+                    >
+                      <Shield className="w-5 h-5 text-green-500" />
+                      <span className="font-black text-sm">100% Secure</span>
+                    </motion.div>
+                    <motion.div
+                      whileHover={{ scale: 1.05 }}
+                      className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-lg border-2 border-primary/20"
+                    >
+                      <Zap className="w-5 h-5 text-blue-500" />
+                      <span className="font-black text-sm">Instant Rewards</span>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Right: Einstein Character with Floating Elements */}
+                <div className="relative">
+                  <motion.div
+                    animate={{
+                      y: [0, -20, 0],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="relative z-10"
+                  >
+                    <div className="w-64 h-64 md:w-80 md:h-80 mx-auto bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center border-8 border-white shadow-2xl">
+                      <motion.div
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                        className="text-8xl md:text-9xl"
+                      >
+                        🔬
+                      </motion.div>
+                    </div>
+                  </motion.div>
+
+                  {/* Floating Rewards */}
+                  {[
+                    { emoji: "💰", delay: 0, x: -40, y: -60 },
+                    { emoji: "💎", delay: 0.5, x: 40, y: -80 },
+                    { emoji: "🚀", delay: 1, x: -60, y: 40 },
+                    { emoji: "⭐", delay: 1.5, x: 60, y: 60 }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      animate={{
+                        y: [0, -15, 0],
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 360]
+                      }}
+                      transition={{
+                        duration: 3,
+                        repeat: Infinity,
+                        delay: item.delay,
+                        ease: "easeInOut"
+                      }}
+                      className="absolute text-4xl"
+                      style={{
+                        left: `calc(50% + ${item.x}px)`,
+                        top: `calc(50% + ${item.y}px)`
+                      }}
+                    >
+                      {item.emoji}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Live Stats Bar */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="mt-8 grid grid-cols-3 gap-4 pt-8 border-t-2 border-primary/20"
+              >
+                {[
+                  { label: "Total Value Locked", value: stats ? `$${(stats.totalStaked * 0.00042).toLocaleString()}` : "...", icon: "🏦" },
+                  { label: "Rewards Distributed", value: stats ? `${stats.totalRewards.toFixed(0)} $LILEIN` : "...", icon: "🎁" },
+                  { label: "Active Stakers", value: stats ? `${stats.activeStakers}+` : "...", icon: "👥" }
+                ].map((stat, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05 }}
+                    className="text-center"
+                  >
+                    <p className="text-3xl mb-1">{stat.icon}</p>
+                    <p className="text-xl md:text-2xl font-black text-primary">{stat.value}</p>
+                    <p className="text-xs md:text-sm font-bold text-foreground/60">{stat.label}</p>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </CardContent>
+          </Card>
         </motion.div>
 
         {/* Global Stats */}
@@ -710,7 +834,8 @@ function StakingPageInner() {
                     value={stakeAmount}
                     onChange={(e) => setStakeAmount(e.target.value)}
                     placeholder="1000"
-                    className="text-2xl md:text-3xl font-black text-center h-16 md:h-20 rounded-2xl border-4 border-primary/30 bg-white shadow-xl pl-16 pr-6"
+                    disabled={!isConnected}
+                    className="text-2xl md:text-3xl font-black text-center h-16 md:h-20 rounded-2xl border-4 border-primary/30 bg-white shadow-xl pl-16 pr-6 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                 </div>
               </div>
@@ -725,10 +850,12 @@ function StakingPageInner() {
                   {STAKING_OPTIONS.map((option) => (
                     <motion.div
                       key={option.days}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => setSelectedDuration(option.days)}
-                      className={`cursor-pointer rounded-2xl p-6 border-4 shadow-lg transition-all ${
+                      whileHover={isConnected ? { scale: 1.05 } : {}}
+                      whileTap={isConnected ? { scale: 0.95 } : {}}
+                      onClick={() => isConnected && setSelectedDuration(option.days)}
+                      className={`rounded-2xl p-6 border-4 shadow-lg transition-all ${
+                        !isConnected ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
+                      } ${
                         selectedDuration === option.days
                           ? "border-primary bg-gradient-to-br " + option.color + " text-white"
                           : "border-primary/20 bg-white hover:border-primary/40"
@@ -774,32 +901,104 @@ function StakingPageInner() {
                 </div>
               </motion.div>
 
-              {/* Stake Button */}
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Button
-                  onClick={handleStake}
-                  disabled={isStaking}
-                  className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl h-16 md:h-20 rounded-full shadow-2xl border-4 border-white"
-                >
-                  {isStaking ? (
-                    <>
-                      <FlaskConical className="mr-2 w-6 h-6 animate-spin" />
-                      Staking...
-                    </>
-                  ) : (
-                    <>
-                      <Lock className="mr-2 w-6 h-6" />
-                      Stake Tokens 🚀
-                    </>
-                  )}
-                </Button>
-              </motion.div>
+              {/* Stake Button or Connect Wallet Prompt */}
+              {!isConnected ? (
+                <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-6 border-4 border-primary/20 text-center">
+                  <motion.div
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                    className="text-6xl mb-4"
+                  >
+                    🔐
+                  </motion.div>
+                  <p className="text-lg font-bold text-foreground/70 mb-4">
+                    Connect your wallet to start staking!
+                  </p>
+                  <SignInButton>
+                    <Button className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white w-full">
+                      <Wallet className="mr-2 w-6 h-6" />
+                      Connect Wallet 🚀
+                    </Button>
+                  </SignInButton>
+                </div>
+              ) : (
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button
+                    onClick={handleStake}
+                    disabled={isStaking}
+                    className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl h-16 md:h-20 rounded-full shadow-2xl border-4 border-white"
+                  >
+                    {isStaking ? (
+                      <>
+                        <FlaskConical className="mr-2 w-6 h-6 animate-spin" />
+                        Staking...
+                      </>
+                    ) : (
+                      <>
+                        <Lock className="mr-2 w-6 h-6" />
+                        Stake Tokens 🚀
+                      </>
+                    )}
+                  </Button>
+                </motion.div>
+              )}
             </CardContent>
           </Card>
         </motion.div>
 
+        {/* Active Stakes or Connect Wallet Prompt */}
+        {!isConnected && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mb-12"
+          >
+            <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl overflow-hidden">
+              <CardContent className="p-8 md:p-12 text-center">
+                <motion.div
+                  animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, 10, -10, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="text-8xl mb-6"
+                >
+                  👛
+                </motion.div>
+                <h3 className="text-3xl md:text-4xl font-black text-primary mb-4">
+                  Connect Your Wallet 🚀
+                </h3>
+                <p className="text-lg md:text-xl text-foreground/70 font-bold mb-8 max-w-2xl mx-auto">
+                  Connect your wallet to view your stakes, track rewards, and manage your staking portfolio!
+                </p>
+                <SignInButton>
+                  <Button className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl px-12 h-16 md:h-20 rounded-full shadow-2xl border-4 border-white">
+                    <Wallet className="mr-2 w-6 h-6" />
+                    Connect Wallet Now 💎
+                  </Button>
+                </SignInButton>
+                <div className="mt-6 flex items-center justify-center gap-4 text-sm text-foreground/60">
+                  <div className="flex items-center gap-2">
+                    <Shield className="w-4 h-4 text-green-600" />
+                    <span className="font-bold">Secure</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Zap className="w-4 h-4 text-yellow-600" />
+                    <span className="font-bold">Fast</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Lock className="w-4 h-4 text-blue-600" />
+                    <span className="font-bold">Safe</span>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
         {/* Active Stakes */}
-        {activeStakes.length > 0 && (
+        {isConnected && activeStakes.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -904,7 +1103,7 @@ function StakingPageInner() {
         )}
 
         {/* Inactive Stakes */}
-        {inactiveStakes.length > 0 && (
+        {isConnected && inactiveStakes.length > 0 && (
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -977,6 +1176,267 @@ function StakingPageInner() {
           </div>
         </motion.div>
 
+        {/* Top Stakers Leaderboard */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <div className="text-center mb-8">
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="inline-block text-6xl mb-4"
+            >
+              🏆
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">
+              Top Einstein Stakers 🌟
+            </h2>
+            <p className="text-lg md:text-xl text-foreground/70 font-bold max-w-3xl mx-auto">
+              Join our genius community! See who's leading the staking revolution!
+            </p>
+          </div>
+
+          <Card className="border-8 border-white bg-gradient-to-br from-white to-primary/5 shadow-2xl overflow-hidden max-w-4xl mx-auto">
+            <CardContent className="p-0">
+              <div className="space-y-0">
+                {[
+                  { rank: 1, name: "Einstein Mastermind 🧠", amount: 1250000, rewards: 62500, emoji: "👑", gradient: "from-yellow-400 to-orange-500" },
+                  { rank: 2, name: "Crypto Genius 💎", amount: 980000, rewards: 49000, emoji: "🥈", gradient: "from-gray-300 to-gray-400" },
+                  { rank: 3, name: "Staking Pro 🚀", amount: 750000, rewards: 37500, emoji: "🥉", gradient: "from-orange-400 to-amber-600" },
+                  { rank: 4, name: "Diamond Hands 💪", amount: 520000, rewards: 26000, emoji: "💎", gradient: "from-blue-400 to-cyan-500" },
+                  { rank: 5, name: "HODL Master 🎯", amount: 420000, rewards: 21000, emoji: "⭐", gradient: "from-purple-400 to-pink-500" },
+                ].map((user, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.02, x: 10 }}
+                    className={`flex items-center justify-between p-4 md:p-6 ${
+                      i === 0 ? `bg-gradient-to-r ${user.gradient} text-white` : "hover:bg-primary/5"
+                    } ${i < 4 ? "border-b-2 border-primary/10" : ""} transition-all`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <motion.div
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 5, repeat: Infinity, delay: i * 0.5 }}
+                        className="text-4xl"
+                      >
+                        {user.emoji}
+                      </motion.div>
+                      <div>
+                        <p className={`text-lg md:text-xl font-black ${i === 0 ? "text-white" : "text-primary"}`}>
+                          #{user.rank} {user.name}
+                        </p>
+                        <p className={`text-sm font-bold ${i === 0 ? "text-white/80" : "text-foreground/60"}`}>
+                          {user.amount.toLocaleString()} $LILEIN staked
+                        </p>
+                      </div>
+                    </div>
+                    <div className="text-right">
+                      <p className={`text-xl md:text-2xl font-black ${i === 0 ? "text-white" : "text-green-600"}`}>
+                        +{user.rewards.toLocaleString()}
+                      </p>
+                      <p className={`text-xs font-bold ${i === 0 ? "text-white/80" : "text-foreground/60"}`}>
+                        Rewards Earned
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                className="bg-gradient-to-r from-primary/10 to-accent/10 p-6 border-t-4 border-white"
+              >
+                <p className="text-center text-lg font-black text-primary">
+                  🌟 Your Rank: {isConnected ? "#42" : "Connect wallet to see"} 🌟
+                </p>
+                <p className="text-center text-sm font-bold text-foreground/60 mt-2">
+                  Stake more to climb the leaderboard!
+                </p>
+              </motion.div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Reward Milestones */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <div className="text-center mb-8">
+            <motion.div
+              animate={{ scale: [1, 1.3, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="inline-block text-6xl mb-4"
+            >
+              🎯
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">
+              Unlock Reward Milestones! 🎁
+            </h2>
+            <p className="text-lg md:text-xl text-foreground/70 font-bold max-w-3xl mx-auto">
+              Reach staking goals and earn bonus rewards!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { milestone: "1K", amount: 1000, bonus: "5%", emoji: "🌱", color: "from-green-400 to-emerald-500", achieved: true },
+              { milestone: "10K", amount: 10000, bonus: "10%", emoji: "🚀", color: "from-blue-400 to-cyan-500", achieved: true },
+              { milestone: "50K", amount: 50000, bonus: "15%", emoji: "💎", color: "from-purple-400 to-pink-500", achieved: false },
+              { milestone: "100K", amount: 100000, bonus: "25%", emoji: "👑", color: "from-yellow-400 to-orange-500", achieved: false },
+            ].map((milestone, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+              >
+                <Card className={`border-6 border-white shadow-2xl overflow-hidden relative ${
+                  milestone.achieved ? "ring-4 ring-green-400" : ""
+                }`}>
+                  <div className={`absolute inset-0 bg-gradient-to-br ${milestone.color} ${
+                    milestone.achieved ? "opacity-20" : "opacity-10"
+                  }`} />
+                  {milestone.achieved && (
+                    <div className="absolute top-2 right-2 bg-green-500 text-white px-3 py-1 rounded-full text-xs font-black">
+                      ✓ ACHIEVED
+                    </div>
+                  )}
+                  <CardContent className="p-6 text-center relative z-10">
+                    <motion.div
+                      animate={{ 
+                        scale: milestone.achieved ? [1, 1.2, 1] : [1, 1.1, 1],
+                        rotate: [0, 10, -10, 0]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                      className="text-6xl mb-3"
+                    >
+                      {milestone.emoji}
+                    </motion.div>
+                    <h3 className="text-3xl font-black text-primary mb-2">
+                      {milestone.milestone}
+                    </h3>
+                    <p className="text-lg font-bold text-foreground/70 mb-3">
+                      {milestone.amount.toLocaleString()} $LILEIN
+                    </p>
+                    <div className={`bg-gradient-to-r ${milestone.color} text-white px-4 py-2 rounded-full font-black`}>
+                      +{milestone.bonus} Bonus
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Community Testimonials */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <div className="text-center mb-8">
+            <motion.div
+              animate={{ rotate: [0, 20, -20, 0] }}
+              transition={{ duration: 3, repeat: Infinity }}
+              className="inline-block text-6xl mb-4"
+            >
+              💬
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">
+              What Stakers Say 🗣️
+            </h2>
+            <p className="text-lg md:text-xl text-foreground/70 font-bold max-w-3xl mx-auto">
+              Join thousands of happy Einstein stakers earning rewards daily!
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                name: "CryptoWhale42",
+                avatar: "🐋",
+                stake: "500K",
+                testimonial: "Best staking platform I've used! The rewards are incredible and the UI is super intuitive. Earning 50% APY on the Einstein tier! 🚀",
+                rating: 5
+              },
+              {
+                name: "DiamondHands88",
+                avatar: "💎",
+                stake: "250K",
+                testimonial: "Been staking for 6 months now and the returns are amazing! The team is transparent and the smart contracts are solid. Highly recommend! 🌟",
+                rating: 5
+              },
+              {
+                name: "HODLKing",
+                avatar: "👑",
+                stake: "750K",
+                testimonial: "Little Einstein staking changed my crypto game! Passive income every day, secure platform, and the community is awesome. Love it! 💰",
+                rating: 5
+              },
+            ].map((review, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="border-4 border-primary/20 bg-white shadow-xl h-full">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <motion.div
+                        animate={{ scale: [1, 1.2, 1] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+                        className="text-5xl"
+                      >
+                        {review.avatar}
+                      </motion.div>
+                      <div>
+                        <p className="font-black text-primary">{review.name}</p>
+                        <p className="text-xs font-bold text-foreground/60">
+                          Staked: {review.stake} $LILEIN
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-1 mb-3">
+                      {[...Array(review.rating)].map((_, j) => (
+                        <motion.span
+                          key={j}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: i * 0.1 + j * 0.1 }}
+                          className="text-yellow-500 text-xl"
+                        >
+                          ⭐
+                        </motion.span>
+                      ))}
+                    </div>
+
+                    <p className="text-foreground/70 font-medium leading-relaxed italic">
+                      "{review.testimonial}"
+                    </p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Final CTA */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
@@ -998,15 +1458,26 @@ function StakingPageInner() {
             <p className="text-lg md:text-xl text-foreground/70 font-bold mb-8 max-w-2xl mx-auto">
               Join thousands of Einstein stakers and start earning genius-level rewards today!
             </p>
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Button
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl px-12 h-16 md:h-20 rounded-full shadow-2xl border-4 border-white"
-              >
-                <Sparkles className="mr-2 w-6 h-6" />
-                Stake Now 🧪
-              </Button>
-            </motion.div>
+            {!isConnected ? (
+              <SignInButton>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                  <Button className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl px-12 h-16 md:h-20 rounded-full shadow-2xl border-4 border-white">
+                    <Wallet className="mr-2 w-6 h-6" />
+                    Connect Wallet 🧪
+                  </Button>
+                </motion.div>
+              </SignInButton>
+            ) : (
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl px-12 h-16 md:h-20 rounded-full shadow-2xl border-4 border-white"
+                >
+                  <Sparkles className="mr-2 w-6 h-6" />
+                  Stake Now 🧪
+                </Button>
+              </motion.div>
+            )}
           </Card>
         </motion.div>
       </div>
@@ -1017,40 +1488,6 @@ function StakingPageInner() {
 export default function Staking() {
   return (
     <>
-      <Unauthenticated>
-        <div className="min-h-screen bg-gradient-to-br from-accent/20 via-background to-primary/10 flex items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center"
-          >
-            <Card className="border-8 border-white bg-gradient-to-br from-white to-primary/10 shadow-2xl p-8 md:p-12 max-w-md">
-              <motion.div
-                animate={{
-                  rotate: [0, 8, -8, 0],
-                  y: [0, -10, 0],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="text-8xl mb-6"
-              >
-                🔬
-              </motion.div>
-              <h2 className="text-3xl md:text-4xl font-black text-primary mb-4">
-                Welcome Einstein! 🧪
-              </h2>
-              <p className="text-lg text-foreground/70 font-bold mb-8">
-                Please sign in to access the staking portal and start earning rewards!
-              </p>
-              <SignInButton>
-                <Button className="bg-gradient-to-r from-primary to-accent text-white font-black text-xl px-10 py-6 rounded-full shadow-xl">
-                  <Sparkles className="mr-2 w-5 h-5" />
-                  Sign In
-                </Button>
-              </SignInButton>
-            </Card>
-          </motion.div>
-        </div>
-      </Unauthenticated>
       <AuthLoading>
         <div className="min-h-screen bg-gradient-to-br from-accent/20 via-background to-primary/10 flex items-center justify-center p-4">
           <div className="space-y-4 w-full max-w-4xl">
@@ -1065,8 +1502,11 @@ export default function Staking() {
         </div>
       </AuthLoading>
       <Authenticated>
-        <StakingPageInner />
+        <StakingPageInner isConnected={true} />
       </Authenticated>
+      <Unauthenticated>
+        <StakingPageInner isConnected={false} />
+      </Unauthenticated>
     </>
   );
 }
