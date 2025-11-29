@@ -549,35 +549,77 @@ export default function Index() {
               </motion.div>
             ))}
 
-            {/* Rocket Trail */}
+            {/* Flying Astronaut Trail */}
             <motion.div
               animate={{
-                x: ["-100%", "200%"],
-                y: [100, -100]
+                x: ["-20%", "120%"],
+                y: [80, -80, 80],
+                rotate: [0, 360]
               }}
               transition={{
-                duration: 8,
+                duration: 12,
                 repeat: Infinity,
                 ease: "linear"
               }}
-              className="absolute top-1/2 text-4xl"
+              className="absolute top-1/2"
             >
-              🚀
+              <img 
+                src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
+                alt="Flying Einstein"
+                className="w-16 h-16 opacity-40"
+              />
             </motion.div>
           </div>
 
           <div className="relative z-10">
-            {/* Title */}
-            <div className="text-center mb-12">
+            {/* Title with Astronaut Einstein */}
+            <div className="text-center mb-12 relative">
+              {/* Flying Astronaut Einstein */}
               <motion.div
                 animate={{
-                  y: [0, -20, 0]
+                  y: [0, -30, 0],
+                  x: [0, 20, 0],
+                  rotate: [0, 5, -5, 0]
+                }}
+                transition={{ duration: 4, repeat: Infinity }}
+                className="inline-block mb-8"
+              >
+                <div className="relative">
+                  <motion.img
+                    src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
+                    alt="Einstein Astronaut"
+                    className="w-64 md:w-80 mx-auto drop-shadow-2xl"
+                    animate={{
+                      filter: ["drop-shadow(0 0 20px rgba(168, 85, 247, 0.4))", "drop-shadow(0 0 40px rgba(168, 85, 247, 0.8))", "drop-shadow(0 0 20px rgba(168, 85, 247, 0.4))"]
+                    }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  {/* Rocket boost effect */}
+                  <motion.div
+                    animate={{
+                      scale: [1, 1.5, 1],
+                      opacity: [0.6, 1, 0.6]
+                    }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 text-6xl"
+                  >
+                    💨
+                  </motion.div>
+                </div>
+              </motion.div>
+
+              {/* Moon decoration */}
+              <motion.div
+                animate={{
+                  y: [0, -15, 0],
+                  scale: [1, 1.1, 1]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="text-8xl mb-4"
+                className="absolute top-0 right-10 text-6xl hidden md:block"
               >
                 🌙
               </motion.div>
+
               <h2 className="text-5xl md:text-7xl font-black text-balance mb-4">
                 <span className="text-primary">Einstein</span> to the <span className="text-secondary">Moon!</span> 🚀
               </h2>
@@ -587,7 +629,36 @@ export default function Index() {
             </div>
 
             {/* Profit Calculator */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="grid md:grid-cols-3 gap-6 mb-12 relative">
+              {/* Floating Astronauts around calculator */}
+              <motion.div
+                animate={{
+                  y: [0, -20, 0],
+                  rotate: [0, 10, -10, 0]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="absolute -left-10 top-10 hidden lg:block"
+              >
+                <img 
+                  src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
+                  alt="Astronaut"
+                  className="w-20 h-20 opacity-60"
+                />
+              </motion.div>
+              <motion.div
+                animate={{
+                  y: [0, -25, 0],
+                  rotate: [0, -10, 10, 0]
+                }}
+                transition={{ duration: 3.5, repeat: Infinity }}
+                className="absolute -right-10 bottom-10 hidden lg:block"
+              >
+                <img 
+                  src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
+                  alt="Astronaut"
+                  className="w-20 h-20 opacity-60"
+                />
+              </motion.div>
               {[
                 {
                   investment: "$100",
@@ -710,35 +781,72 @@ export default function Index() {
                   </div>
                 </div>
 
-                <div className="relative">
+                <div className="relative flex items-center justify-center min-h-[400px]">
+                  {/* Launching Astronaut */}
                   <motion.div
                     animate={{
-                      y: [0, -200],
-                      scale: [1, 1.5]
+                      y: [0, -250],
+                      scale: [1, 1.3],
+                      rotate: [0, 15, -15, 0]
                     }}
                     transition={{
                       duration: 4,
                       repeat: Infinity,
-                      ease: "easeOut"
+                      ease: "easeInOut"
                     }}
-                    className="text-9xl text-center"
+                    className="relative"
                   >
-                    🚀
+                    <motion.img
+                      src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
+                      alt="Einstein Astronaut Launching"
+                      className="w-48 md:w-64 drop-shadow-2xl"
+                      animate={{
+                        filter: ["brightness(1)", "brightness(1.3)", "brightness(1)"]
+                      }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    />
                   </motion.div>
+                  
+                  {/* Rocket trail smoke */}
                   <motion.div
                     animate={{
-                      scale: [0, 1, 0],
-                      opacity: [0, 1, 0]
+                      scale: [0.8, 2, 0.8],
+                      opacity: [0.8, 0.3, 0.8],
+                      y: [0, 100, 0]
                     }}
                     transition={{
                       duration: 2,
                       repeat: Infinity,
                       ease: "easeOut"
                     }}
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 text-6xl"
+                    className="absolute bottom-0 text-8xl"
                   >
                     💨
                   </motion.div>
+
+                  {/* Stars around rocket */}
+                  {[...Array(5)].map((_, i) => (
+                    <motion.div
+                      key={`launch-star-${i}`}
+                      animate={{
+                        scale: [0, 1.5, 0],
+                        rotate: [0, 180, 360],
+                        opacity: [0, 1, 0]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.3
+                      }}
+                      className="absolute text-4xl"
+                      style={{
+                        left: `${30 + i * 10}%`,
+                        top: `${20 + i * 15}%`
+                      }}
+                    >
+                      ✨
+                    </motion.div>
+                  ))}
                 </div>
               </div>
             </div>
