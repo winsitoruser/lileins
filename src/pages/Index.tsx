@@ -217,135 +217,45 @@ export default function Index() {
         ))}
       </div>
 
-      {/* Super Cute Header with Lab Theme */}
-      <header className="relative z-10 bg-gradient-to-r from-card/90 via-primary/5 to-accent/5 backdrop-blur-md border-b-4 border-primary/30 shadow-xl overflow-hidden">
-        {/* Lab Equipment Background in Header */}
-        <div className="absolute inset-0 opacity-20 pointer-events-none">
-          <motion.div
-            animate={{ x: [-20, 20, -20] }}
-            transition={{ duration: 8, repeat: Infinity }}
-            className="absolute left-10 top-1/2 text-4xl"
-          >
-            ⚗️
-          </motion.div>
-          <motion.div
-            animate={{ y: [-10, 10, -10], rotate: [0, 360] }}
-            transition={{ duration: 10, repeat: Infinity }}
-            className="absolute right-20 top-1/2 text-3xl"
-          >
-            🔬
-          </motion.div>
-          <motion.div
-            animate={{ scale: [1, 1.2, 1] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="absolute left-1/2 top-2 text-2xl"
-          >
-            ⚛️
-          </motion.div>
-        </div>
-        
-        <div className="container mx-auto px-4 py-6 relative z-10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+      {/* Simple Clean Header */}
+      <header className="relative z-10 bg-white/95 backdrop-blur-sm border-b border-primary/10 shadow-sm sticky top-0">
+        <div className="container mx-auto px-4 py-4">
+          <div className="flex justify-between items-center">
             {/* Logo */}
-            <Link to="/">
-              <motion.div 
-                whileHover={{ scale: 1.08, y: -3 }}
-                className="flex items-center gap-4 cursor-pointer"
-              >
-                <div className="relative">
-                  <motion.div
-                    animate={{ 
-                      rotate: [0, 360],
-                      scale: [1, 1.1, 1]
-                    }}
-                    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                    className="w-14 h-14 md:w-16 md:h-16 relative z-10"
-                  >
-                    <img 
-                      src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                      alt="Little Einstein" 
-                      className="w-full h-full object-contain drop-shadow-2xl"
-                    />
-                  </motion.div>
-                  {/* Glow effect */}
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.3, 1],
-                      opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-xl"
-                  />
-                </div>
-                <div>
-                  <h1 className="text-2xl md:text-3xl font-black text-primary flex items-center gap-2">
-                    Little Einstein
-                    <motion.span
-                      animate={{ scale: [1, 1.2, 1] }}
-                      transition={{ duration: 1, repeat: Infinity }}
-                    >
-                      ✨
-                    </motion.span>
-                  </h1>
-                  <p className="text-sm md:text-lg text-secondary font-black flex items-center gap-1">
-                    $LILEIN 💜
-                    <motion.span
-                      animate={{ rotate: [0, 360] }}
-                      transition={{ duration: 4, repeat: Infinity }}
-                      className="text-sm"
-                    >
-                      ⚛️
-                    </motion.span>
-                  </p>
-                </div>
-              </motion.div>
+            <Link to="/" className="flex items-center gap-3">
+              <div className="w-10 h-10 md:w-12 md:h-12">
+                <img 
+                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
+                  alt="Little Einstein" 
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <div className="hidden md:block">
+                <h1 className="text-xl font-black text-primary">Little Einstein</h1>
+                <p className="text-xs font-bold text-secondary">$LILEIN</p>
+              </div>
             </Link>
 
             {/* Navigation Menu */}
-            <nav className="flex items-center gap-2 md:gap-6">
-              <Link to="/">
-                <motion.div 
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
-                >
-                  🏠 Home
-                </motion.div>
+            <nav className="hidden md:flex items-center gap-8">
+              <Link to="/" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
+                Home
               </Link>
-              <Link to="/staking">
-                <motion.div 
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
-                >
-                  🔬 Staking
-                </motion.div>
+              <Link to="/staking" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
+                Staking
               </Link>
-              <a href="#tokenomics">
-                <motion.div 
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
-                >
-                  📊 Tokenomics
-                </motion.div>
+              <a href="#tokenomics" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
+                Tokenomics
               </a>
-              <a href="#roadmap">
-                <motion.div 
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  className="px-4 py-2 rounded-full font-black text-sm md:text-base text-primary hover:bg-primary/10 transition-all"
-                >
-                  🗺️ Roadmap
-                </motion.div>
+              <a href="#roadmap" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
+                Roadmap
               </a>
             </nav>
 
             {/* CTA Button */}
             <Link to="/staking">
-              <Button className="bg-gradient-to-r from-primary to-accent hover:scale-110 transition-all text-white font-black text-sm md:text-lg rounded-full px-6 md:px-10 py-4 md:py-6 shadow-2xl border-4 border-white/70 relative overflow-hidden">
-                <motion.span
-                  animate={{ x: [-100, 400] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                />
-                Stake Now 🔬
+              <Button size="sm" className="bg-primary hover:bg-primary/90 text-white font-bold rounded-full px-6">
+                Stake Now
               </Button>
             </Link>
           </div>
