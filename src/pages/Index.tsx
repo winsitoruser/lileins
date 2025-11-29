@@ -213,40 +213,45 @@ export default function Index() {
                   rotate: [0, 5, -5, 0]
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
-                src="https://cdn.hercules.app/file_2VCcJhyUUMPxSkCno8AKZwLH" 
+                src="https://cdn.hercules.app/file_qJXZyBLaxE0xJtlA4o5mQFkf" 
                 alt="Little Einstein" 
                 className="w-full max-w-md mx-auto drop-shadow-2xl"
               />
             </div>
             
-            {/* Cute Floating Elements */}
+            {/* Cute Character Badges */}
             {[
-              { Icon: Atom, emoji: "⚛️", x: -15, y: -30, delay: 0 },
-              { Icon: Beaker, emoji: "🧪", x: 35, y: -10, delay: 0.5 },
-              { Icon: FlaskConical, emoji: "🔬", x: -25, y: 30, delay: 1 },
-              { Icon: Brain, emoji: "🧠", x: 30, y: 35, delay: 1.5 }
-            ].map(({ Icon, emoji, x, y, delay }, i) => (
+              { img: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF", label: "💎 Diamond Hands", x: -20, y: -35, delay: 0 },
+              { img: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM", label: "📈 To The Moon", x: 40, y: -15, delay: 0.5 },
+              { img: "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T", label: "🔥 Hot Token", x: -30, y: 35, delay: 1 },
+              { img: "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB", label: "🚀 Early Bird", x: 35, y: 40, delay: 1.5 }
+            ].map(({ img, label, x, y, delay }, i) => (
               <motion.div
                 key={i}
                 animate={{
                   y: [y, y - 20, y],
-                  rotate: [0, 15, -15, 0],
+                  rotate: [0, 10, -10, 0],
                   scale: [1, 1.1, 1]
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 2.5,
                   repeat: Infinity,
                   delay
                 }}
-                whileHover={{ scale: 1.3 }}
-                className="absolute w-16 h-16 bg-white backdrop-blur-sm border-4 border-primary/30 rounded-2xl flex items-center justify-center shadow-xl cursor-pointer"
+                whileHover={{ scale: 1.2, rotate: 0 }}
+                className="absolute group cursor-pointer"
                 style={{ 
                   left: `${50 + x}%`, 
                   top: `${50 + y}%`,
                   transform: 'translate(-50%, -50%)'
                 }}
               >
-                <span className="text-3xl">{emoji}</span>
+                <div className="w-20 h-20 bg-white backdrop-blur-sm border-4 border-primary/40 rounded-2xl flex items-center justify-center shadow-2xl overflow-hidden">
+                  <img src={img} alt={label} className="w-full h-full object-cover" />
+                </div>
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity bg-primary text-white px-3 py-1 rounded-full text-xs font-bold whitespace-nowrap shadow-lg">
+                  {label}
+                </div>
               </motion.div>
             ))}
           </motion.div>
@@ -371,7 +376,36 @@ export default function Index() {
         </Card>
       </motion.section>
 
-      {/* Why So Cute Section */}
+      {/* Trust Badges Section - Investor Friendly */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="relative z-10 container mx-auto px-4 py-12"
+      >
+        <div className="bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 border-4 border-white shadow-xl">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[
+              { emoji: "🔒", label: "Audited", value: "100% Safe" },
+              { emoji: "💎", label: "Liquidity", value: "Locked" },
+              { emoji: "✅", label: "KYC", value: "Verified" },
+              { emoji: "🔥", label: "Contract", value: "Renounced" }
+            ].map((badge, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="bg-white rounded-2xl p-6 border-4 border-primary/20 shadow-lg text-center"
+              >
+                <div className="text-4xl mb-2">{badge.emoji}</div>
+                <div className="text-sm font-bold text-foreground/60 mb-1">{badge.label}</div>
+                <div className="text-lg font-black text-primary">{badge.value}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Why Invest Section */}
       <motion.section 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -380,52 +414,68 @@ export default function Index() {
         className="relative z-10 container mx-auto px-4 py-20"
       >
         <div className="text-center space-y-4 mb-16">
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 3, repeat: Infinity }}
-            className="inline-block text-6xl mb-4"
-          >
-            🎨
+          <motion.div className="flex justify-center gap-3 mb-4">
+            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity }}>
+              💎
+            </motion.div>
+            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}>
+              🚀
+            </motion.div>
+            <motion.div animate={{ rotate: [0, 360] }} transition={{ duration: 3, repeat: Infinity, delay: 1 }}>
+              📈
+            </motion.div>
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-balance">
-            Why Little Einstein is <span className="text-primary">Adorable!</span> 💜
+            Why Smart Investors Choose <span className="text-primary">$LILEIN!</span>
           </h2>
           <p className="text-2xl text-foreground/70 max-w-2xl mx-auto text-balance font-medium">
-            Not just cute - we're genius-level smart too! 🧠✨
+            Genius tokenomics + Adorable branding = Moon Mission! 🌙✨
           </p>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              emoji: "🧠",
-              title: "Big Brain Energy",
-              description: "Smart contract audited! Your investment is as safe as Little Einstein's lab coat!"
+              emoji: "🔐",
+              title: "100% Secure",
+              description: "Audited by top firms! Liquidity locked! Your investment is SAFU!",
+              badge: "✅ Verified",
+              char: "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB"
             },
             {
               emoji: "👥",
-              title: "Cutest Community",
-              description: "Join 12,000+ adorable holders! We're like a big fluffy family of geniuses!"
+              title: "12K+ Holders",
+              description: "Fastest growing community! Join thousands of smart investors!",
+              badge: "🔥 Trending",
+              char: "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T"
             },
             {
               emoji: "📈",
-              title: "Moon Mission",
-              description: "Strategic tokenomics designed for explosive growth. To the moon, cutely! 🚀"
+              title: "1000x Potential",
+              description: "Early stage gem! Strategic tokenomics for massive gains!",
+              badge: "💎 Gem",
+              char: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM"
             },
             {
               emoji: "⚡",
-              title: "Super Fast",
-              description: "Lightning quick transactions! Faster than Little Einstein solving E=mc²!"
+              title: "Low Tax (3/3)",
+              description: "Minimal fees, maximum profits! More gains in your pocket!",
+              badge: "💰 Profit",
+              char: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF"
             },
             {
               emoji: "🎁",
-              title: "Amazing Rewards",
-              description: "Staking rewards, NFTs, and exclusive perks for our genius holders!"
+              title: "Passive Income",
+              description: "Staking rewards up to 25% APY! Earn while you sleep!",
+              badge: "🤑 Rewards",
+              char: "https://cdn.hercules.app/file_qJXZyBLaxE0xJtlA4o5mQFkf"
             },
             {
-              emoji: "💖",
-              title: "Pure Love",
-              description: "Made with love by a team who believes in cute + genius = success!"
+              emoji: "🚀",
+              title: "Major CEX Soon",
+              description: "Binance & Coinbase listings coming! Get in before the pump!",
+              badge: "🌟 Coming",
+              char: "https://cdn.hercules.app/file_l2LLX68sCT6FX97121lGTIKy"
             }
           ].map((feature, i) => (
             <motion.div
@@ -436,18 +486,26 @@ export default function Index() {
               transition={{ delay: i * 0.1, duration: 0.6 }}
               whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
             >
-              <Card className="h-full border-4 border-white bg-gradient-to-br from-white to-primary/5 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-3xl">
+              <Card className="h-full border-4 border-white bg-gradient-to-br from-white to-primary/5 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-3xl relative overflow-hidden">
+                <div className="absolute top-4 right-4 bg-gradient-to-r from-primary to-accent text-white px-4 py-1 rounded-full text-xs font-black shadow-lg">
+                  {feature.badge}
+                </div>
                 <CardContent className="p-8 space-y-4 text-center">
-                  <motion.div 
-                    animate={{ 
-                      scale: [1, 1.2, 1],
-                      rotate: [0, 10, -10, 0]
-                    }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                    className="text-6xl mb-4"
-                  >
-                    {feature.emoji}
-                  </motion.div>
+                  <div className="relative">
+                    <motion.div 
+                      animate={{ 
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 10, -10, 0]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="text-6xl mb-4 relative z-10"
+                    >
+                      {feature.emoji}
+                    </motion.div>
+                    <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-24 h-24 opacity-30">
+                      <img src={feature.char} alt="" className="w-full h-full object-contain" />
+                    </div>
+                  </div>
                   <h3 className="text-2xl font-black text-primary">{feature.title}</h3>
                   <p className="text-foreground/70 font-medium text-lg">{feature.description}</p>
                 </CardContent>
@@ -543,7 +601,75 @@ export default function Index() {
         </div>
       </motion.section>
 
-      {/* CTA Section - Extra Cute */}
+      {/* FOMO Section with Characters */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="relative z-10 container mx-auto px-4 py-12"
+      >
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            { 
+              title: "Early Bird Bonus",
+              subtitle: "50% Extra Tokens!",
+              desc: "First 500 buyers get bonus tokens!",
+              char: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF",
+              color: "from-primary to-accent"
+            },
+            { 
+              title: "Presale Ending",
+              subtitle: "Only 44% Left!",
+              desc: "Price increases by 30% after presale!",
+              char: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM",
+              color: "from-secondary to-primary"
+            },
+            { 
+              title: "Next Price",
+              subtitle: "$0.00055 Soon!",
+              desc: "Buy now at $0.00042 before pump!",
+              char: "https://cdn.hercules.app/file_qJXZyBLaxE0xJtlA4o5mQFkf",
+              color: "from-accent to-secondary"
+            }
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ scale: 1.05, y: -10 }}
+              className="relative"
+            >
+              <Card className="border-4 border-white shadow-2xl rounded-3xl overflow-hidden bg-white">
+                <CardContent className="p-0">
+                  <div className={`bg-gradient-to-br ${item.color} p-6 text-white text-center relative`}>
+                    <motion.div
+                      animate={{ scale: [1, 1.1, 1] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="absolute top-2 right-2 text-4xl"
+                    >
+                      🔥
+                    </motion.div>
+                    <div className="text-sm font-bold opacity-90 mb-1">{item.title}</div>
+                    <div className="text-3xl font-black">{item.subtitle}</div>
+                  </div>
+                  <div className="p-6 text-center">
+                    <div className="w-24 h-24 mx-auto mb-4 relative">
+                      <motion.img
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        src={item.char}
+                        alt=""
+                        className="w-full h-full object-contain drop-shadow-xl"
+                      />
+                    </div>
+                    <p className="text-lg font-bold text-foreground/80">{item.desc}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* CTA Section - Extra Cute with Social Proof */}
       <motion.section 
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -559,45 +685,85 @@ export default function Index() {
               className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-accent/10"
             />
             <div className="relative z-10">
-              <div className="flex justify-center gap-4 mb-6">
-                {["🚀", "💜", "🧪", "✨", "🧠"].map((emoji, i) => (
+              {/* Character Showcase */}
+              <div className="flex justify-center gap-2 mb-6">
+                {[
+                  "https://cdn.hercules.app/file_qJXZyBLaxE0xJtlA4o5mQFkf",
+                  "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF",
+                  "https://cdn.hercules.app/file_PNjYB0sYpNm2eBwQ9LkZHS7T",
+                  "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM",
+                  "https://cdn.hercules.app/file_MzK2FlqYRQ1s1N9BUUg8QpEB"
+                ].map((char, i) => (
                   <motion.div
                     key={i}
                     animate={{ 
-                      y: [0, -20, 0],
-                      rotate: [0, 360]
+                      y: [0, -15, 0],
+                      rotate: [0, 10, -10, 0]
                     }}
                     transition={{ 
                       duration: 2,
                       repeat: Infinity,
                       delay: i * 0.2
                     }}
-                    className="text-5xl"
+                    className="w-16 h-16 bg-white rounded-2xl border-4 border-primary/30 shadow-xl overflow-hidden"
                   >
-                    {emoji}
+                    <img src={char} alt="" className="w-full h-full object-cover" />
                   </motion.div>
                 ))}
               </div>
+              
+              <div className="inline-block bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-black text-lg mb-6 shadow-xl">
+                🔥 250+ Investors Joined in Last Hour! 🔥
+              </div>
+              
               <h2 className="text-4xl md:text-6xl font-black text-balance mb-6">
-                Ready to be a <span className="text-primary">Genius?</span>
+                Don't Miss The <span className="text-primary">Biggest Meme Token</span> of 2025!
               </h2>
               <p className="text-2xl text-foreground/70 max-w-3xl mx-auto text-balance font-bold mb-8">
-                Join Little Einstein's laboratory and become part of the cutest crypto revolution! Don't miss out on genius-level gains! 🎉💎
+                Join 12,000+ smart investors and secure your spot in the genius revolution! Limited presale spots remaining! ⏰💎
               </p>
-              <div className="flex flex-wrap gap-6 justify-center">
+              <motion.div 
+                animate={{ scale: [1, 1.02, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="space-y-6"
+              >
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-2xl px-16 h-20 rounded-full shadow-2xl border-4 border-white">
-                    <Rocket className="mr-3 w-8 h-8" />
-                    Buy Now! 🎉
+                  <Button size="lg" className="w-full max-w-2xl mx-auto bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-3xl px-16 h-24 rounded-full shadow-2xl border-4 border-white">
+                    <Rocket className="mr-3 w-10 h-10" />
+                    BUY $LILEIN NOW - GET 50% BONUS! 🎉
+                    <SparklesIcon className="ml-3 w-10 h-10" />
                   </Button>
                 </motion.div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                  <Button size="lg" className="border-4 border-white bg-white/90 hover:bg-white text-2xl px-16 h-20 rounded-full font-black shadow-2xl text-foreground">
-                    <Users className="mr-3 w-8 h-8" />
-                    Join Us! 💜
-                  </Button>
-                </motion.div>
-              </div>
+                
+                <div className="flex flex-wrap gap-4 justify-center text-sm font-bold text-foreground/80">
+                  <div className="flex items-center gap-2">
+                    ✅ Instant Delivery
+                  </div>
+                  <div className="flex items-center gap-2">
+                    🔒 100% Secure
+                  </div>
+                  <div className="flex items-center gap-2">
+                    💎 Audited Contract
+                  </div>
+                  <div className="flex items-center gap-2">
+                    🚀 Listed on DEX
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap gap-4 justify-center">
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button size="lg" className="border-4 border-white bg-white/90 hover:bg-white text-xl px-10 h-16 rounded-full font-black shadow-2xl text-foreground">
+                      <Users className="mr-2 w-6 h-6" />
+                      Join Telegram (5.2K)
+                    </Button>
+                  </motion.div>
+                  <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                    <Button size="lg" className="border-4 border-white bg-white/90 hover:bg-white text-xl px-10 h-16 rounded-full font-black shadow-2xl text-foreground">
+                      View Chart 📊
+                    </Button>
+                  </motion.div>
+                </div>
+              </motion.div>
             </div>
           </CardContent>
         </Card>
