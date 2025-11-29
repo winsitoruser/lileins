@@ -493,6 +493,301 @@ export default function Index() {
         </div>
       </section>
 
+      {/* Einstein to the Moon - Profit Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 container mx-auto px-4 py-20"
+      >
+        <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 md:p-16 border-8 border-white shadow-2xl overflow-hidden relative">
+          {/* Space Background */}
+          <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            {/* Stars */}
+            {[...Array(30)].map((_, i) => (
+              <motion.div
+                key={`space-star-${i}`}
+                animate={{
+                  scale: [1, 1.5, 1],
+                  opacity: [0.3, 0.8, 0.3]
+                }}
+                transition={{
+                  duration: 2 + Math.random() * 2,
+                  repeat: Infinity,
+                  delay: Math.random() * 2
+                }}
+                className="absolute w-1 h-1 bg-white rounded-full"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`
+                }}
+              />
+            ))}
+            
+            {/* Planets */}
+            {[...Array(4)].map((_, i) => (
+              <motion.div
+                key={`planet-${i}`}
+                animate={{
+                  y: [0, -50, 0],
+                  rotate: [0, 360],
+                  opacity: [0.2, 0.4, 0.2]
+                }}
+                transition={{
+                  duration: 15 + i * 5,
+                  repeat: Infinity,
+                  delay: i * 2
+                }}
+                className="absolute text-6xl"
+                style={{
+                  left: `${10 + i * 25}%`,
+                  top: `${Math.random() * 80}%`
+                }}
+              >
+                {["🪐", "⭐", "💫", "🌟"][i]}
+              </motion.div>
+            ))}
+
+            {/* Rocket Trail */}
+            <motion.div
+              animate={{
+                x: ["-100%", "200%"],
+                y: [100, -100]
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear"
+              }}
+              className="absolute top-1/2 text-4xl"
+            >
+              🚀
+            </motion.div>
+          </div>
+
+          <div className="relative z-10">
+            {/* Title */}
+            <div className="text-center mb-12">
+              <motion.div
+                animate={{
+                  y: [0, -20, 0]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+                className="text-8xl mb-4"
+              >
+                🌙
+              </motion.div>
+              <h2 className="text-5xl md:text-7xl font-black text-balance mb-4">
+                <span className="text-primary">Einstein</span> to the <span className="text-secondary">Moon!</span> 🚀
+              </h2>
+              <p className="text-2xl md:text-3xl text-foreground/80 font-bold max-w-3xl mx-auto">
+                Join the smartest investment in crypto! Exponential gains calculated by genius tokenomics! 📈💎
+              </p>
+            </div>
+
+            {/* Profit Calculator */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {[
+                {
+                  investment: "$100",
+                  current: "$238",
+                  future: "$10,000+",
+                  multiple: "100x Potential",
+                  emoji: "💰",
+                  gradient: "from-primary to-accent"
+                },
+                {
+                  investment: "$500",
+                  current: "$1,190",
+                  future: "$50,000+",
+                  multiple: "100x Potential",
+                  emoji: "💎",
+                  gradient: "from-accent to-secondary"
+                },
+                {
+                  investment: "$1,000",
+                  current: "$2,380",
+                  future: "$100,000+",
+                  multiple: "100x Potential",
+                  emoji: "👑",
+                  gradient: "from-secondary to-primary"
+                }
+              ].map((calc, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.2 }}
+                  whileHover={{ scale: 1.05, y: -10 }}
+                >
+                  <Card className="border-4 border-white bg-gradient-to-br from-white to-primary/5 shadow-2xl rounded-3xl overflow-hidden">
+                    <CardContent className="p-8 text-center space-y-4">
+                      <motion.div
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="text-6xl"
+                      >
+                        {calc.emoji}
+                      </motion.div>
+                      
+                      <div className="space-y-2">
+                        <p className="text-sm text-foreground/60 font-bold">Your Investment</p>
+                        <p className="text-3xl font-black text-primary">{calc.investment}</p>
+                      </div>
+
+                      <motion.div
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                        className="text-4xl"
+                      >
+                        ⬇️
+                      </motion.div>
+
+                      <div className="space-y-2">
+                        <p className="text-sm text-foreground/60 font-bold">Current Value</p>
+                        <p className="text-3xl font-black text-accent">{calc.current}</p>
+                      </div>
+
+                      <motion.div
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
+                        className="text-4xl"
+                      >
+                        🚀
+                      </motion.div>
+
+                      <div className="space-y-2">
+                        <p className="text-sm text-foreground/60 font-bold">Future Potential</p>
+                        <p className="text-3xl font-black text-secondary">{calc.future}</p>
+                      </div>
+
+                      <div className={`bg-gradient-to-r ${calc.gradient} text-white px-4 py-2 rounded-full font-black text-lg shadow-lg`}>
+                        {calc.multiple}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Rocket Launch Section */}
+            <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-8 md:p-12 border-4 border-white shadow-xl mb-8">
+              <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="space-y-6">
+                  <h3 className="text-4xl font-black text-primary flex items-center gap-3">
+                    <motion.span
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      🧮
+                    </motion.span>
+                    Calculated for Success!
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { label: "Presale Price", value: "$0.00042", icon: "💎" },
+                      { label: "Launch Price", value: "$0.00080 (90% Gain!)", icon: "🚀" },
+                      { label: "1 Month Target", value: "$0.005 (1,090% Gain!)", icon: "📈" },
+                      { label: "1 Year Prediction", value: "$0.042 (10,000% Gain!)", icon: "🌙" }
+                    ].map((item, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        className="flex justify-between items-center bg-white rounded-2xl p-4 border-4 border-primary/20 shadow-lg"
+                      >
+                        <span className="font-black text-foreground flex items-center gap-2">
+                          <span className="text-2xl">{item.icon}</span>
+                          {item.label}
+                        </span>
+                        <span className="text-xl font-black text-primary">{item.value}</span>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="relative">
+                  <motion.div
+                    animate={{
+                      y: [0, -200],
+                      scale: [1, 1.5]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeOut"
+                    }}
+                    className="text-9xl text-center"
+                  >
+                    🚀
+                  </motion.div>
+                  <motion.div
+                    animate={{
+                      scale: [0, 1, 0],
+                      opacity: [0, 1, 0]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeOut"
+                    }}
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 text-6xl"
+                  >
+                    💨
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+
+            {/* Moon Landing Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { value: "238%", label: "Already Up!", emoji: "📊" },
+                { value: "12K+", label: "Smart Holders", emoji: "👥" },
+                { value: "$2.8M", label: "Raised", emoji: "💰" },
+                { value: "100x", label: "Potential", emoji: "🌙" }
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                  className="bg-white rounded-2xl p-6 border-4 border-primary/20 shadow-xl text-center"
+                >
+                  <motion.div
+                    animate={{ scale: [1, 1.3, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                    className="text-4xl mb-2"
+                  >
+                    {stat.emoji}
+                  </motion.div>
+                  <div className="text-3xl font-black text-primary mb-1">{stat.value}</div>
+                  <div className="text-sm font-bold text-foreground/60">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <motion.div
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="mt-12 text-center"
+            >
+              <Button size="lg" className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-2xl md:text-3xl px-16 h-20 rounded-full shadow-2xl border-4 border-white">
+                <Rocket className="mr-3 w-8 h-8" />
+                Launch to the Moon! 🌙
+                <SparklesIcon className="ml-3 w-8 h-8" />
+              </Button>
+              <p className="mt-4 text-foreground/70 font-bold text-lg">
+                ⚡ Don't Miss The Rocket! Early Birds Get 50% Bonus Tokens! ⚡
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </motion.section>
+
       {/* Super Cute Presale Box */}
       <motion.section 
         {...bounceAnimation}
