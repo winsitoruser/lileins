@@ -803,6 +803,21 @@ export default function Index() {
                       <span className="text-2xl">⚛️</span>
                     </p>
                   </motion.div>
+
+                  {/* Disclaimer */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    className="mt-6 bg-muted/50 rounded-2xl p-4 border-2 border-foreground/10"
+                  >
+                    <p className="text-xs text-center text-foreground/60 font-medium leading-relaxed">
+                      <span className="font-black text-foreground/80">⚠️ DISCLAIMER:</span> This calculator is for simulation purposes only. 
+                      Actual returns may vary significantly based on market conditions, timing, and other factors. 
+                      Cryptocurrency investments carry high risk. Past performance does not guarantee future results. 
+                      Please do your own research and invest responsibly.
+                    </p>
+                  </motion.div>
                 </CardContent>
               </Card>
             </motion.div>
