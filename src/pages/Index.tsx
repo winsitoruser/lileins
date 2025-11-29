@@ -951,6 +951,329 @@ export default function Index() {
         </div>
       </motion.section>
 
+      {/* Tokenomics Section */}
+      <motion.section
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 container mx-auto px-4 py-20"
+      >
+        <div className="text-center mb-16">
+          <motion.div
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 5, repeat: Infinity }}
+            className="inline-block text-6xl mb-4"
+          >
+            📊
+          </motion.div>
+          <h2 className="text-5xl md:text-7xl font-black text-balance mb-4">
+            <span className="text-primary">Smart</span> Tokenomics 🧪
+          </h2>
+          <p className="text-xl md:text-2xl text-foreground/70 font-bold max-w-3xl mx-auto">
+            Scientifically calculated for maximum value and community growth!
+          </p>
+        </div>
+
+        {/* Token Info Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl rounded-3xl overflow-hidden">
+            <CardContent className="p-8 md:p-12">
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { label: "Token Name", value: "Little Einstein", icon: "🧪" },
+                  { label: "Symbol", value: "$LILEIN", icon: "💎" },
+                  { label: "Total Supply", value: "1,000,000,000", icon: "📈" },
+                  { label: "Network", value: "BSC (BEP-20)", icon: "⚡" }
+                ].map((info, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="bg-white rounded-2xl p-6 border-4 border-primary/20 shadow-lg text-center"
+                  >
+                    <motion.div
+                      animate={{ rotate: [0, 360] }}
+                      transition={{ duration: 4, repeat: Infinity, delay: i * 0.5 }}
+                      className="text-5xl mb-3"
+                    >
+                      {info.icon}
+                    </motion.div>
+                    <p className="text-sm text-foreground/60 font-bold mb-1">{info.label}</p>
+                    <p className="text-lg md:text-xl font-black text-primary break-words">{info.value}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Token Distribution */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-12">
+          {/* Distribution Chart */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="border-6 border-white bg-white shadow-2xl rounded-3xl h-full">
+              <CardContent className="p-8">
+                <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
+                  <span className="text-4xl">🥧</span>
+                  Token Distribution
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { label: "Presale", percent: 40, color: "from-primary to-accent", icon: "🚀" },
+                    { label: "Liquidity", percent: 25, color: "from-accent to-secondary", icon: "💧" },
+                    { label: "Marketing", percent: 15, color: "from-secondary to-primary", icon: "📢" },
+                    { label: "Team & Advisors", percent: 10, color: "from-primary via-accent to-secondary", icon: "👥" },
+                    { label: "Development", percent: 5, color: "from-accent to-primary", icon: "🔧" },
+                    { label: "Community Rewards", percent: 5, color: "from-secondary to-accent", icon: "🎁" }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ scale: 1.02, x: 5 }}
+                      className="bg-gradient-to-r from-muted/50 to-muted/30 rounded-2xl p-4 border-2 border-primary/20"
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <span className="font-black text-foreground flex items-center gap-2">
+                          <span className="text-2xl">{item.icon}</span>
+                          {item.label}
+                        </span>
+                        <span className="text-2xl font-black text-primary">{item.percent}%</span>
+                      </div>
+                      <div className="relative h-3 bg-muted rounded-full overflow-hidden">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          whileInView={{ width: `${item.percent}%` }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 1, delay: i * 0.1 }}
+                          className={`h-full bg-gradient-to-r ${item.color} rounded-full`}
+                        />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Vesting Schedule */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="border-6 border-white bg-white shadow-2xl rounded-3xl h-full">
+              <CardContent className="p-8">
+                <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
+                  <span className="text-4xl">📅</span>
+                  Vesting Schedule
+                </h3>
+                <div className="space-y-6">
+                  {[
+                    { 
+                      category: "Presale",
+                      tge: "50%",
+                      vesting: "50% linear over 3 months",
+                      icon: "🚀",
+                      color: "primary"
+                    },
+                    { 
+                      category: "Liquidity",
+                      tge: "100%",
+                      vesting: "Locked for 2 years",
+                      icon: "🔒",
+                      color: "accent"
+                    },
+                    { 
+                      category: "Team",
+                      tge: "0%",
+                      vesting: "6 months cliff, 24 months linear",
+                      icon: "👥",
+                      color: "secondary"
+                    },
+                    { 
+                      category: "Marketing",
+                      tge: "20%",
+                      vesting: "80% linear over 12 months",
+                      icon: "📢",
+                      color: "primary"
+                    }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ scale: 1.02, y: -3 }}
+                      className="bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl p-4 border-2 border-primary/20"
+                    >
+                      <div className="flex items-center gap-3 mb-2">
+                        <span className="text-3xl">{item.icon}</span>
+                        <span className="font-black text-lg text-foreground">{item.category}</span>
+                      </div>
+                      <div className="pl-11 space-y-1">
+                        <p className="text-sm font-bold text-foreground/70">
+                          <span className="text-primary">TGE:</span> {item.tge}
+                        </p>
+                        <p className="text-sm font-bold text-foreground/70">
+                          <span className="text-secondary">Vesting:</span> {item.vesting}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+
+        {/* TGE Details */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-12"
+        >
+          <Card className="border-8 border-white bg-gradient-to-br from-accent/10 via-primary/10 to-secondary/10 shadow-2xl rounded-3xl overflow-hidden">
+            <CardContent className="p-8 md:p-12">
+              <div className="text-center mb-8">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="inline-block text-6xl mb-4"
+                >
+                  🎯
+                </motion.div>
+                <h3 className="text-4xl font-black text-primary mb-2">TGE Details</h3>
+                <p className="text-lg text-foreground/70 font-bold">Token Generation Event Information</p>
+              </div>
+              
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { label: "TGE Date", value: "Q2 2025", icon: "📅" },
+                  { label: "Initial Price", value: "$0.00042", icon: "💰" },
+                  { label: "Launch Price", value: "$0.00080", icon: "🚀" },
+                  { label: "Initial Market Cap", value: "$840K", icon: "📊" }
+                ].map((detail, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.05, rotate: [0, -2, 2, 0] }}
+                    className="bg-white rounded-2xl p-6 border-4 border-primary/20 shadow-lg text-center"
+                  >
+                    <motion.div
+                      animate={{ y: [0, -10, 0] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+                      className="text-5xl mb-3"
+                    >
+                      {detail.icon}
+                    </motion.div>
+                    <p className="text-sm text-foreground/60 font-bold mb-1">{detail.label}</p>
+                    <p className="text-xl font-black text-primary">{detail.value}</p>
+                  </motion.div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </motion.div>
+
+        {/* Token Utility & Security */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Token Utility */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="border-6 border-white bg-gradient-to-br from-primary/5 to-accent/5 shadow-2xl rounded-3xl h-full">
+              <CardContent className="p-8">
+                <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
+                  <span className="text-4xl">⚡</span>
+                  Token Utility
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { text: "Governance voting rights", icon: "🗳️" },
+                    { text: "Staking rewards (up to 25% APY)", icon: "💰" },
+                    { text: "Exclusive NFT access", icon: "🎨" },
+                    { text: "Community events & airdrops", icon: "🎁" },
+                    { text: "Reduced trading fees", icon: "📉" },
+                    { text: "Early access to new features", icon: "🚀" }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ scale: 1.03, x: 5 }}
+                      className="flex items-center gap-3 bg-white rounded-xl p-4 border-2 border-primary/20 shadow"
+                    >
+                      <span className="text-3xl">{item.icon}</span>
+                      <span className="font-bold text-foreground">{item.text}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Security Features */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <Card className="border-6 border-white bg-gradient-to-br from-secondary/5 to-primary/5 shadow-2xl rounded-3xl h-full">
+              <CardContent className="p-8">
+                <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
+                  <span className="text-4xl">🛡️</span>
+                  Security Features
+                </h3>
+                <div className="space-y-4">
+                  {[
+                    { text: "Multi-sig wallet protection", icon: "🔐" },
+                    { text: "Audited by CertiK", icon: "✅" },
+                    { text: "Liquidity locked 2 years", icon: "🔒" },
+                    { text: "Anti-whale mechanism", icon: "🐋" },
+                    { text: "Anti-bot protection", icon: "🤖" },
+                    { text: "Verified contract on BSCScan", icon: "📜" }
+                  ].map((item, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ scale: 1.03, x: 5 }}
+                      className="flex items-center gap-3 bg-white rounded-xl p-4 border-2 border-primary/20 shadow"
+                    >
+                      <span className="text-3xl">{item.icon}</span>
+                      <span className="font-bold text-foreground">{item.text}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </motion.section>
+
       {/* Super Cute Presale Box */}
       <motion.section 
         {...bounceAnimation}
