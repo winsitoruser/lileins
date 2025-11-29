@@ -3,7 +3,6 @@ import { Atom, Beaker, Brain, Calculator, FlaskConical, Heart, Rocket, SparklesI
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
-import Logo from "@/components/logo.tsx";
 import { useState, useEffect } from "react";
 
 export default function Index() {
@@ -247,7 +246,21 @@ export default function Index() {
         <div className="container mx-auto px-4 py-6 relative z-10">
           <div className="flex justify-between items-center">
             <div className="flex items-center gap-4">
-              <Logo size="lg" animated={true} />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.img
+                  src="https://cdn.hercules.app/file_9M0TqiepBAMYkyRdGpcY3NZb"
+                  alt="Little Einstein Logo"
+                  className="w-20 h-20 md:w-24 md:h-24 drop-shadow-2xl"
+                  animate={{
+                    y: [0, -5, 0],
+                    rotate: [0, 2, -2, 0]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+              </motion.div>
               <div>
                 <h1 className="text-3xl font-black text-primary flex items-center gap-2">
                   Little Einstein
@@ -1962,7 +1975,21 @@ export default function Index() {
         <div className="container mx-auto px-4 py-12 relative z-10">
           <div className="text-center space-y-6">
             <div className="inline-flex items-center gap-4 mb-4">
-              <Logo size="xl" animated={true} />
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
+                transition={{ duration: 0.3 }}
+              >
+                <motion.img
+                  src="https://cdn.hercules.app/file_9M0TqiepBAMYkyRdGpcY3NZb"
+                  alt="Little Einstein Logo"
+                  className="w-28 h-28 md:w-32 md:h-32 drop-shadow-2xl"
+                  animate={{
+                    y: [0, -8, 0],
+                    rotate: [0, 3, -3, 0]
+                  }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                />
+              </motion.div>
               <div className="text-left">
                 <h3 className="text-3xl font-black text-primary flex items-center gap-2">
                   Little Einstein
