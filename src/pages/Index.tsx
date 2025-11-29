@@ -624,7 +624,7 @@ export default function Index() {
                 <span className="text-primary">Einstein</span> to the <span className="text-secondary">Moon!</span> 🚀
               </h2>
               <p className="text-2xl md:text-3xl text-foreground/80 font-bold max-w-3xl mx-auto">
-                Join the smartest investment in crypto! Exponential gains calculated by genius tokenomics! 📈💎
+                Smart tokenomics designed for sustainable growth. Join the genius community! 📈💎
               </p>
             </div>
 
@@ -663,24 +663,24 @@ export default function Index() {
                 {
                   investment: "$100",
                   current: "$238",
-                  future: "$10,000+",
-                  multiple: "100x Potential",
+                  future: "$1,000 - $2,000",
+                  multiple: "10x Target",
                   emoji: "💰",
                   gradient: "from-primary to-accent"
                 },
                 {
                   investment: "$500",
                   current: "$1,190",
-                  future: "$50,000+",
-                  multiple: "100x Potential",
+                  future: "$5,000 - $10,000",
+                  multiple: "10x Target",
                   emoji: "💎",
                   gradient: "from-accent to-secondary"
                 },
                 {
                   investment: "$1,000",
                   current: "$2,380",
-                  future: "$100,000+",
-                  multiple: "100x Potential",
+                  future: "$10,000 - $20,000",
+                  multiple: "10x Target",
                   emoji: "👑",
                   gradient: "from-secondary to-primary"
                 }
@@ -759,9 +759,9 @@ export default function Index() {
                   <div className="space-y-4">
                     {[
                       { label: "Presale Price", value: "$0.00042", icon: "💎" },
-                      { label: "Launch Price", value: "$0.00080 (90% Gain!)", icon: "🚀" },
-                      { label: "1 Month Target", value: "$0.005 (1,090% Gain!)", icon: "📈" },
-                      { label: "1 Year Prediction", value: "$0.042 (10,000% Gain!)", icon: "🌙" }
+                      { label: "Launch Target", value: "$0.00080 - $0.001", icon: "🚀" },
+                      { label: "3 Month Goal", value: "$0.002 - $0.005", icon: "📈" },
+                      { label: "1 Year Target", value: "$0.004 - $0.008", icon: "🌙" }
                     ].map((item, i) => (
                       <motion.div
                         key={i}
@@ -857,7 +857,7 @@ export default function Index() {
                 { value: "238%", label: "Already Up!", emoji: "📊" },
                 { value: "12K+", label: "Smart Holders", emoji: "👥" },
                 { value: "$2.8M", label: "Raised", emoji: "💰" },
-                { value: "100x", label: "Potential", emoji: "🌙" }
+                { value: "10x", label: "Target", emoji: "🌙" }
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -885,11 +885,11 @@ export default function Index() {
             >
               <Button size="lg" className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-2xl md:text-3xl px-16 h-20 rounded-full shadow-2xl border-4 border-white">
                 <Rocket className="mr-3 w-8 h-8" />
-                Launch to the Moon! 🌙
+                Join the Journey! 🌙
                 <SparklesIcon className="ml-3 w-8 h-8" />
               </Button>
               <p className="mt-4 text-foreground/70 font-bold text-lg">
-                ⚡ Don't Miss The Rocket! Early Birds Get 50% Bonus Tokens! ⚡
+                ⚡ Early Bird Bonus: Get Extra Tokens During Presale! ⚡
               </p>
             </motion.div>
           </div>
