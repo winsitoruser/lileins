@@ -1167,7 +1167,7 @@ export default function Index() {
                   { label: "Token Name", value: "Little Einstein", icon: "🧪" },
                   { label: "Symbol", value: "$Einz", icon: "💎" },
                   { label: "Total Supply", value: "20,000,000,000", icon: "📈" },
-                  { label: "Network", value: "BASE L2", icon: "⚡" }
+                  { label: "Solana", value: "BASE L2", icon: "⚡" }
                 ].map((info, i) => (
                   <motion.div
                     key={i}
