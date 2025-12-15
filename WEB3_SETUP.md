@@ -53,7 +53,7 @@ The app will be available at http://localhost:5173
 ## Features Integrated
 
 ✅ **MetaMask Connect** - Users can connect with MetaMask and other Web3 wallets
-✅ **Token Balance** - Display user's $LILEIN token balance
+✅ **Token Balance** - Display user's $Einz token balance
 ✅ **Staking** - Stake tokens directly from the UI
 ✅ **Rewards** - View and claim staking rewards
 ✅ **Multi-Chain** - Support for Base and Base Sepolia
@@ -61,7 +61,7 @@ The app will be available at http://localhost:5173
 ## Smart Contract Integration
 
 The app integrates with:
-- **BaseToken.sol** - ERC20 token contract for $LILEIN
+- **BaseToken.sol** - ERC20 token contract for $Einz
 - **TokenStaking.sol** - Staking contract with multiple tiers
 
 ### Staking Tiers

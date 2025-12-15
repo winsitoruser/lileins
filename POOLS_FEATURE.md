@@ -112,7 +112,7 @@ interface Pool {
 ### Navigation Structure:
 ```
 Home → 
-  ├─ Buy $LILEIN
+  ├─ Buy $Einz
   ├─ EinSwap ⚗️ → Swap tokens
   ├─ Pools 💧 → Browse pools → Add/Remove liquidity
   └─ Staking ⭐ → Stake tokens
@@ -125,7 +125,7 @@ Home →
    - Provide both tokens in equal value
    - Receive LP (Liquidity Provider) tokens
    - Earn 0.3% fee on all trades
-   - Earn additional $LILEIN rewards
+   - Earn additional $Einz rewards
 
 2. **Removing Liquidity:**
    - Burn LP tokens
@@ -135,7 +135,7 @@ Home →
 
 ### Fee Distribution:
 - **0.25%** → Liquidity Providers (LP holders)
-- **0.05%** → $LILEIN Buyback & Burn
+- **0.05%** → $Einz Buyback & Burn
 
 ## 🚀 Smart Contract Integration (Future)
 
@@ -209,7 +209,7 @@ Home →
 
 ### LP Rewards:
 1. **Trading Fees** - 0.25% of all trades
-2. **$LILEIN Rewards** - Additional token emissions
+2. **$Einz Rewards** - Additional token emissions
 3. **Boosted APR** - For specific pool pairs
 4. **NFT Badges** - For long-term LPs
 5. **Governance Rights** - Vote with LP tokens

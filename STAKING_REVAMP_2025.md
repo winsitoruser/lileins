@@ -73,11 +73,11 @@ Shows the top 5 stakers with:
 **Example Data:**
 ```
 #1 👑 Einstein Mastermind 🧠
-   1,250,000 $LILEIN staked
+   1,250,000 $Einz staked
    +62,500 rewards earned
 
 #2 🥈 Crypto Genius 💎
-   980,000 $LILEIN staked
+   980,000 $Einz staked
    +49,000 rewards earned
 
 ... and so on

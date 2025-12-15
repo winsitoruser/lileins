@@ -268,7 +268,7 @@ export default function Index() {
               </div>
               <div className="hidden md:block">
                 <h1 className="text-xl font-black text-primary">Little Einstein</h1>
-                <p className="text-xs font-bold text-secondary">$LILEIN</p>
+                <p className="text-xs font-bold text-secondary">$Einz</p>
               </div>
             </Link>
 
@@ -319,16 +319,16 @@ export default function Index() {
               animate={animations.subtlePulse}
               className="inline-block"
             >
-              <div className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-primary to-accent text-white rounded-full font-bold text-sm shadow-xl border-4 border-white/50">
+              <div className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-primary to-accent text-white rounded-full font-bold text-sm shadow-xl border-4 border-white/50">
                 <Zap className="w-5 h-5 fill-white" />
                 PRESALE LIVE NOW! 🚀
               </div>
             </motion.div>
 
             <h1 className="text-5xl md:text-7xl font-black text-balance leading-tight">
-              The Cutest
-              <span className="text-primary block mt-2 relative inline-block">
-                Genius Token!
+              $Einz: The Smart
+              <span className="text-primary block mt-2 relative">
+                Utility Token
                 <motion.span
                   animate={{ rotate: [0, 20, -20, 0] }}
                   transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
@@ -339,8 +339,22 @@ export default function Index() {
               </span>
             </h1>
 
+            {/* <h1 className="text-5xl md:text-7xl font-black text-balance leading-tight">
+              The Cutest
+              <span className="text-primary block mt-2 relative">
+                Genius Token!
+                <motion.span
+                  animate={{ rotate: [0, 20, -20, 0] }}
+                  transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
+                  className="inline-block ml-2"
+                >
+                  🧪
+                </motion.span>
+              </span>
+            </h1> */}
+
             <p className="text-2xl text-foreground/70 text-balance font-medium">
-              Join our adorable lab where science meets memes! Little Einstein is bringing genius-level gains with maximum cuteness! 💜
+              $little Einstein ($Einz) is a next-generation token powering a revolutionary Smart Utility Layer. We combine the speed of Swap, the earning potential of Staking, and the transparency of Explorer to create the most reliable and rewarding crypto ecosystem. 💜
             </p>
 
             <motion.div
@@ -354,9 +368,9 @@ export default function Index() {
                 whileHover={animations.buttonHover}
                 whileTap={animations.buttonTap}
               >
-                <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-black text-xl px-10 h-16 rounded-full shadow-2xl border-4 border-white/50">
+                <Button size="lg" className="bg-linear-to-r from-primary to-accent hover:opacity-90 text-white font-black text-xl px-10 h-16 rounded-full shadow-2xl border-4 border-white/50">
                   <Rocket className="mr-2 w-6 h-6" />
-                  Buy $LILEIN 🎉
+                  Buy $Einz 🎉
                 </Button>
               </motion.div>
               <motion.div
@@ -370,7 +384,7 @@ export default function Index() {
               </motion.div>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               variants={animations.staggerContainer}
               initial="hidden"
               animate="visible"
@@ -391,7 +405,7 @@ export default function Index() {
                   <p className="text-sm text-foreground/60 font-bold">{stat.label} {stat.emoji}</p>
                 </motion.div>
               ))}
-            </motion.div>
+            </motion.div> */}
           </motion.div>
 
           <motion.div
@@ -921,13 +935,13 @@ export default function Index() {
                     <div className="bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
                       <div className="flex justify-between items-center">
                         <span className="text-sm md:text-base font-bold text-foreground/70">Current Price 💎</span>
-                        <span className="text-2xl md:text-3xl font-black text-primary">$0.00042</span>
+                        <span className="text-2xl md:text-3xl font-black text-primary">$0.0005</span>
                       </div>
                     </div>
                     <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
                       <div className="flex justify-between items-center">
                         <span className="text-sm md:text-base font-bold text-foreground/70">Next Price 📈</span>
-                        <span className="text-2xl md:text-3xl font-black text-secondary">$0.00055</span>
+                        <span className="text-2xl md:text-3xl font-black text-secondary">$0.00065</span>
                       </div>
                     </div>
                   </div>
@@ -936,7 +950,7 @@ export default function Index() {
                   <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                     <Button size="lg" className="w-full bg-linear-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl h-16 md:h-20 rounded-full shadow-2xl border-4 border-white">
                       <Rocket className="mr-3 w-8 h-8" />
-                      Buy $LILEIN Now! 🎉
+                      Buy $Einz Now! 🎉
                       <SparklesIcon className="ml-3 w-8 h-8" />
                     </Button>
                   </motion.div>
@@ -1067,9 +1081,9 @@ export default function Index() {
             </div>
 
             {/* Moon Landing Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {/* <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                { value: "238%", label: "Already Up!", emoji: "📊" },
+                { value: "238%", label: "Potential", emoji: "📊" },
                 { value: "12K+", label: "Smart Holders", emoji: "👥" },
                 { value: "$2.8M", label: "Raised", emoji: "💰" },
                 { value: "10x", label: "Target", emoji: "🌙" }
@@ -1090,7 +1104,7 @@ export default function Index() {
                   <div className="text-sm font-bold text-foreground/60">{stat.label}</div>
                 </motion.div>
               ))}
-            </div>
+            </div> */}
 
             {/* CTA */}
             <motion.div
@@ -1148,8 +1162,8 @@ export default function Index() {
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { label: "Token Name", value: "Little Einstein", icon: "🧪" },
-                  { label: "Symbol", value: "$LILEIN", icon: "💎" },
-                  { label: "Total Supply", value: "100,000,000,000", icon: "📈" },
+                  { label: "Symbol", value: "$Einz", icon: "💎" },
+                  { label: "Total Supply", value: "20,000,000,000", icon: "📈" },
                   { label: "Network", value: "BASE L2", icon: "⚡" }
                 ].map((info, i) => (
                   <motion.div
@@ -1189,12 +1203,12 @@ export default function Index() {
                 </h3>
                 <div className="space-y-4">
                   {[
-                    { label: "Presale", percent: 40, color: "from-primary to-accent", icon: "🚀" },
-                    { label: "Liquidity", percent: 25, color: "from-accent to-secondary", icon: "💧" },
-                    { label: "Marketing", percent: 15, color: "from-secondary to-primary", icon: "📢" },
-                    { label: "Team & Advisors", percent: 10, color: "from-primary via-accent to-secondary", icon: "👥" },
-                    { label: "Development", percent: 5, color: "from-accent to-primary", icon: "🔧" },
-                    { label: "Community Rewards", percent: 5, color: "from-secondary to-accent", icon: "🎁" }
+                    { label: "Presale", percent: 25, color: "from-primary to-accent", icon: "🚀" },
+                    { label: "Staking & Rewards", percent: 20, color: "from-accent to-secondary", icon: "💧" },
+                    { label: "Chain Reserves/Treasury", percent: 22, color: "from-secondary to-primary", icon: "📢" },
+                    { label: "Liquidity (DEX)", percent: 11, color: "from-primary via-accent to-secondary", icon: "👥" },
+                    { label: "CEX Reserves", percent: 11, color: "from-accent to-primary", icon: "🔧" },
+                    { label: "Marketing & Partnership", percent: 11, color: "from-secondary to-accent", icon: "🎁" }
                   ].map((item, i) => (
                     <motion.div
                       key={i}
@@ -1243,32 +1257,36 @@ export default function Index() {
                 <div className="space-y-6">
                   {[
                     {
-                      category: "Presale",
-                      tge: "50%",
-                      vesting: "50% linear over 3 months",
+                      category: "Presale Investors",
+                      tge: "0%",
+                      cliff: "2 Months",
+                      release: "15% each month after the cliff ends. (Full release achieved after 6.67 months post-cliff).",
                       icon: "🚀",
                       color: "primary"
                     },
-                    {
-                      category: "Liquidity",
-                      tge: "100%",
-                      vesting: "Locked for 2 years",
-                      icon: "🔒",
-                      color: "accent"
-                    },
-                    {
-                      category: "Team",
-                      tge: "0%",
-                      vesting: "6 months cliff, 24 months linear",
-                      icon: "👥",
-                      color: "secondary"
-                    },
+                    // {
+                    //   category: "Liquidity",
+                    //   tge: "0%",
+                    //   cliff: "2 Months",
+                    //   release: "-",
+                    //   icon: "🔒",
+                    //   color: "accent"
+                    // },
                     {
                       category: "Marketing",
-                      tge: "20%",
-                      vesting: "80% linear over 12 months",
+                      tge: "0%",
+                      cliff: "2 Months",
+                      release: "10% each month after the cliff ends.",
                       icon: "📢",
                       color: "primary"
+                    },
+                    {
+                      category: "Partnership",
+                      tge: "0%",
+                      cliff: "2 Months",
+                      release: "10% each month after the cliff ends.",
+                      icon: "👥",
+                      color: "secondary"
                     }
                   ].map((item, i) => (
                     <motion.div
@@ -1286,10 +1304,13 @@ export default function Index() {
                       </div>
                       <div className="pl-11 space-y-1">
                         <p className="text-sm font-bold text-foreground/70">
-                          <span className="text-primary">TGE:</span> {item.tge}
+                          <span className="text-primary">Token Unlock at TGE:</span> {item.tge}
                         </p>
                         <p className="text-sm font-bold text-foreground/70">
-                          <span className="text-secondary">Vesting:</span> {item.vesting}
+                          <span className="text-primary">Cliff Period:</span> {item.cliff}
+                        </p>
+                        <p className="text-sm font-bold text-foreground/70">
+                          <span className="text-secondary">Monthly Release:</span> {item.release}
                         </p>
                       </div>
                     </motion.div>
@@ -1514,7 +1535,7 @@ export default function Index() {
             ))}
           </motion.div>
           <h2 className="text-4xl md:text-6xl font-black text-balance">
-            Why Smart Investors Choose <span className="text-primary">$LILEIN!</span>
+            Why Smart Investors Choose <span className="text-primary">$Einz!</span>
           </h2>
           <p className="text-2xl text-foreground/70 max-w-2xl mx-auto text-balance font-medium">
             Genius tokenomics + Adorable branding = Moon Mission! 🌙✨
@@ -1805,7 +1826,7 @@ export default function Index() {
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                   <Button size="lg" className="w-full max-w-2xl mx-auto bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-3xl px-16 h-24 rounded-full shadow-2xl border-4 border-white">
                     <Rocket className="mr-3 w-10 h-10" />
-                    BUY $LILEIN NOW - GET 50% BONUS! 🎉
+                    BUY $Einz NOW - GET 50% BONUS! 🎉
                     <SparklesIcon className="ml-3 w-10 h-10" />
                   </Button>
                 </motion.div>
@@ -1918,7 +1939,7 @@ export default function Index() {
                   </motion.span>
                 </h3>
                 <p className="text-lg text-secondary font-black flex items-center gap-2">
-                  $LILEIN 💜
+                  $Einz 💜
                   <motion.span
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 5, repeat: Infinity }}
@@ -1950,7 +1971,7 @@ export default function Index() {
 
             <div className="border-t-4 border-primary/20 pt-8">
               <p className="text-foreground/60 font-medium text-lg">
-                © {new Date().getFullYear()} Little Einstein ($LILEIN) 💜 All rights reserved.
+                © {new Date().getFullYear()} Little Einstein ($Einz) 💜 All rights reserved.
               </p>
               <p className="text-foreground/50 text-sm mt-2">
                 Made with 💜 and genius-level cuteness! | Community-driven meme token.

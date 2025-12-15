@@ -277,7 +277,7 @@ function StakingForm() {
             Connect Your Wallet 🚀
           </h3>
           <p className="mb-6">
-            Connect your wallet to start staking $LILEIN tokens!
+            Connect your wallet to start staking $Einz tokens!
           </p>
           <WalletButton />
         </CardContent>
@@ -312,7 +312,7 @@ function StakingForm() {
         <div className="space-y-4">
           {/* Amount Input */}
           <div>
-            <label>Amount ($LILEIN)</label>
+            <label>Amount ($Einz)</label>
             <Input
               type="number"
               value={amount}

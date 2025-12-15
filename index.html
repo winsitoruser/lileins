@@ -1,56 +1,67 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Little Einstein ($LILEIN) - The Cutest Genius Meme Token</title>
-    <meta name="description" content="Join 12,000+ smart investors in the Little Einstein revolution! Audited, secure, and ready for 1000x gains. Presale live now!" />
-    <meta name="author" content="Little Einstein" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <meta property="og:title" content="Little Einstein ($LILEIN) - The Cutest Genius Meme Token" />
-    <meta
-      property="og:description"
-      content="Join 12,000+ smart investors in the Little Einstein revolution! Audited, secure, and ready for 1000x gains. Presale live now!"
-    />
-    <meta property="og:type" content="website" />
-    <meta
-      property="og:image"
-      content="https://hercules.app/og/app/%VITE_HERCULES_WEBSITE_ID%.png"
-    />
-    <meta property="og:image:type" content="image/png" />
+  <!-- Primary SEO -->
+  <title>$Einz – The Smart Utility Token | Think Smarter. Earn Faster.</title>
+  <meta name="description"
+    content="$little Einstein ($Einz) is a next-generation token powering a revolutionary Smart Utility Layer. We combine the speed of Swap, the earning potential of Staking, and the transparency of Explorer to create the most reliable and rewarding crypto ecosystem." />
+  <meta name="author" content="Einz Labs" />
+  <meta name="robots" content="index, follow" />
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta
-      name="twitter:image"
-      content="https://hercules.app/og/app/%VITE_HERCULES_WEBSITE_ID%.png"
-    />
-    <meta name="twitter:site" content="@UseHercules" />
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" />
 
-    <!-- Detect dark mode preference and set the class before next-themes loads. This avoids a flash of unstyled content (FOUC) when the page loads. -->
-    <script>
-      (function () {
-        try {
-          var theme = localStorage.getItem("theme");
-          if (theme === "system" || !theme) {
-            var prefersLight = window.matchMedia(
-              "(prefers-color-scheme: light)",
-            ).matches;
-            theme = prefersLight ? "light" : "dark";
-          }
-          document.documentElement.classList.add(theme);
-        } catch (e) {}
-      })();
-    </script>
-    <link href="/src/index.css" rel="stylesheet" />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Open Graph (Facebook, Discord, Telegram) -->
+  <meta property="og:title" content="$Einz – The Smart Utility Token" />
+  <meta property="og:description"
+    content="Think Smarter. Earn Faster. $Einz powers the future of DeFi with Swap, Staking, and Explorer in one smart utility layer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-domain.com" />
+  <meta property="og:image" content="https://hercules.app/og/app/%VITE_HERCULES_WEBSITE_ID%.png" />
+  <meta property="og:image:type" content="image/png" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="$Einz – The Smart Utility Token" />
+  <meta name="twitter:description"
+    content="The future of DeFi, simplified. Earn smarter with $Einz smart utility ecosystem." />
+  <meta name="twitter:image" content="https://hercules.app/og/app/%VITE_HERCULES_WEBSITE_ID%.png" />
+  <meta name="twitter:site" content="@EinzLabs" />
+
+  <!-- Theme detection (FOUC safe) -->
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("theme");
+        if (theme === "system" || !theme) {
+          var prefersLight = window.matchMedia(
+            "(prefers-color-scheme: light)"
+          ).matches;
+          theme = prefersLight ? "light" : "dark";
+        }
+        document.documentElement.classList.add(theme);
+      } catch (e) { }
+    })();
+  </script>
+
+  <link href="/src/index.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- SEO fallback for bots without JS -->
+  <noscript>
+    <h1>$Einz: The Smart Utility Token</h1>
+    <p>
+      Think Smarter. Earn Faster. The Future of DeFi, Simplified.
+    </p>
+  </noscript>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

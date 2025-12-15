@@ -147,7 +147,7 @@ export default function Einswap() {
               </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-xl font-black text-primary">Little Einstein</span>
-                <span className="text-sm font-bold text-secondary">$LILEIN 💜</span>
+                <span className="text-sm font-bold text-secondary">$Einz 💜</span>
               </div>
             </Link>
             <div className="flex items-center gap-3">
@@ -489,7 +489,7 @@ export default function Einswap() {
                 </h3>
                 <p className="text-base text-foreground/80 font-bold">
                   EinSwap uses advanced algorithms to find the best exchange rates across multiple liquidity pools, 
-                  ensuring you get the most $LILEIN for your tokens. E=mc² efficiency!
+                  ensuring you get the most $Einz for your tokens. E=mc² efficiency!
                 </p>
               </div>
             </div>
@@ -570,7 +570,7 @@ export default function Einswap() {
                     </motion.span>
                   </h3>
                   <p className="text-lg text-secondary font-black flex items-center gap-2">
-                    $LILEIN 💜
+                    $Einz 💜
                     <motion.span
                       animate={{ rotate: [0, 360] }}
                       transition={{ duration: 5, repeat: Infinity }}

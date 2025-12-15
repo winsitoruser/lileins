@@ -1,7 +1,7 @@
 # 🧪 EinSwap - The Genius DEX
 
 ## Overview
-**EinSwap** is a decentralized exchange (DEX) built specifically for the Little Einstein ($LILEIN) ecosystem. Inspired by Einstein's genius, it provides smart, efficient, and secure token swapping capabilities.
+**EinSwap** is a decentralized exchange (DEX) built specifically for the Little Einstein ($Einz) ecosystem. Inspired by Einstein's genius, it provides smart, efficient, and secure token swapping capabilities.
 
 ## 🎨 Design Concept
 
@@ -44,7 +44,7 @@ Currently supports:
 ### Phase 1: Core Functionality
 - [ ] **Smart Contract Integration**
   - Connect to Uniswap V2/V3 style router contracts
-  - Integrate with $LILEIN token contract
+  - Integrate with $Einz token contract
   - Implement approve & swap functions
   
 - [ ] **Real Price Feeds**
@@ -94,7 +94,7 @@ Currently supports:
   - Token vesting schedules
 
 - [ ] **NFT Marketplace Integration**
-  - Trade NFTs using $LILEIN
+  - Trade NFTs using $Einz
   - NFT-backed loans
   - Fractional NFT ownership
 
@@ -166,7 +166,7 @@ Uses advanced algorithms to find the best rates:
 - Clear transaction previews
 
 ### 3. **Community Driven** 👥
-- Governance by $LILEIN holders
+- Governance by $Einz holders
 - Community proposals
 - Transparent fee structure
 
@@ -181,13 +181,13 @@ Uses advanced algorithms to find the best rates:
 ### Fee Structure
 - **Swap Fee**: 0.3% per swap
   - 0.25% to liquidity providers
-  - 0.05% to $LILEIN buyback & burn
+  - 0.05% to $Einz buyback & burn
   
-- **LP Rewards**: Additional $LILEIN rewards for liquidity providers
-- **Staking Bonus**: Extra rewards for staked $LILEIN holders
+- **LP Rewards**: Additional $Einz rewards for liquidity providers
+- **Staking Bonus**: Extra rewards for staked $Einz holders
 
-### $LILEIN Utility
-1. **Trading Fee Discounts**: Hold $LILEIN for reduced fees
+### $Einz Utility
+1. **Trading Fee Discounts**: Hold $Einz for reduced fees
 2. **Governance Rights**: Vote on protocol changes
 3. **Staking Rewards**: Earn passive income
 4. **Exclusive Features**: Early access to new features
@@ -220,7 +220,7 @@ Uses advanced algorithms to find the best rates:
 ## 🔗 Integration Points
 
 ### With Other Features
-- **Staking Page**: Stake earned $LILEIN from trading
+- **Staking Page**: Stake earned $Einz from trading
 - **Landing Page**: Presale participants can swap tokens
 - **Wallet**: Direct integration with portfolio
 

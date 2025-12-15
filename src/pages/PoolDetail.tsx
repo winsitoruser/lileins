@@ -92,7 +92,7 @@ export default function PoolDetail() {
               </div>
               <div className="flex flex-col">
                 <span className="text-lg md:text-xl font-black text-primary">Little Einstein</span>
-                <span className="text-sm font-bold text-secondary">$LILEIN 💜</span>
+                <span className="text-sm font-bold text-secondary">$Einz 💜</span>
               </div>
             </Link>
             <div className="flex items-center gap-3">
@@ -414,7 +414,7 @@ export default function PoolDetail() {
                     </motion.span>
                   </h3>
                   <p className="text-lg text-secondary font-black flex items-center gap-2">
-                    $LILEIN 💜
+                    $Einz 💜
                   </p>
                 </div>
               </motion.div>

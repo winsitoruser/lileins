@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Little Einstein ($Einz) - The Cutest Genius Meme Token</title>
+    <meta name="description" content="$little Einstein ($Einz) is a next-generation token powering a revolutionary Smart Utility Layer. We combine the speed of Swap, the earning potential of Staking, and the transparency of Explorer to create the most reliable and rewarding crypto ecosystem." />
+    <meta name="author" content="Little Einstein" />
+    <meta name="robots" content="index, follow" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys"
+    />
+
+    <meta property="og:title" content="Little Einstein ($Einz) - The Cutest Genius Meme Token" />
+    <meta
+      property="og:description"
+      content="Join 12,000+ smart investors in the Little Einstein revolution! Audited, secure, and ready for 1000x gains. Presale live now!"
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:image"
+      content="https://hercules.app/og/app/%VITE_HERCULES_WEBSITE_ID%.png"
+    />
+    <meta property="og:image:type" content="image/png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:image"
+      content="https://hercules.app/og/app/%VITE_HERCULES_WEBSITE_ID%.png"
+    />
+    <meta name="twitter:site" content="@UseHercules" />
+
+    <!-- Detect dark mode preference and set the class before next-themes loads. This avoids a flash of unstyled content (FOUC) when the page loads. -->
+    <script>
+      (function () {
+        try {
+          var theme = localStorage.getItem("theme");
+          if (theme === "system" || !theme) {
+            var prefersLight = window.matchMedia(
+              "(prefers-color-scheme: light)",
+            ).matches;
+            theme = prefersLight ? "light" : "dark";
+          }
+          document.documentElement.classList.add(theme);
+        } catch (e) {}
+      })();
+    </script>
+    <link href="/src/index.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

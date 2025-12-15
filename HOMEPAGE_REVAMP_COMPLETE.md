@@ -69,7 +69,7 @@
   whileHover={animations.buttonHover} 
   whileTap={animations.buttonTap}
 >
-  <Button>Buy $LILEIN 🎉</Button>
+  <Button>Buy $Einz 🎉</Button>
 </motion.div>
 ```
 
@@ -305,7 +305,7 @@ http://localhost:5173/
   whileHover={animations.buttonHover} 
   whileTap={animations.buttonTap}
 >
-  <Button>Buy $LILEIN 🎉</Button>
+  <Button>Buy $Einz 🎉</Button>
 </motion.div>
 ```
 

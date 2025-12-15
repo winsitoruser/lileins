@@ -2,7 +2,7 @@
 
 ## ✅ Selesai Diperbaiki & Di-Revamp
 
-**Section:** "Why Smart Investors Choose $LILEIN!"
+**Section:** "Why Smart Investors Choose $Einz!"
 
 **Location:** Homepage - Middle section
 
@@ -459,7 +459,7 @@ http://localhost:5173/
 ```
 
 ### **Scroll to Section:**
-"Why Smart Investors Choose $LILEIN!"
+"Why Smart Investors Choose $Einz!"
 
 ### **What to See:**
 

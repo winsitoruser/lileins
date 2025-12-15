@@ -501,7 +501,7 @@ In `src/lib/web3-config.ts`:
 ```typescript
 metadata: {
   name: 'Little Einstein',
-  description: 'Stake $LILEIN and earn rewards',
+  description: 'Stake $Einz and earn rewards',
   url: 'https://littleeinstein.io',
   icons: ['https://yourdomain.com/logo.png'],
 }

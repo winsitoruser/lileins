@@ -11,7 +11,7 @@ Setelah cleanup dan reorganisasi, berikut adalah urutan section yang sudah lebih
   - Main headline: "Little Einstein is the cutest genius in crypto!"
   - Presale countdown timer
   - Investment calculator (live)
-  - CTA buttons: "Buy $LILEIN" & "Join Community"
+  - CTA buttons: "Buy $Einz" & "Join Community"
 - **Location:** Top of page (line ~310)
 
 ---
@@ -126,7 +126,7 @@ Setelah cleanup dan reorganisasi, berikut adalah urutan section yang sudah lebih
     ↓
 6. ⏰ FOMO: "I need to act fast!" → Limited-time presale pressure
     ↓
-7. 🎉 CTA: "Let's do this!" → Click "Buy $LILEIN"
+7. 🎉 CTA: "Let's do this!" → Click "Buy $Einz"
     ↓
 ✅ CONVERSION!
 ```
@@ -188,7 +188,7 @@ Setelah cleanup dan reorganisasi, berikut adalah urutan section yang sudah lebih
 ## 📊 Analytics Tracking Points
 
 **Suggested tracking:**
-1. Hero CTA clicks ("Buy $LILEIN", "Join Community")
+1. Hero CTA clicks ("Buy $Einz", "Join Community")
 2. Profit calculator usage (investment input changes)
 3. Moon Calculator opens & interactions
 4. Section scroll depth (which sections get viewed)

@@ -85,12 +85,12 @@ const FAQS = [
   {
     question: "What is staking?",
     answer:
-      "Staking is the process of locking your $LILEIN tokens for a specific period to earn rewards. It's like a savings account where you deposit tokens and earn interest (APY) on them.",
+      "Staking is the process of locking your $Einz tokens for a specific period to earn rewards. It's like a savings account where you deposit tokens and earn interest (APY) on them.",
   },
   {
     question: "How do I start staking?",
     answer:
-      "Simply connect your wallet, choose your preferred staking duration (30, 90, 180, or 365 days), enter the amount of $LILEIN tokens you want to stake, and click 'Stake Tokens'. Your rewards will start accumulating immediately!",
+      "Simply connect your wallet, choose your preferred staking duration (30, 90, 180, or 365 days), enter the amount of $Einz tokens you want to stake, and click 'Stake Tokens'. Your rewards will start accumulating immediately!",
   },
   {
     question: "Can I unstake before the duration ends?",
@@ -188,7 +188,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
     setIsStaking(true);
     try {
       await createStake({ amount, duration: selectedDuration });
-      toast.success(`Successfully staked ${amount} $LILEIN tokens! 🎉`);
+      toast.success(`Successfully staked ${amount} $Einz tokens! 🎉`);
       setStakeAmount("1000");
     } catch (error) {
       if (error instanceof ConvexError) {
@@ -206,7 +206,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
     try {
       const result = await unstakeMutation({ stakeId });
       toast.success(
-        `Successfully unstaked! You received ${result.total.toFixed(2)} $LILEIN (${result.amount.toFixed(2)} staked + ${result.rewards.toFixed(2)} rewards) 💰`
+        `Successfully unstaked! You received ${result.total.toFixed(2)} $Einz (${result.amount.toFixed(2)} staked + ${result.rewards.toFixed(2)} rewards) 💰`
       );
     } catch (error) {
       if (error instanceof ConvexError) {
@@ -221,7 +221,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
   const handleClaim = async (stakeId: Id<"stakes">) => {
     try {
       const rewards = await claimRewards({ stakeId });
-      toast.success(`Successfully claimed ${rewards.toFixed(2)} $LILEIN rewards! 🎉`);
+      toast.success(`Successfully claimed ${rewards.toFixed(2)} $Einz rewards! 🎉`);
     } catch (error) {
       if (error instanceof ConvexError) {
         const { message } = error.data as { code: string; message: string };
@@ -451,7 +451,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                     <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Genius Rewards</span> 🧪
                   </h1>
                   <p className="text-lg md:text-xl text-foreground/70 font-bold mb-6">
-                    Lock your $LILEIN tokens and watch your portfolio grow with our scientifically-designed staking tiers!
+                    Lock your $Einz tokens and watch your portfolio grow with our scientifically-designed staking tiers!
                   </p>
                   <div className="flex flex-wrap gap-4 justify-center md:justify-start">
                     <motion.div
@@ -540,7 +540,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
               >
                 {[
                   { label: "Total Value Locked", value: stats ? `$${(stats.totalStaked * 0.00042).toLocaleString()}` : "...", icon: "🏦" },
-                  { label: "Rewards Distributed", value: stats ? `${stats.totalRewards.toFixed(0)} $LILEIN` : "...", icon: "🎁" },
+                  { label: "Rewards Distributed", value: stats ? `${stats.totalRewards.toFixed(0)} $Einz` : "...", icon: "🎁" },
                   { label: "Active Stakers", value: stats ? `${stats.activeStakers}+` : "...", icon: "👥" }
                 ].map((stat, i) => (
                   <motion.div
@@ -563,14 +563,14 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
           {[
             {
               label: "Total Staked",
-              value: stats ? `${stats.totalStaked.toLocaleString()} $LILEIN` : "Loading...",
+              value: stats ? `${stats.totalStaked.toLocaleString()} $Einz` : "Loading...",
               icon: Lock,
               emoji: "💰",
               gradient: "from-yellow-400 to-orange-500",
             },
             {
               label: "Total Rewards",
-              value: stats ? `${stats.totalRewards.toFixed(2)} $LILEIN` : "Loading...",
+              value: stats ? `${stats.totalRewards.toFixed(2)} $Einz` : "Loading...",
               icon: Gift,
               emoji: "🎁",
               gradient: "from-pink-400 to-rose-500",
@@ -638,7 +638,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                   <div>
                     <label className="text-lg font-black text-foreground flex items-center gap-2 mb-3">
                       <Calculator className="w-5 h-5 text-primary" />
-                      Staking Amount ($LILEIN)
+                      Staking Amount ($Einz)
                     </label>
                     <div className="relative">
                       <Wallet className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-primary" />
@@ -707,10 +707,10 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                       animate={{ scale: 1, opacity: 1 }}
                       className="text-4xl font-black text-green-600 mb-1"
                     >
-                      +{calcRewards.toFixed(2)} $LILEIN
+                      +{calcRewards.toFixed(2)} $Einz
                     </motion.p>
                     <p className="text-sm font-bold text-foreground/60">
-                      ~{calcDailyRewards.toFixed(2)} $LILEIN per day
+                      ~{calcDailyRewards.toFixed(2)} $Einz per day
                     </p>
                   </div>
 
@@ -725,7 +725,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                       animate={{ scale: 1, opacity: 1 }}
                       className="text-4xl font-black text-primary"
                     >
-                      {calcTotal.toFixed(2)} $LILEIN
+                      {calcTotal.toFixed(2)} $Einz
                     </motion.p>
                     <p className="text-sm font-bold text-green-600 mt-2">
                       +{((calcRewards / (parseFloat(calcAmount) || 1)) * 100).toFixed(1)}% Gain
@@ -825,7 +825,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
               <div className="mb-8">
                 <label className="text-xl font-black text-foreground flex items-center gap-2 mb-3">
                   <span className="text-3xl">💰</span>
-                  Enter Amount to Stake ($LILEIN)
+                  Enter Amount to Stake ($Einz)
                 </label>
                 <div className="relative">
                   <Coins className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-primary" />
@@ -892,11 +892,11 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                     animate={{ scale: 1, opacity: 1 }}
                     className="text-4xl md:text-5xl font-black text-primary"
                   >
-                    +{projectedRewards.toFixed(2)} $LILEIN
+                    +{projectedRewards.toFixed(2)} $Einz
                   </motion.p>
                   <p className="text-sm text-foreground/60 font-medium mt-2">
                     Total:{" "}
-                    {((parseFloat(stakeAmount) || 0) + projectedRewards).toFixed(2)} $LILEIN
+                    {((parseFloat(stakeAmount) || 0) + projectedRewards).toFixed(2)} $Einz
                   </p>
                 </div>
               </motion.div>
@@ -1053,7 +1053,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                             <p className="text-2xl font-black text-primary">
                               {stake.amount.toFixed(2)}
                             </p>
-                            <p className="text-xs text-foreground/60 font-bold">$LILEIN</p>
+                            <p className="text-xs text-foreground/60 font-bold">$Einz</p>
                           </div>
                         </div>
 
@@ -1063,7 +1063,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                               Rewards Earned
                             </span>
                             <span className="text-lg font-black text-secondary">
-                              +{stake.rewards.toFixed(4)} $LILEIN
+                              +{stake.rewards.toFixed(4)} $Einz
                             </span>
                           </div>
                           <div className="flex justify-between items-center bg-primary/10 rounded-xl p-3">
@@ -1131,7 +1131,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                           <p className="text-sm font-bold text-foreground/60">{option?.label}</p>
                         </div>
                         <p className="text-lg font-black text-foreground/70">
-                          {stake.amount.toFixed(2)} $LILEIN
+                          {stake.amount.toFixed(2)} $Einz
                         </p>
                         <p className="text-xs text-foreground/50">
                           Rewards: +{stake.rewards.toFixed(4)}
@@ -1233,7 +1233,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                           #{user.rank} {user.name}
                         </p>
                         <p className={`text-sm font-bold ${i === 0 ? "text-white/80" : "text-foreground/60"}`}>
-                          {user.amount.toLocaleString()} $LILEIN staked
+                          {user.amount.toLocaleString()} $Einz staked
                         </p>
                       </div>
                     </div>
@@ -1328,7 +1328,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                       {milestone.milestone}
                     </h3>
                     <p className="text-lg font-bold text-foreground/70 mb-3">
-                      {milestone.amount.toLocaleString()} $LILEIN
+                      {milestone.amount.toLocaleString()} $Einz
                     </p>
                     <div className={`bg-gradient-to-r ${milestone.color} text-white px-4 py-2 rounded-full font-black`}>
                       +{milestone.bonus} Bonus
@@ -1408,7 +1408,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                       <div>
                         <p className="font-black text-primary">{review.name}</p>
                         <p className="text-xs font-bold text-foreground/60">
-                          Staked: {review.stake} $LILEIN
+                          Staked: {review.stake} $Einz
                         </p>
                       </div>
                     </div>
