@@ -15,6 +15,9 @@ import { Link } from "react-router-dom";
 import { WalletButton } from "@/components/wallet/WalletButton.tsx";
 import { useWallet } from "@/hooks/useWallet.ts";
 import * as animations from "@/lib/animations.ts";
+import FAQAccordionGeneral from "@/components/partials/FAQAccordionGeneral";
+import FAQAccordionPresale from "@/components/partials/FAQAccordionPresale";
+import FAQAccordionEcosystem from "@/components/partials/FAQAccordionEcosystem";
 
 export default function Index() {
   const [raised, setRaised] = useState(2847500);
@@ -1864,6 +1867,54 @@ export default function Index() {
           </CardContent>
         </Card>
       </motion.section>
+
+      <motion.section
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 container mx-auto px-4 py-10"
+      >
+        <div className="text-center space-y-4 mb-16">
+          <motion.div
+            variants={animations.staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex justify-center gap-3 mb-4 text-5xl"
+          >
+            {['✅', '�', '💎'].map((emoji, i) => (
+              <motion.div
+                key={i}
+                variants={animations.staggerItem}
+                animate={animations.floatingAnimation}
+                transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.3 }}
+              >
+                {emoji}
+              </motion.div>
+            ))}
+          </motion.div>
+          <h2 className="text-4xl md:text-6xl font-black text-balance leading-18">
+            Frequently Asked Questions (FAQ) About <span className="text-primary">$Einz!</span>
+          </h2>
+          <p className="text-2xl text-foreground/70 max-w-3xl mx-auto text-balance font-medium">
+            Find clear and concise answers about Little Einstein ($Einz), including token utility, total supply, and blockchain details.
+          </p>
+        </div>
+      </motion.section>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 container mx-auto px-4 space-y-7"
+      >
+        <FAQAccordionGeneral />
+        <hr className="border-[#D9D9D9] my-10" />
+        <FAQAccordionPresale />
+        <hr className="border-[#D9D9D9] my-10" />
+        <FAQAccordionEcosystem />
+      </motion.div>
 
       {/* Cute Footer with Lab Theme */}
       <footer className="relative z-10 bg-card/80 backdrop-blur-md border-t-4 border-primary/20 mt-20 overflow-hidden">
