@@ -6,6 +6,10 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme inline {
   --font-sans:
     "Montserrat", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
@@ -54,6 +58,7 @@
 }
 
 :root {
+  color-scheme: light;
   --radius: 1.5rem;
   --background: oklch(0.96 0.02 280);
   --foreground: oklch(0.25 0.08 285);

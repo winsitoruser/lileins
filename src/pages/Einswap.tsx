@@ -396,7 +396,7 @@ export default function Einswap() {
                     onClick={handleSwap}
                     disabled={!fromAmount || !toAmount}
                     size="lg"
-                    className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-black text-2xl h-20 rounded-full shadow-2xl border-4 border-white"
+                    className="w-full bg-linear-to-r mt-5 from-primary via-accent to-secondary hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed text-white font-black text-2xl h-20 rounded-full shadow-2xl border-4 border-white"
                   >
                     <motion.span
                       animate={{ rotate: [0, 360] }}

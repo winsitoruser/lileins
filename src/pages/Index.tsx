@@ -30,11 +30,11 @@ export default function Index() {
   const [showMoonCalculator, setShowMoonCalculator] = useState(false);
   const [moonInvestment, setMoonInvestment] = useState<string>("100");
   const [targetPrice, setTargetPrice] = useState<number>(1.0); // Dynamic target price
-  
+
   // Calculator multipliers
   const currentMultiplier = 2.38; // 238% up
   const targetMultiplier = 10; // 10x target
-  
+
   const calculateValues = (amount: string) => {
     const numAmount = parseFloat(amount) || 0;
     return {
@@ -42,12 +42,12 @@ export default function Index() {
       target: (numAmount * targetMultiplier).toFixed(2)
     };
   };
-  
+
   const calculatedValues = calculateValues(investmentAmount);
-  
+
   // Moon Calculator - Projection with dynamic target
   const presalePrice = 0.00042; // Current presale price
-  
+
   const calculateMoonProjection = (investment: string, targetPriceValue: number) => {
     const amount = parseFloat(investment) || 0;
     const tokensReceived = amount / presalePrice;
@@ -55,7 +55,7 @@ export default function Index() {
     const multiplier = targetPriceValue / presalePrice;
     const profit = valueAtTarget - amount;
     const roi = ((profit / amount) * 100);
-    
+
     return {
       investment: amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }),
       tokens: tokensReceived.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 }),
@@ -65,7 +65,7 @@ export default function Index() {
       roi: roi.toFixed(0)
     };
   };
-  
+
   const moonProjection = calculateMoonProjection(moonInvestment, targetPrice);
 
   useEffect(() => {
@@ -100,7 +100,7 @@ export default function Index() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Einstein Formulas */}
         {[
-          "E=mc²", "a²+b²=c²", "π=3.14", "∑F=ma", 
+          "E=mc²", "a²+b²=c²", "π=3.14", "∑F=ma",
           "√x²+y²", "∫dx", "∂f/∂x", "α+β=γ",
           "E=hv", "PV=nRT", "F=G(m₁m₂/r²)", "λ=h/p"
         ].map((formula, i) => (
@@ -152,7 +152,7 @@ export default function Index() {
             }}
           />
         ))}
-        
+
         {/* Lab Equipment Icons */}
         {[...Array(10)].map((_, i) => {
           const icons = ["🧪", "⚗️", "🔬", "⚛️", "🧬"];
@@ -260,9 +260,9 @@ export default function Index() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 md:w-12 md:h-12">
-                <img 
-                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                  alt="Little Einstein" 
+                <img
+                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys"
+                  alt="Little Einstein"
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -315,7 +315,7 @@ export default function Index() {
             animate="visible"
             className="space-y-6"
           >
-            <motion.div 
+            <motion.div
               animate={animations.subtlePulse}
               className="inline-block"
             >
@@ -324,11 +324,11 @@ export default function Index() {
                 PRESALE LIVE NOW! 🚀
               </div>
             </motion.div>
-            
+
             <h1 className="text-5xl md:text-7xl font-black text-balance leading-tight">
               The Cutest
               <span className="text-primary block mt-2 relative inline-block">
-                Genius Token! 
+                Genius Token!
                 <motion.span
                   animate={{ rotate: [0, 20, -20, 0] }}
                   transition={{ duration: 1, repeat: Infinity, delay: 0.5 }}
@@ -338,20 +338,20 @@ export default function Index() {
                 </motion.span>
               </span>
             </h1>
-            
+
             <p className="text-2xl text-foreground/70 text-balance font-medium">
               Join our adorable lab where science meets memes! Little Einstein is bringing genius-level gains with maximum cuteness! 💜
             </p>
 
-            <motion.div 
+            <motion.div
               variants={animations.fadeIn}
               initial="hidden"
               animate="visible"
               transition={{ delay: 0.3 }}
               className="flex flex-wrap gap-4 pt-4"
             >
-              <motion.div 
-                whileHover={animations.buttonHover} 
+              <motion.div
+                whileHover={animations.buttonHover}
                 whileTap={animations.buttonTap}
               >
                 <Button size="lg" className="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-black text-xl px-10 h-16 rounded-full shadow-2xl border-4 border-white/50">
@@ -359,8 +359,8 @@ export default function Index() {
                   Buy $LILEIN 🎉
                 </Button>
               </motion.div>
-              <motion.div 
-                whileHover={animations.buttonHover} 
+              <motion.div
+                whileHover={animations.buttonHover}
                 whileTap={animations.buttonTap}
               >
                 <Button size="lg" className="border-4 border-primary/30 hover:bg-primary/10 text-xl h-16 px-10 rounded-full font-bold bg-white shadow-xl text-foreground">
@@ -370,7 +370,7 @@ export default function Index() {
               </motion.div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               variants={animations.staggerContainer}
               initial="hidden"
               animate="visible"
@@ -402,14 +402,14 @@ export default function Index() {
             className="relative"
           >
             <motion.div
-              animate={{ 
+              animate={{
                 rotate: 360,
                 scale: [1, 1.15, 1]
               }}
               transition={{ duration: 20, repeat: Infinity }}
               className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-full blur-3xl"
             />
-            
+
             {/* Floating Einstein Formulas Around Characters */}
             {["E=mc²", "π=3.14", "a²+b²", "∑F=ma"].map((formula, i) => (
               <motion.div
@@ -433,7 +433,7 @@ export default function Index() {
                 {formula}
               </motion.div>
             ))}
-            
+
             {/* Main Einstein Characters Circle */}
             <div className="relative z-10 grid grid-cols-2 gap-6 max-w-lg mx-auto">
               {[
@@ -456,7 +456,7 @@ export default function Index() {
                   <div className="bg-white rounded-3xl p-3 border-6 border-primary/30 shadow-2xl overflow-hidden relative">
                     <img src={img} alt="" className="w-full h-full object-cover rounded-2xl" />
                     <motion.div
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.3, 1],
                         rotate: [0, 20, -20, 0]
                       }}
@@ -466,7 +466,7 @@ export default function Index() {
                       {emoji}
                     </motion.div>
                     <motion.div
-                      animate={{ 
+                      animate={{
                         scale: [1, 1.2, 1],
                         y: [0, -10, 0]
                       }}
@@ -478,7 +478,7 @@ export default function Index() {
                   </div>
                   {/* Cute glow */}
                   <motion.div
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.3, 0.6, 0.3]
                     }}
@@ -488,7 +488,7 @@ export default function Index() {
                 </motion.div>
               ))}
             </div>
-            
+
             {/* Lab Equipment & Formulas floating around */}
             {[...Array(6)].map((_, i) => {
               const elements = ["🧬", "⚛️", "💜", "✨", "🔬", "⚗️"];
@@ -508,8 +508,8 @@ export default function Index() {
                     delay: i * 0.5
                   }}
                   className="absolute text-4xl"
-                  style={{ 
-                    left: `${10 + Math.random() * 80}%`, 
+                  style={{
+                    left: `${10 + Math.random() * 80}%`,
                     top: `${10 + Math.random() * 80}%`
                   }}
                 >
@@ -549,7 +549,7 @@ export default function Index() {
                 }}
               />
             ))}
-            
+
             {/* Planets */}
             {[...Array(4)].map((_, i) => (
               <motion.div
@@ -588,7 +588,7 @@ export default function Index() {
               }}
               className="absolute top-1/2"
             >
-              <img 
+              <img
                 src="https://cdn.hercules.app/file_GdU16Deo5WW9TBkLtZB03gTC"
                 alt="Flying Einstein"
                 className="w-16 h-16 opacity-40"
@@ -621,15 +621,18 @@ export default function Index() {
                   />
                   {/* Rocket boost effect */}
                   <motion.div
+                    initial={{ rotate: 33 }}
                     animate={{
                       scale: [1, 1.5, 1],
-                      opacity: [0.6, 1, 0.6]
+                      opacity: [0.6, 1, 0.6],
+                      rotate: 33,
                     }}
                     transition={{ duration: 1, repeat: Infinity }}
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 text-6xl"
+                    className="absolute bottom-0 left-87 -translate-x-1/2 text-6xl"
                   >
                     💨
                   </motion.div>
+
                 </div>
               </motion.div>
 
@@ -660,148 +663,148 @@ export default function Index() {
                   <Button>Open Calculator</Button>
                 </div>
               </DialogTrigger>
-                  
-                  <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-white via-primary/5 to-accent/5 border-4 border-primary/30">
-                    <DialogHeader>
-                      <DialogTitle className="text-center">
-                        <motion.div
-                          animate={{ scale: [1, 1.05, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="text-center mb-4"
-                        >
-                          <motion.div
-                            animate={{ rotate: [0, 360] }}
-                            transition={{ duration: 4, repeat: Infinity }}
-                            className="inline-block text-5xl mb-3"
-                          >
-                            🧮
-                          </motion.div>
-                          <h3 className="text-3xl md:text-4xl font-black text-primary mb-2">
-                            Profit Calculator
-                          </h3>
-                          <p className="text-base text-foreground/70 font-bold">
-                            Calculate your genius gains! 💎
-                          </p>
-                        </motion.div>
-                      </DialogTitle>
-                    </DialogHeader>
-                    
-                    {/* Input Section */}
-                  <div className="space-y-6 mb-8">
-                    <div className="space-y-3">
-                      <label className="text-xl font-black text-foreground flex items-center gap-2">
-                        <span className="text-3xl">💰</span>
-                        Enter Your Investment Amount ($)
-                      </label>
-                      <div className="relative">
-                        <span className="absolute left-6 top-1/2 -translate-y-1/2 text-3xl font-black text-primary">
-                          $
-                        </span>
-                        <Input
-                          type="number"
-                          value={investmentAmount}
-                          onChange={(e) => setInvestmentAmount(e.target.value)}
-                          placeholder="1000"
-                          className="text-3xl font-black text-center h-20 rounded-2xl border-4 border-primary/30 bg-white shadow-xl pl-12 pr-6"
-                        />
-                      </div>
+
+              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-white via-primary/5 to-accent/5 border-4 border-primary/30">
+                <DialogHeader>
+                  <DialogTitle className="text-center">
+                    <motion.div
+                      animate={{ scale: [1, 1.05, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="text-center mb-4"
+                    >
+                      <motion.div
+                        animate={{ rotate: [0, 360] }}
+                        transition={{ duration: 4, repeat: Infinity }}
+                        className="inline-block text-5xl mb-3"
+                      >
+                        🧮
+                      </motion.div>
+                      <h3 className="text-3xl md:text-4xl font-black text-primary mb-2">
+                        Profit Calculator
+                      </h3>
+                      <p className="text-base text-foreground/70 font-bold">
+                        Calculate your genius gains! 💎
+                      </p>
+                    </motion.div>
+                  </DialogTitle>
+                </DialogHeader>
+
+                {/* Input Section */}
+                <div className="space-y-6 mb-8">
+                  <div className="space-y-3">
+                    <label className="text-xl font-black text-foreground flex items-center gap-2">
+                      <span className="text-3xl">💰</span>
+                      Enter Your Investment Amount ($)
+                    </label>
+                    <div className="relative">
+                      <span className="absolute left-6 top-1/2 -translate-y-1/2 text-3xl font-black text-primary">
+                        $
+                      </span>
+                      <Input
+                        type="number"
+                        value={investmentAmount}
+                        onChange={(e) => setInvestmentAmount(e.target.value)}
+                        placeholder="1000"
+                        className="text-3xl font-black text-center h-20 rounded-2xl border-4 border-primary/30 bg-white shadow-xl pl-12 pr-6"
+                      />
                     </div>
                   </div>
+                </div>
 
-                  {/* Results Display */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    {/* Current Value Card */}
-                    <motion.div
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-gradient-to-br from-accent/20 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl"
-                    >
-                      <motion.div
-                        animate={{ 
-                          scale: [1, 1.2, 1],
-                          rotate: [0, 10, -10, 0]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        className="text-5xl mb-3 text-center"
-                      >
-                        📈
-                      </motion.div>
-                      <p className="text-center text-sm text-foreground/60 font-bold mb-2">
-                        Current Value (238% Up!)
-                      </p>
-                      <motion.div
-                        key={calculatedValues.current}
-                        initial={{ scale: 1.5, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="text-4xl font-black text-center text-accent"
-                      >
-                        ${calculatedValues.current}
-                      </motion.div>
-                      <div className="mt-3 bg-gradient-to-r from-accent to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
-                        +138% Gain! 🎉
-                      </div>
-                    </motion.div>
-
-                    {/* Target Value Card */}
-                    <motion.div
-                      whileHover={{ scale: 1.05, y: -5 }}
-                      className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-3xl p-6 border-4 border-white shadow-xl"
-                    >
-                      <motion.div
-                        animate={{ 
-                          y: [0, -10, 0],
-                          scale: [1, 1.3, 1]
-                        }}
-                        transition={{ duration: 1.5, repeat: Infinity }}
-                        className="text-5xl mb-3 text-center"
-                      >
-                        🚀
-                      </motion.div>
-                      <p className="text-center text-sm text-foreground/60 font-bold mb-2">
-                        10x Target Value
-                      </p>
-                      <motion.div
-                        key={calculatedValues.target}
-                        initial={{ scale: 1.5, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        className="text-4xl font-black text-center text-secondary"
-                      >
-                        ${calculatedValues.target}
-                      </motion.div>
-                      <div className="mt-3 bg-gradient-to-r from-secondary to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
-                        +900% Potential! 🌙
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Formula Display */}
+                {/* Results Display */}
+                <div className="grid md:grid-cols-2 gap-6">
+                  {/* Current Value Card */}
                   <motion.div
-                    animate={{ opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                    className="mt-8 text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-4 border-2 border-primary/20"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="bg-gradient-to-br from-accent/20 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl"
                   >
-                    <p className="text-sm text-foreground/70 font-bold flex items-center justify-center gap-2">
-                      <span className="text-2xl">🧪</span>
-                      Einstein Formula: Investment × Multiplier = Profit
-                      <span className="text-2xl">⚛️</span>
+                    <motion.div
+                      animate={{
+                        scale: [1, 1.2, 1],
+                        rotate: [0, 10, -10, 0]
+                      }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="text-5xl mb-3 text-center"
+                    >
+                      📈
+                    </motion.div>
+                    <p className="text-center text-sm text-foreground/60 font-bold mb-2">
+                      Current Value (238% Up!)
                     </p>
+                    <motion.div
+                      key={calculatedValues.current}
+                      initial={{ scale: 1.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="text-4xl font-black text-center text-accent"
+                    >
+                      ${calculatedValues.current}
+                    </motion.div>
+                    <div className="mt-3 bg-gradient-to-r from-accent to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
+                      +138% Gain! 🎉
+                    </div>
                   </motion.div>
 
-                  {/* Disclaimer */}
+                  {/* Target Value Card */}
                   <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    className="mt-6 bg-muted/50 rounded-2xl p-4 border-2 border-foreground/10"
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-3xl p-6 border-4 border-white shadow-xl"
                   >
-                    <p className="text-xs text-center text-foreground/60 font-medium leading-relaxed">
-                      <span className="font-black text-foreground/80">⚠️ DISCLAIMER:</span> This calculator is for simulation purposes only. 
-                      Actual returns may vary significantly based on market conditions, timing, and other factors. 
-                      Cryptocurrency investments carry high risk. Past performance does not guarantee future results. 
-                      Please do your own research and invest responsibly.
+                    <motion.div
+                      animate={{
+                        y: [0, -10, 0],
+                        scale: [1, 1.3, 1]
+                      }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                      className="text-5xl mb-3 text-center"
+                    >
+                      🚀
+                    </motion.div>
+                    <p className="text-center text-sm text-foreground/60 font-bold mb-2">
+                      10x Target Value
                     </p>
+                    <motion.div
+                      key={calculatedValues.target}
+                      initial={{ scale: 1.5, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      className="text-4xl font-black text-center text-secondary"
+                    >
+                      ${calculatedValues.target}
+                    </motion.div>
+                    <div className="mt-3 bg-gradient-to-r from-secondary to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
+                      +900% Potential! 🌙
+                    </div>
                   </motion.div>
-                  </DialogContent>
-                </Dialog>
+                </div>
+
+                {/* Formula Display */}
+                <motion.div
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="mt-8 text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-4 border-2 border-primary/20"
+                >
+                  <p className="text-sm text-foreground/70 font-bold flex items-center justify-center gap-2">
+                    <span className="text-2xl">🧪</span>
+                    Einstein Formula: Investment × Multiplier = Profit
+                    <span className="text-2xl">⚛️</span>
+                  </p>
+                </motion.div>
+
+                {/* Disclaimer */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="mt-6 bg-muted/50 rounded-2xl p-4 border-2 border-foreground/10"
+                >
+                  <p className="text-xs text-center text-foreground/60 font-medium leading-relaxed">
+                    <span className="font-black text-foreground/80">⚠️ DISCLAIMER:</span> This calculator is for simulation purposes only.
+                    Actual returns may vary significantly based on market conditions, timing, and other factors.
+                    Cryptocurrency investments carry high risk. Past performance does not guarantee future results.
+                    Please do your own research and invest responsibly.
+                  </p>
+                </motion.div>
+              </DialogContent>
+            </Dialog>
 
             {/* Presale Progress Box - Full Width */}
             <motion.div
@@ -811,135 +814,135 @@ export default function Index() {
               className="mb-12"
             >
               <Card className="border-8 border-white bg-gradient-to-br from-card via-accent/5 to-primary/5 shadow-2xl overflow-hidden rounded-3xl">
-                  <CardContent className="p-8 md:p-12">
-                    <motion.div 
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 1.5, repeat: Infinity }}
-                      className="text-center mb-8"
-                    >
-                      <div className="flex justify-center gap-4 items-center mb-4">
-                        <motion.div
-                          animate={{ 
-                            scale: [1, 1.2, 1],
-                            rotate: [0, 10, -10, 0]
-                          }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="text-6xl"
-                        >
-                          🎉
-                        </motion.div>
-                        <h2 className="text-3xl md:text-4xl font-black text-primary">Presale Progress</h2>
-                        <motion.div
-                          animate={{ 
-                            scale: [1, 1.2, 1],
-                            rotate: [0, -10, 10, 0]
-                          }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className="text-6xl"
-                        >
-                          💜
-                        </motion.div>
-                      </div>
-                      <p className="text-base md:text-lg text-foreground/70 font-bold">Join the cutest experiment in crypto! 🧪✨</p>
-                    </motion.div>
+                <CardContent className="p-8 md:p-12">
+                  <motion.div
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                    className="text-center mb-8"
+                  >
+                    <div className="flex justify-center gap-4 items-center mb-4">
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          rotate: [0, 10, -10, 0]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="text-6xl"
+                      >
+                        🎉
+                      </motion.div>
+                      <h2 className="text-3xl md:text-4xl font-black text-primary">Presale Progress</h2>
+                      <motion.div
+                        animate={{
+                          scale: [1, 1.2, 1],
+                          rotate: [0, -10, 10, 0]
+                        }}
+                        transition={{ duration: 2, repeat: Infinity }}
+                        className="text-6xl"
+                      >
+                        💜
+                      </motion.div>
+                    </div>
+                    <p className="text-base md:text-lg text-foreground/70 font-bold">Join the cutest experiment in crypto! 🧪✨</p>
+                  </motion.div>
 
-                    {/* Chubby Progress Bar */}
-                    <div className="space-y-6 mb-8">
-                      <div className="relative h-16 bg-muted rounded-full overflow-hidden border-4 border-white shadow-xl">
+                  {/* Chubby Progress Bar */}
+                  <div className="space-y-6 mb-8">
+                    <div className="relative h-16 bg-muted rounded-full overflow-hidden border-4 border-white shadow-xl">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: `${progress}%` }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 2, ease: "easeOut" }}
+                        className="absolute inset-y-0 left-0 bg-linear-to-r from-primary via-accent to-secondary rounded-full"
+                      >
                         <motion.div
-                          initial={{ width: 0 }}
-                          whileInView={{ width: `${progress}%` }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 2, ease: "easeOut" }}
-                          className="absolute inset-y-0 left-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full"
+                          animate={{ x: ["0%", "100%"] }}
+                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                          className="absolute inset-0 bg-linear-to-r from-transparent via-white/40 to-transparent"
+                        />
+                        <motion.div
+                          animate={{ y: [0, -5, 0] }}
+                          transition={{ duration: 0.5, repeat: Infinity }}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl"
                         >
-                          <motion.div
-                            animate={{ x: ["0%", "100%"] }}
-                            transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
-                          />
-                          <motion.div
-                            animate={{ y: [0, -5, 0] }}
-                            transition={{ duration: 0.5, repeat: Infinity }}
-                            className="absolute right-4 top-1/2 -translate-y-1/2 text-2xl"
-                          >
-                            🚀
-                          </motion.div>
+                          🚀
                         </motion.div>
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <span className="text-2xl font-black text-white drop-shadow-lg">
-                            {progress.toFixed(1)}% Complete! 🎉
-                          </span>
-                        </div>
-                      </div>
-                      <div className="flex justify-between">
-                        <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border-4 border-primary/20">
-                          <span className="text-2xl md:text-3xl font-black text-primary">
-                            ${(raised / 1000000).toFixed(2)}M 💰
-                          </span>
-                        </div>
-                        <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border-4 border-primary/20">
-                          <span className="text-2xl md:text-3xl font-black text-foreground/60">
-                            ${(target / 1000000).toFixed(1)}M 🎯
-                          </span>
-                        </div>
+                      </motion.div>
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="text-2xl font-black text-white drop-shadow-lg">
+                          {progress.toFixed(1)}% Complete! 🎉
+                        </span>
                       </div>
                     </div>
-
-                    {/* Cute Countdown */}
-                    <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 border-4 border-white shadow-xl mb-8">
-                      <p className="text-center text-base md:text-lg text-foreground/80 font-bold mb-4">
-                        ⏰ Hurry! Presale Ends In:
-                      </p>
-                      <div className="grid grid-cols-4 gap-4">
-                        {[
-                          { label: "Days", value: countdown.days, emoji: "📅" },
-                          { label: "Hours", value: countdown.hours, emoji: "⏰" },
-                          { label: "Minutes", value: countdown.minutes, emoji: "⏱️" },
-                          { label: "Seconds", value: countdown.seconds, emoji: "⚡" }
-                        ].map(({ label, value, emoji }) => (
-                          <motion.div 
-                            key={label}
-                            whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
-                            className="bg-white rounded-2xl p-4 md:p-6 border-4 border-primary/30 shadow-lg text-center"
-                          >
-                            <div className="text-3xl md:text-4xl font-black text-primary font-mono mb-1">
-                              {value.toString().padStart(2, '0')}
-                            </div>
-                            <div className="text-xs md:text-sm text-foreground/60 font-bold">{label}</div>
-                            <div className="text-2xl mt-1">{emoji}</div>
-                          </motion.div>
-                        ))}
+                    <div className="flex justify-between">
+                      <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border-4 border-primary/20">
+                        <span className="text-2xl md:text-3xl font-black text-primary">
+                          ${(raised / 1000000).toFixed(2)}M 💰
+                        </span>
+                      </div>
+                      <div className="bg-white rounded-2xl px-4 py-2 shadow-lg border-4 border-primary/20">
+                        <span className="text-2xl md:text-3xl font-black text-foreground/60">
+                          ${(target / 1000000).toFixed(1)}M 🎯
+                        </span>
                       </div>
                     </div>
+                  </div>
 
-                    {/* Price Info */}
-                    <div className="grid md:grid-cols-2 gap-4 mb-8">
-                      <div className="bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm md:text-base font-bold text-foreground/70">Current Price 💎</span>
-                          <span className="text-2xl md:text-3xl font-black text-primary">$0.00042</span>
-                        </div>
-                      </div>
-                      <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
-                        <div className="flex justify-between items-center">
-                          <span className="text-sm md:text-base font-bold text-foreground/70">Next Price 📈</span>
-                          <span className="text-2xl md:text-3xl font-black text-secondary">$0.00055</span>
-                        </div>
+                  {/* Cute Countdown */}
+                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 border-4 border-white shadow-xl mb-8">
+                    <p className="text-center text-base md:text-lg text-foreground/80 font-bold mb-4">
+                      ⏰ Hurry! Presale Ends In:
+                    </p>
+                    <div className="grid grid-cols-4 gap-4">
+                      {[
+                        { label: "Days", value: countdown.days, emoji: "📅" },
+                        { label: "Hours", value: countdown.hours, emoji: "⏰" },
+                        { label: "Minutes", value: countdown.minutes, emoji: "⏱️" },
+                        { label: "Seconds", value: countdown.seconds, emoji: "⚡" }
+                      ].map(({ label, value, emoji }) => (
+                        <motion.div
+                          key={label}
+                          whileHover={{ scale: 1.05, rotate: [0, -5, 5, 0] }}
+                          className="bg-white rounded-2xl p-4 md:p-6 border-4 border-primary/30 shadow-lg text-center"
+                        >
+                          <div className="text-3xl md:text-4xl font-black text-primary font-mono mb-1">
+                            {value.toString().padStart(2, '0')}
+                          </div>
+                          <div className="text-xs md:text-sm text-foreground/60 font-bold">{label}</div>
+                          <div className="text-2xl mt-1">{emoji}</div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Price Info */}
+                  <div className="grid md:grid-cols-2 gap-4 mb-8">
+                    <div className="bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm md:text-base font-bold text-foreground/70">Current Price 💎</span>
+                        <span className="text-2xl md:text-3xl font-black text-primary">$0.00042</span>
                       </div>
                     </div>
+                    <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm md:text-base font-bold text-foreground/70">Next Price 📈</span>
+                        <span className="text-2xl md:text-3xl font-black text-secondary">$0.00055</span>
+                      </div>
+                    </div>
+                  </div>
 
-                    {/* Big Buy Button */}
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                      <Button size="lg" className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl h-16 md:h-20 rounded-full shadow-2xl border-4 border-white">
-                        <Rocket className="mr-3 w-8 h-8" />
-                        Buy $LILEIN Now! 🎉
-                        <SparklesIcon className="ml-3 w-8 h-8" />
-                      </Button>
-                    </motion.div>
-                  </CardContent>
-                </Card>
-              </motion.div>
+                  {/* Big Buy Button */}
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Button size="lg" className="w-full bg-linear-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl md:text-2xl h-16 md:h-20 rounded-full shadow-2xl border-4 border-white">
+                      <Rocket className="mr-3 w-8 h-8" />
+                      Buy $LILEIN Now! 🎉
+                      <SparklesIcon className="ml-3 w-8 h-8" />
+                    </Button>
+                  </motion.div>
+                </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Rocket Launch Section */}
             <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-8 md:p-12 border-4 border-white shadow-xl mb-8">
@@ -977,13 +980,13 @@ export default function Index() {
                       </motion.div>
                     ))}
                   </div>
-                  
+
                   {/* Moon Calculator Button */}
                   <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                    <Button 
+                    <Button
                       onClick={() => setShowMoonCalculator(true)}
-                      size="lg" 
-                      className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white mt-6"
+                      size="lg"
+                      className="w-full bg-linear-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white mt-6"
                     >
                       <Calculator className="mr-2 w-6 h-6" />
                       Moon Calculator 🌙
@@ -1015,24 +1018,26 @@ export default function Index() {
                       }}
                       transition={{ duration: 1.5, repeat: Infinity }}
                     />
+                    <motion.div
+                      initial={{ rotate: 27 }}
+                      animate={{
+                        scale: [0.8, 1, 0.8],
+                        opacity: [0.8, 0.3, 0.8],
+                        // y: [0, 100, 0]
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        ease: "easeOut"
+                      }}
+                      className="absolute -bottom-5 left-55 text-8xl"
+                    >
+                      💨
+                    </motion.div>
                   </motion.div>
-                  
+
                   {/* Rocket trail smoke */}
-                  <motion.div
-                    animate={{
-                      scale: [0.8, 2, 0.8],
-                      opacity: [0.8, 0.3, 0.8],
-                      y: [0, 100, 0]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeOut"
-                    }}
-                    className="absolute bottom-0 text-8xl"
-                  >
-                    💨
-                  </motion.div>
+
 
                   {/* Stars around rocket */}
                   {[...Array(5)].map((_, i) => (
@@ -1138,7 +1143,7 @@ export default function Index() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl rounded-3xl overflow-hidden">
+          <Card className="border-8 border-white bg-linear-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl rounded-3xl overflow-hidden">
             <CardContent className="p-8 md:p-12">
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
@@ -1237,28 +1242,28 @@ export default function Index() {
                 </h3>
                 <div className="space-y-6">
                   {[
-                    { 
+                    {
                       category: "Presale",
                       tge: "50%",
                       vesting: "50% linear over 3 months",
                       icon: "🚀",
                       color: "primary"
                     },
-                    { 
+                    {
                       category: "Liquidity",
                       tge: "100%",
                       vesting: "Locked for 2 years",
                       icon: "🔒",
                       color: "accent"
                     },
-                    { 
+                    {
                       category: "Team",
                       tge: "0%",
                       vesting: "6 months cliff, 24 months linear",
                       icon: "👥",
                       color: "secondary"
                     },
-                    { 
+                    {
                       category: "Marketing",
                       tge: "20%",
                       vesting: "80% linear over 12 months",
@@ -1273,7 +1278,7 @@ export default function Index() {
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
                       whileHover={{ scale: 1.02, y: -3 }}
-                      className="bg-gradient-to-br from-muted/30 to-muted/10 rounded-2xl p-4 border-2 border-primary/20"
+                      className="bg-linear-to-br from-muted/30 to-muted/10 rounded-2xl p-4 border-2 border-primary/20"
                     >
                       <div className="flex items-center gap-3 mb-2">
                         <span className="text-3xl">{item.icon}</span>
@@ -1315,7 +1320,7 @@ export default function Index() {
                 <h3 className="text-4xl font-black text-primary mb-2">TGE Details</h3>
                 <p className="text-lg text-foreground/70 font-bold">Token Generation Event Information</p>
               </div>
-              
+
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {[
                   { label: "TGE Date", value: "Q2 2025", icon: "📅" },
@@ -1431,13 +1436,13 @@ export default function Index() {
       </motion.section>
 
       {/* Trust Badges Section - Investor Friendly */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         className="relative z-10 container mx-auto px-4 py-12"
       >
-        <div className="bg-gradient-to-r from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 border-4 border-white shadow-xl relative overflow-hidden">
+        <div className="bg-linear-to-r from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 border-4 border-white shadow-xl relative overflow-hidden">
           {/* Floating cute elements in background */}
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -1462,7 +1467,7 @@ export default function Index() {
               {["💎", "🚀", "⭐", "💜", "✨", "🔥"][i]}
             </motion.div>
           ))}
-          
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 relative z-10">
             {[
               { emoji: "🔒", label: "Audited", value: "100% Safe" },
@@ -1490,7 +1495,7 @@ export default function Index() {
         className="relative z-10 container mx-auto px-4 py-20"
       >
         <div className="text-center space-y-4 mb-16">
-          <motion.div 
+          <motion.div
             variants={animations.staggerContainer}
             initial="hidden"
             whileInView="visible"
@@ -1498,7 +1503,7 @@ export default function Index() {
             className="flex justify-center gap-3 mb-4 text-5xl"
           >
             {['💎', '🚀', '�'].map((emoji, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 variants={animations.staggerItem}
                 animate={animations.floatingAnimation}
@@ -1516,7 +1521,7 @@ export default function Index() {
           </p>
         </div>
 
-        <motion.div 
+        <motion.div
           variants={animations.staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -1581,16 +1586,16 @@ export default function Index() {
             >
               <Card className="h-full border-4 border-white bg-gradient-to-br from-white via-primary/5 to-accent/10 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-3xl relative overflow-hidden group-hover:border-primary/30">
                 {/* Gradient Border Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl" 
-                  style={{ 
+                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"
+                  style={{
                     background: `linear-gradient(135deg, transparent 0%, var(--tw-gradient-stops))`,
                     padding: '4px',
                     margin: '-4px'
                   }}
                 />
-                
+
                 {/* Badge */}
-                <motion.div 
+                <motion.div
                   className={`absolute top-4 right-4 bg-gradient-to-r ${feature.color} text-white px-4 py-2 rounded-full text-xs font-black shadow-lg`}
                   whileHover={{ scale: 1.1, rotate: [0, -5, 5, 0] }}
                   transition={{ duration: 0.3 }}
@@ -1600,45 +1605,45 @@ export default function Index() {
                 <CardContent className="p-8 space-y-4 text-center relative z-10">
                   <div className="relative mb-6 min-h-[140px]">
                     {/* Glow Effect - Behind everything */}
-                    <motion.div 
+                    <motion.div
                       className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-24 rounded-full opacity-0 group-hover:opacity-20 blur-3xl transition-opacity z-0"
                       style={{ background: `linear-gradient(135deg, ${feature.color.split(' ')[0].replace('from-', '')}, ${feature.color.split(' ')[1].replace('to-', '')})` }}
                     />
-                    
+
                     {/* Character Background - More visible */}
-                    <motion.div 
+                    <motion.div
                       className="absolute top-0 left-1/2 -translate-x-1/2 w-40 h-40 opacity-30 group-hover:opacity-60 transition-opacity z-10"
                       animate={animations.gentleRotate}
                       transition={{ duration: 5 + i, repeat: Infinity }}
                     >
                       <img src={feature.char} alt="" className="w-full h-full object-contain drop-shadow-lg" />
                     </motion.div>
-                    
+
                     {/* Floating Emoji - On top */}
-                    <motion.div 
+                    <motion.div
                       animate={animations.floatingAnimation}
                       transition={{ duration: 2.5 + i * 0.3, repeat: Infinity }}
-                      className="text-7xl mb-4 relative z-20 drop-shadow-2xl"
+                      className="text-7xl mb-4 absolute z-20 -left-3 -top-5 drop-shadow-2xl"
                     >
                       {feature.emoji}
                     </motion.div>
                   </div>
-                  
-                  <h3 className="text-2xl font-black bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent group-hover:scale-105 transition-transform">
+
+                  <h3 className="text-2xl font-black bg-linear-to-r from-primary to-accent bg-clip-text text-transparent group-hover:scale-105 transition-transform">
                     {feature.title}
                   </h3>
-                  
+
                   <p className="text-foreground/70 font-medium text-base leading-relaxed">
                     {feature.description}
                   </p>
-                  
+
                   {/* Learn More Link */}
                   <motion.div
                     className="pt-4 opacity-0 group-hover:opacity-100 transition-opacity"
                     initial={{ y: 10 }}
                     whileHover={{ y: 0 }}
                   >
-                    <span className={`text-sm font-bold bg-gradient-to-r ${feature.color} bg-clip-text text-transparent cursor-pointer inline-flex items-center gap-1`}>
+                    <span className={`text-sm font-bold bg-linear-to-r ${feature.color} bg-clip-text text-transparent cursor-pointer inline-flex items-center gap-1`}>
                       Learn More →
                     </span>
                   </motion.div>
@@ -1650,7 +1655,7 @@ export default function Index() {
       </motion.section>
 
       {/* FOMO Section with Characters */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -1658,21 +1663,21 @@ export default function Index() {
       >
         <div className="grid md:grid-cols-3 gap-6">
           {[
-            { 
+            {
               title: "Early Bird Bonus",
               subtitle: "50% Extra Tokens!",
               desc: "First 500 buyers get bonus tokens!",
               char: "https://cdn.hercules.app/file_1DNbhR6KrSldPZ6E5VvTyuZF",
               color: "from-primary to-accent"
             },
-            { 
+            {
               title: "Presale Ending",
               subtitle: "Only 44% Left!",
               desc: "Price increases by 30% after presale!",
               char: "https://cdn.hercules.app/file_qh9lQO74hZOTlAORAm770ptM",
               color: "from-secondary to-primary"
             },
-            { 
+            {
               title: "Next Price",
               subtitle: "$0.00055 Soon!",
               desc: "Buy now at $0.00042 before pump!",
@@ -1718,7 +1723,7 @@ export default function Index() {
       </motion.section>
 
       {/* CTA Section - Extra Cute with Social Proof */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, scale: 0.9 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
@@ -1744,11 +1749,11 @@ export default function Index() {
                 ].map((char, i) => (
                   <motion.div
                     key={i}
-                    animate={{ 
+                    animate={{
                       y: [0, -15, 0],
                       rotate: [0, 10, -10, 0]
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 2,
                       repeat: Infinity,
                       delay: i * 0.2
@@ -1759,10 +1764,10 @@ export default function Index() {
                   </motion.div>
                 ))}
               </div>
-              
+
               <div className="flex justify-center gap-3 items-center mb-6">
                 <motion.div
-                  animate={{ 
+                  animate={{
                     rotate: [0, 360],
                     scale: [1, 1.3, 1]
                   }}
@@ -1775,7 +1780,7 @@ export default function Index() {
                   250+ Investors Joined in Last Hour! 💎
                 </div>
                 <motion.div
-                  animate={{ 
+                  animate={{
                     rotate: [0, 360],
                     scale: [1, 1.3, 1]
                   }}
@@ -1785,14 +1790,14 @@ export default function Index() {
                   🚀
                 </motion.div>
               </div>
-              
+
               <h2 className="text-4xl md:text-6xl font-black text-balance mb-6">
                 Don't Miss The <span className="text-primary">Biggest Meme Token</span> of 2025!
               </h2>
               <p className="text-2xl text-foreground/70 max-w-3xl mx-auto text-balance font-bold mb-8">
                 Join 12,000+ smart investors and secure your spot in the genius revolution! Limited presale spots remaining! ⏰💎
               </p>
-              <motion.div 
+              <motion.div
                 animate={{ scale: [1, 1.02, 1] }}
                 transition={{ duration: 2, repeat: Infinity }}
                 className="space-y-6"
@@ -1804,7 +1809,7 @@ export default function Index() {
                     <SparklesIcon className="ml-3 w-10 h-10" />
                   </Button>
                 </motion.div>
-                
+
                 <div className="flex flex-wrap gap-4 justify-center text-sm font-bold text-foreground/80">
                   <div className="flex items-center gap-2">
                     ✅ Instant Delivery
@@ -1869,31 +1874,31 @@ export default function Index() {
             );
           })}
         </div>
-        
+
         <div className="container mx-auto px-4 py-12 relative z-10">
           <div className="text-center space-y-6">
-            <motion.div 
+            <motion.div
               whileHover={{ scale: 1.08, y: -5 }}
               className="inline-flex items-center gap-4 mb-4"
             >
               <div className="relative">
                 <motion.div
-                  animate={{ 
+                  animate={{
                     rotate: [0, 360],
                     scale: [1, 1.15, 1]
                   }}
                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                   className="w-20 h-20 relative z-10"
                 >
-                  <img 
-                    src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                    alt="Little Einstein" 
+                  <img
+                    src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys"
+                    alt="Little Einstein"
                     className="w-full h-full object-contain drop-shadow-2xl"
                   />
                 </motion.div>
                 {/* Glow effect */}
                 <motion.div
-                  animate={{ 
+                  animate={{
                     scale: [1, 1.5, 1],
                     opacity: [0.3, 0.7, 0.3]
                   }}
@@ -1924,11 +1929,11 @@ export default function Index() {
                 </p>
               </div>
             </motion.div>
-            
+
             <p className="text-lg text-foreground/70 max-w-2xl mx-auto font-medium">
               The cutest genius meme token revolutionizing crypto with community-driven innovation! 🧪✨
             </p>
-            
+
             <div className="flex justify-center gap-4 py-6">
               {["Twitter", "Telegram", "Discord"].map((platform, i) => (
                 <motion.div
@@ -1942,7 +1947,7 @@ export default function Index() {
                 </motion.div>
               ))}
             </div>
-            
+
             <div className="border-t-4 border-primary/20 pt-8">
               <p className="text-foreground/60 font-medium text-lg">
                 © {new Date().getFullYear()} Little Einstein ($LILEIN) 💜 All rights reserved.
@@ -2028,17 +2033,16 @@ export default function Index() {
                       <Button
                         key={preset.value}
                         onClick={() => setTargetPrice(preset.value)}
-                        className={`rounded-full font-bold px-4 py-2 ${
-                          targetPrice === preset.value
-                            ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
-                            : "bg-white border-2 border-primary/20 text-foreground hover:bg-primary/5"
-                        }`}
+                        className={`rounded-full font-bold px-4 py-2 ${targetPrice === preset.value
+                          ? "bg-gradient-to-r from-primary to-accent text-white shadow-lg"
+                          : "bg-white border-2 border-primary/20 text-foreground hover:bg-primary/5"
+                          }`}
                       >
                         {preset.label}
                       </Button>
                     ))}
                   </div>
-                  
+
                   {/* Slider */}
                   <div className="space-y-2">
                     <input
@@ -2108,7 +2112,7 @@ export default function Index() {
                   <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-6 border-4 border-white shadow-lg">
                     <div className="text-center">
                       <p className="text-sm font-bold text-foreground/60 mb-2">Potential Multiplier</p>
-                      <motion.p 
+                      <motion.p
                         animate={{ scale: [1, 1.1, 1] }}
                         transition={{ duration: 1, repeat: Infinity }}
                         className="text-5xl font-black text-primary mb-2"
@@ -2129,8 +2133,8 @@ export default function Index() {
                   <span className="text-2xl">⚠️</span>
                   <div>
                     <p className="text-sm font-bold text-foreground/80">
-                      <strong>Disclaimer:</strong> These are hypothetical projections based on the token reaching your selected target price. 
-                      Cryptocurrency investments carry risks. Past performance does not guarantee future results. 
+                      <strong>Disclaimer:</strong> These are hypothetical projections based on the token reaching your selected target price.
+                      Cryptocurrency investments carry risks. Past performance does not guarantee future results.
                       Always do your own research (DYOR) and invest responsibly.
                     </p>
                   </div>
@@ -2139,7 +2143,7 @@ export default function Index() {
 
               {/* CTA Button */}
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                <Button 
+                <Button
                   size="lg"
                   className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white"
                 >
