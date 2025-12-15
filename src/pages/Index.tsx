@@ -1945,10 +1945,13 @@ export default function Index() {
             
             <div className="border-t-4 border-primary/20 pt-8">
               <p className="text-foreground/60 font-medium text-lg">
-                © {new Date().getFullYear()} Little Einstein 💜 All rights reserved.
+                © {new Date().getFullYear()} Little Einstein ($LILEIN) 💜 All rights reserved.
               </p>
               <p className="text-foreground/50 text-sm mt-2">
-                Made with 💜 and genius-level cuteness!
+                Made with 💜 and genius-level cuteness! | Community-driven meme token
+              </p>
+              <p className="text-foreground/40 text-xs mt-3">
+                Disclaimer: Cryptocurrency investments carry risk. Always do your own research.
               </p>
             </div>
           </div>
