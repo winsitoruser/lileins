@@ -1948,7 +1948,7 @@ export default function Index() {
                 © {new Date().getFullYear()} Little Einstein ($LILEIN) 💜 All rights reserved.
               </p>
               <p className="text-foreground/50 text-sm mt-2">
-                Made with 💜 and genius-level cuteness! | Community-driven meme token
+                Made with 💜 and genius-level cuteness! | Community-driven meme token.
               </p>
               <p className="text-foreground/40 text-xs mt-3">
                 Disclaimer: Cryptocurrency investments carry risk. Always do your own research.
