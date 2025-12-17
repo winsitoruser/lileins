@@ -34,6 +34,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import type { Id } from "@/convex/_generated/dataModel.d.ts";
+import HeaderSecond from "@/components/partials/HeaderSecond";
 
 const STAKING_OPTIONS = [
   { days: 30, apy: 12, emoji: "🌱", label: "Starter", color: "from-green-400 to-emerald-500" },
@@ -364,10 +365,10 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
       </div>
 
       {/* Simple Clean Header */}
-      <header className="relative z-10 bg-white/95 backdrop-blur-sm border-b border-primary/10 shadow-sm sticky top-0">
+      <HeaderSecond />
+      {/* <header className="relative z-10 bg-white/95 backdrop-blur-sm border-b border-primary/10 shadow-sm sticky top-0">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 md:w-12 md:h-12">
                 <img 
@@ -382,7 +383,6 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
               </div>
             </Link>
 
-            {/* Navigation Menu */}
             <nav className="hidden md:flex items-center gap-8">
               <Link to="/" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
                 Home
@@ -398,7 +398,6 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
               </a>
             </nav>
 
-            {/* Connect Wallet / Back Button */}
             <div className="flex items-center gap-3">
               {!isConnected ? (
                 <SignInButton>
@@ -421,7 +420,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
             </div>
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 py-8 md:py-12">

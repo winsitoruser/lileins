@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Star, Heart, Search, TrendingUp, Droplets, Zap, Package, Users, Activity, Hash, Clock, ArrowRight, Copy, ExternalLink } from "lucide-react";
+import HeaderSecond from "@/components/partials/HeaderSecond";
 
 // Mock blockchain data
 const RECENT_TRANSACTIONS = [
@@ -82,7 +83,7 @@ export default function Explorer() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
       {/* Cute Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['🔍', '⛓️', '📦', '⚡', '🚀', '✨', '💜', '🌟'].map((emoji, i) => (
@@ -112,49 +113,7 @@ export default function Explorer() {
 
       <div className="relative z-10">
         {/* Cute Header */}
-        <nav className="container mx-auto px-4 py-6">
-          <div className="bg-white rounded-full shadow-xl border-4 border-primary/20 px-6 py-3 flex justify-between items-center">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12">
-                <img 
-                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                  alt="Little Einstein" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-black text-primary">Little Einstein</span>
-                <span className="text-sm font-bold text-secondary">$Einz 💜</span>
-              </div>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Link to="/einswap">
-                <Button variant="outline" className="border-2 border-accent/30 font-bold rounded-full hover:bg-accent/10">
-                  <Zap className="mr-1 w-4 h-4 text-accent" />
-                  Swap
-                </Button>
-              </Link>
-              <Link to="/pools">
-                <Button variant="outline" className="border-2 border-accent/30 font-bold rounded-full hover:bg-accent/10">
-                  <Droplets className="mr-1 w-4 h-4 text-accent" />
-                  Pools
-                </Button>
-              </Link>
-              <Link to="/staking">
-                <Button variant="outline" className="border-2 border-secondary/30 font-bold rounded-full hover:bg-secondary/10">
-                  <Star className="mr-1 w-4 h-4 text-secondary" />
-                  Staking
-                </Button>
-              </Link>
-              <Link to="/">
-                <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hover:bg-primary/10">
-                  <Heart className="mr-1 w-4 h-4 fill-primary text-primary" />
-                  Home
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </nav>
+       <HeaderSecond />
 
         {/* Main Content */}
         <div className="container mx-auto px-4 py-8">

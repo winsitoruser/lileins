@@ -4,7 +4,8 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
-import { Star, Heart, Search, TrendingUp, Droplets, Zap, Plus, ArrowRight, BarChart3, LineChart, PieChart } from "lucide-react";
+import { Search, TrendingUp, Droplets, Zap, Plus, ArrowRight, BarChart3, LineChart, PieChart } from "lucide-react";
+import HeaderSecond from "@/components/partials/HeaderSecond";
 
 // Mock pool data
 const POOLS = [
@@ -99,49 +100,7 @@ export default function Pools() {
 
       <div className="relative z-10">
         {/* Cute Header */}
-        <nav className="container mx-auto px-4 py-6">
-          <div className="bg-white rounded-full shadow-xl border-4 border-primary/20 px-6 py-3 flex justify-between items-center">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12">
-                <img 
-                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                  alt="Little Einstein" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-black text-primary">Little Einstein</span>
-                <span className="text-sm font-bold text-secondary">$Einz 💜</span>
-              </div>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Link to="/einswap">
-                <Button variant="outline" className="border-2 border-accent/30 font-bold rounded-full hover:bg-accent/10">
-                  <Zap className="mr-1 w-4 h-4 text-accent" />
-                  Swap
-                </Button>
-              </Link>
-              <Link to="/pools">
-                <Button className="bg-gradient-to-r from-primary via-accent to-secondary text-white font-bold rounded-full shadow-lg border-2 border-white">
-                  <Droplets className="mr-1 w-4 h-4" />
-                  Pools
-                </Button>
-              </Link>
-              <Link to="/staking">
-                <Button variant="outline" className="border-2 border-secondary/30 font-bold rounded-full hover:bg-secondary/10">
-                  <Star className="mr-1 w-4 h-4 text-secondary" />
-                  Staking
-                </Button>
-              </Link>
-              <Link to="/">
-                <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hover:bg-primary/10">
-                  <Heart className="mr-1 w-4 h-4 fill-primary text-primary" />
-                  Home
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <HeaderSecond />
 
         {/* Main Content */}
         <div className="container mx-auto px-4 py-8">
