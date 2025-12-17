@@ -44,36 +44,63 @@ function HeaderSecond() {
                             </Button>
                         )}
                     </NavLink>
-                    <Link to="/pools">
-                        <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hidden md:flex">
-                            <Droplets className="mr-1 w-4 h-4" />
-                            Pools
-                        </Button>
-                    </Link>
-                    <Link to="/explorer">
-                        <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hidden md:flex">
-                            <Search className="mr-1 w-4 h-4" />
-                            Explorer
-                        </Button>
-                    </Link>
-                    <Link to="/staking">
-                        <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hidden md:flex">
-                            <CircleIcon className="mr-1 w-4 h-4 fill-se" />
-                            Staking
-                        </Button>
-                    </Link>
-                    <Link to="/tokenomics">
-                        <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hidden md:flex">
-                            <CircleIcon className="mr-1 w-4 h-4" />
-                            Tokenomics
-                        </Button>
-                    </Link>
-                    <Link to="/roadmap">
-                        <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hidden md:flex">
-                            <CircleIcon className="mr-1 w-4 h-4" />
-                            Roadmap
-                        </Button>
-                    </Link>
+                    <NavLink to="/pools">
+                        {({ isActive }) => (
+                            <Button
+                                variant="outline"
+                                className={isActive ? activeClass : inactiveClass}
+                            >
+                                <Droplets className="mr-1 w-4 h-4" />
+                                Pools
+                            </Button>
+                        )}
+                    </NavLink>
+                    <NavLink to="/explorer">
+                        {({ isActive }) => (
+                            <Button
+                                variant="outline"
+                                className={isActive ? activeClass : inactiveClass}
+                            >
+                                <Search className="mr-1 w-4 h-4" />
+                                Explorer
+                            </Button>
+                        )}
+                    </NavLink>
+                    <NavLink to="/staking">
+                        {({ isActive }) => (
+                            <Button
+                                variant="outline"
+                                className={isActive ? activeClass : inactiveClass}
+                            >
+                                <CircleIcon className="mr-1 w-4 h-4" />
+                                Staking
+                            </Button>
+                        )}
+                    </NavLink>
+
+                    <NavLink to="/tokenomics">
+                        {({ isActive }) => (
+                            <Button
+                                variant="outline"
+                                className={isActive ? activeClass : inactiveClass}
+                            >
+                                <CircleIcon className="mr-1 w-4 h-4" />
+                                Tokenomics
+                            </Button>
+                        )}
+                    </NavLink>
+
+                    <NavLink to="/roadmap">
+                        {({ isActive }) => (
+                            <Button
+                                variant="outline"
+                                className={isActive ? activeClass : inactiveClass}
+                            >
+                                <CircleIcon className="mr-1 w-4 h-4" />
+                                Roadmap
+                            </Button>
+                        )}
+                    </NavLink>
                     <WalletButton />
                     {/* <Button
                         variant="outline"
