@@ -1331,7 +1331,7 @@ export default function Index() {
           viewport={{ once: true }}
           className="mb-12"
         >
-          <Card className="border-8 border-white bg-gradient-to-br from-accent/10 via-primary/10 to-secondary/10 shadow-2xl rounded-3xl overflow-hidden">
+          <Card className="border-8 border-white bg-linear-to-br from-accent/10 via-primary/10 to-secondary/10 shadow-2xl rounded-3xl overflow-hidden">
             <CardContent className="p-8 md:p-12">
               <div className="text-center mb-8">
                 <motion.div
@@ -1975,7 +1975,7 @@ export default function Index() {
                     opacity: [0.3, 0.7, 0.3]
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full blur-2xl"
+                  className="absolute inset-0 bg-linear-to-r from-primary via-accent to-secondary rounded-full blur-2xl"
                 />
               </div>
               <div className="text-left">
@@ -2124,7 +2124,7 @@ export default function Index() {
                       step="0.001"
                       value={targetPrice}
                       onChange={(e) => setTargetPrice(parseFloat(e.target.value))}
-                      className="w-full h-3 bg-gradient-to-r from-primary via-accent to-secondary rounded-full appearance-none cursor-pointer"
+                      className="w-full h-3 bg-linear-to-r from-primary via-accent to-secondary rounded-full appearance-none cursor-pointer"
                       style={{
                         background: `linear-gradient(to right, rgb(var(--primary)) 0%, rgb(var(--accent)) 50%, rgb(var(--secondary)) 100%)`
                       }}
@@ -2139,7 +2139,7 @@ export default function Index() {
               </div>
 
               {/* Current Price Info */}
-              <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+              <div className="bg-linear-to-br from-primary/10 to-accent/10 rounded-2xl p-6 border-4 border-white shadow-lg">
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <p className="text-sm font-bold text-foreground/60 mb-1">Current Price</p>
@@ -2171,17 +2171,17 @@ export default function Index() {
                     <span className="text-xl font-black text-accent">{moonProjection.tokens} LILEIN</span>
                   </div>
 
-                  <div className="bg-gradient-to-r from-yellow-100 to-orange-100 rounded-2xl p-4 border-4 border-white shadow-lg flex justify-between items-center">
+                  <div className="bg-linear-to-r from-yellow-100 to-orange-100 rounded-2xl p-4 border-4 border-white shadow-lg flex justify-between items-center">
                     <span className="font-black text-foreground">🌙 Value at ${targetPrice.toFixed(3)}</span>
                     <span className="text-xl font-black text-green-600">${moonProjection.valueAtTarget}</span>
                   </div>
 
-                  <div className="bg-gradient-to-r from-green-100 to-emerald-100 rounded-2xl p-4 border-4 border-white shadow-lg flex justify-between items-center">
+                  <div className="bg-linear-to-r from-green-100 to-emerald-100 rounded-2xl p-4 border-4 border-white shadow-lg flex justify-between items-center">
                     <span className="font-black text-foreground">💰 Profit</span>
                     <span className="text-xl font-black text-green-600">+${moonProjection.profit}</span>
                   </div>
 
-                  <div className="bg-gradient-to-r from-purple-100 to-pink-100 rounded-2xl p-6 border-4 border-white shadow-lg">
+                  <div className="bg-linear-to-r from-purple-100 to-pink-100 rounded-2xl p-6 border-4 border-white shadow-lg">
                     <div className="text-center">
                       <p className="text-sm font-bold text-foreground/60 mb-2">Potential Multiplier</p>
                       <motion.p
@@ -2217,7 +2217,7 @@ export default function Index() {
               <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <Button
                   size="lg"
-                  className="w-full bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white"
+                  className="w-full bg-linear-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-xl h-16 rounded-full shadow-2xl border-4 border-white"
                 >
                   <Rocket className="mr-2 w-6 h-6" />
                   Join Presale Now! 🎉

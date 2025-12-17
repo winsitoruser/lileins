@@ -50,7 +50,7 @@ export function WalletButton() {
         <Button
           onClick={() => setShowConnectModal(true)}
           disabled={isConnecting}
-          className="bg-gradient-to-r from-primary to-accent text-white font-bold rounded-full px-6 shadow-lg hover:shadow-xl transition-all"
+          className="bg-linear-to-r from-primary to-accent text-white font-bold rounded-full px-6 shadow-lg hover:shadow-xl transition-all"
         >
           <Wallet className="mr-2 w-4 h-4" />
           {isConnecting ? 'Connecting...' : 'Connect Wallet'}
@@ -77,7 +77,7 @@ export function WalletButton() {
                   }}
                 >
                   <CardContent className="p-4 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center text-2xl">
+                    <div className="w-12 h-12 bg-linear-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center text-2xl">
                       🦊
                     </div>
                     <div>
@@ -98,7 +98,7 @@ export function WalletButton() {
                   }}
                 >
                   <CardContent className="p-4 flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-2xl">
+                    <div className="w-12 h-12 bg-linear-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center text-2xl">
                       🔗
                     </div>
                     <div>

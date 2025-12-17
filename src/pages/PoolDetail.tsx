@@ -103,7 +103,7 @@ export default function PoolDetail() {
                 </Button>
               </Link>
               <Link to="/pools">
-                <Button className="bg-gradient-to-r from-primary via-accent to-secondary text-white font-bold rounded-full shadow-lg border-2 border-white">
+                <Button className="bg-linear-to-r from-primary via-accent to-secondary text-white font-bold rounded-full shadow-lg border-2 border-white">
                   <Droplets className="mr-1 w-4 h-4" />
                   Pools
                 </Button>

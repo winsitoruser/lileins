@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import { WalletButton } from "@/components/wallet/WalletButton.tsx";
 import { useWallet } from "@/hooks/useWallet.ts";
 import { toast } from "sonner";
+import HeaderSecond from "@/components/partials/HeaderSecond";
 
 // Token list with cute emojis and price data
 const TOKENS = [
@@ -35,8 +36,6 @@ export default function Einswap() {
   const [slippage, setSlippage] = useState("0.5");
   const [showFromTokens, setShowFromTokens] = useState(false);
   const [showToTokens, setShowToTokens] = useState(false);
-  const [showSettings, setShowSettings] = useState(false);
-  const [showRecentSwaps, setShowRecentSwaps] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [priceImpact, setPriceImpact] = useState(0);
 
@@ -105,7 +104,7 @@ export default function Einswap() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
       {/* Cute Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['⚗️', '🧪', '💎', '⚡', '🚀', '✨', '💜', '🌟'].map((emoji, i) => (
@@ -135,47 +134,7 @@ export default function Einswap() {
 
       <div className="relative z-10">
         {/* Cute Header */}
-        <nav className="container mx-auto px-4 py-6">
-          <div className="bg-white rounded-full shadow-xl border-4 border-primary/20 px-6 py-3 flex justify-between items-center">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12">
-                <img 
-                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                  alt="Little Einstein" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-black text-primary">Little Einstein</span>
-                <span className="text-sm font-bold text-secondary">$Einz 💜</span>
-              </div>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Button
-                variant="outline"
-                onClick={() => setShowRecentSwaps(!showRecentSwaps)}
-                className="border-2 border-accent/30 font-bold rounded-full hidden md:flex"
-              >
-                <Clock className="mr-1 w-4 h-4 text-accent" />
-                History
-              </Button>
-              <Button
-                variant="outline"
-                onClick={() => setShowSettings(!showSettings)}
-                className="border-2 border-primary/30 font-bold rounded-full"
-              >
-                <Settings className="w-4 h-4" />
-              </Button>
-              <WalletButton />
-              <Link to="/">
-                <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hidden md:flex">
-                  <Heart className="mr-1 w-4 h-4 fill-primary text-primary" />
-                  Home
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <HeaderSecond />
 
         {/* Main Content */}
         <div className="container mx-auto px-4 py-8 max-w-2xl">
