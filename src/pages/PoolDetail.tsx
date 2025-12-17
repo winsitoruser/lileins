@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { Star, Heart, ArrowLeft, Zap, Plus, Minus, Info, TrendingUp, Droplets } from "lucide-react";
+import HeaderSecond from "@/components/partials/HeaderSecond";
 
 // Mock pool data
 const POOL_DATA: Record<string, any> = {
@@ -50,7 +51,7 @@ export default function PoolDetail() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
       {/* Cute Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['💧', '🌊', '💎', '⚡', '🚀', '✨', '💜', '🌟'].map((emoji, i) => (
@@ -80,49 +81,7 @@ export default function PoolDetail() {
 
       <div className="relative z-10">
         {/* Cute Header */}
-        <nav className="container mx-auto px-4 py-6">
-          <div className="bg-white rounded-full shadow-xl border-4 border-primary/20 px-6 py-3 flex justify-between items-center">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 md:w-12 md:h-12">
-                <img 
-                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                  alt="Little Einstein" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-lg md:text-xl font-black text-primary">Little Einstein</span>
-                <span className="text-sm font-bold text-secondary">$Einz 💜</span>
-              </div>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Link to="/einswap">
-                <Button variant="outline" className="border-2 border-accent/30 font-bold rounded-full hover:bg-accent/10">
-                  <Zap className="mr-1 w-4 h-4 text-accent" />
-                  Swap
-                </Button>
-              </Link>
-              <Link to="/pools">
-                <Button className="bg-linear-to-r from-primary via-accent to-secondary text-white font-bold rounded-full shadow-lg border-2 border-white">
-                  <Droplets className="mr-1 w-4 h-4" />
-                  Pools
-                </Button>
-              </Link>
-              <Link to="/staking">
-                <Button variant="outline" className="border-2 border-secondary/30 font-bold rounded-full hover:bg-secondary/10">
-                  <Star className="mr-1 w-4 h-4 text-secondary" />
-                  Staking
-                </Button>
-              </Link>
-              <Link to="/">
-                <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hover:bg-primary/10">
-                  <Heart className="mr-1 w-4 h-4 fill-primary text-primary" />
-                  Home
-                </Button>
-              </Link>
-            </div>
-          </div>
-        </nav>
+        <HeaderSecond />
 
         {/* Main Content */}
         <div className="container mx-auto px-4 py-8 max-w-4xl">
@@ -144,10 +103,10 @@ export default function PoolDetail() {
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <div className="flex items-center -space-x-4">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-5xl border-4 border-white shadow-xl">
+                <div className="w-20 h-20 rounded-full bg-linear-to-br from-primary to-accent flex items-center justify-center text-5xl border-4 border-white shadow-xl">
                   {pool.token0.icon}
                 </div>
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center text-5xl border-4 border-white shadow-xl">
+                <div className="w-20 h-20 rounded-full bg-linear-to-br from-secondary to-accent flex items-center justify-center text-5xl border-4 border-white shadow-xl">
                   {pool.token1.icon}
                 </div>
               </div>
@@ -162,19 +121,19 @@ export default function PoolDetail() {
 
           {/* Pool Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-            <Card className="border-4 border-white bg-gradient-to-br from-primary/10 to-accent/10 shadow-lg rounded-2xl">
+            <Card className="border-4 border-white bg-linear-to-br from-primary/10 to-accent/10 shadow-lg rounded-2xl">
               <CardContent className="p-4 text-center">
                 <p className="text-sm text-foreground/60 font-bold mb-1">TVL</p>
                 <p className="text-2xl font-black text-primary">{pool.tvl}</p>
               </CardContent>
             </Card>
-            <Card className="border-4 border-white bg-gradient-to-br from-secondary/10 to-accent/10 shadow-lg rounded-2xl">
+            <Card className="border-4 border-white bg-linear-to-br from-secondary/10 to-accent/10 shadow-lg rounded-2xl">
               <CardContent className="p-4 text-center">
                 <p className="text-sm text-foreground/60 font-bold mb-1">Volume 24h</p>
                 <p className="text-2xl font-black text-secondary">{pool.volume24h}</p>
               </CardContent>
             </Card>
-            <Card className="border-4 border-white bg-gradient-to-br from-accent/10 to-primary/10 shadow-lg rounded-2xl">
+            <Card className="border-4 border-white bg-linear-to-br from-accent/10 to-primary/10 shadow-lg rounded-2xl">
               <CardContent className="p-4 text-center">
                 <p className="text-sm text-foreground/60 font-bold mb-1">APR</p>
                 <p className="text-2xl font-black text-accent">{pool.apr}</p>
@@ -214,12 +173,12 @@ export default function PoolDetail() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl rounded-3xl">
+            <Card className="border-8 border-white bg-linear-to-br from-white via-primary/5 to-accent/5 shadow-2xl rounded-3xl">
               <CardContent className="p-8">
                 {mode === "add" ? (
                   <div className="space-y-6">
                     {/* Token 0 Input */}
-                    <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
+                    <div className="bg-linear-to-br from-primary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
                       <div className="flex justify-between mb-3">
                         <span className="text-sm text-foreground/60 font-black flex items-center gap-1">
                           <span className="text-xl">💰</span> {pool.token0.symbol}
@@ -248,7 +207,7 @@ export default function PoolDetail() {
                     </div>
 
                     {/* Token 1 Input */}
-                    <div className="bg-gradient-to-br from-secondary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
+                    <div className="bg-linear-to-br from-secondary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
                       <div className="flex justify-between mb-3">
                         <span className="text-sm text-foreground/60 font-black flex items-center gap-1">
                           <span className="text-xl">🎁</span> {pool.token1.symbol}

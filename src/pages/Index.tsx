@@ -18,6 +18,8 @@ import * as animations from "@/lib/animations.ts";
 import FAQAccordionGeneral from "@/components/partials/FAQAccordionGeneral";
 import FAQAccordionPresale from "@/components/partials/FAQAccordionPresale";
 import FAQAccordionEcosystem from "@/components/partials/FAQAccordionEcosystem";
+import ScrollRoadmap from "@/components/partials/ScrollRoadMap";
+import HeaderSecond from "@/components/partials/HeaderSecond";
 
 export default function Index() {
   const [raised, setRaised] = useState(2847500);
@@ -98,7 +100,7 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-accent/20 via-background to-primary/10 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-accent/20 via-background to-primary/10 relative"> {/* overflow-hidden */}
       {/* Scientific Laboratory Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Floating Einstein Formulas */}
@@ -146,7 +148,7 @@ export default function Index() {
               repeat: Infinity,
               delay: Math.random() * 5
             }}
-            className="absolute rounded-full bg-gradient-to-br from-accent/40 to-secondary/40 border-2 border-primary/20"
+            className="absolute rounded-full bg-linear-to-br from-accent/40 to-secondary/40 border-2 border-primary/20"
             style={{
               width: `${20 + Math.random() * 60}px`,
               height: `${20 + Math.random() * 60}px`,
@@ -247,7 +249,7 @@ export default function Index() {
               repeat: Infinity,
               delay: Math.random() * 5
             }}
-            className="absolute w-3 h-3 rounded-full bg-gradient-to-r from-primary to-accent shadow-lg"
+            className="absolute w-3 h-3 rounded-full bg-linear-to-r from-primary to-accent shadow-lg"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`
@@ -257,10 +259,10 @@ export default function Index() {
       </div>
 
       {/* Simple Clean Header */}
-      <header className="relative z-10 bg-white/95 backdrop-blur-sm border-b border-primary/10 shadow-sm sticky top-0">
+      <HeaderSecond />
+      {/* <header className="z-10 bg-white/95 backdrop-blur-sm border-b border-primary/10 shadow-sm sticky top-0">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
-            {/* Logo */}
             <Link to="/" className="flex items-center gap-3">
               <div className="w-10 h-10 md:w-12 md:h-12">
                 <img
@@ -275,7 +277,6 @@ export default function Index() {
               </div>
             </Link>
 
-            {/* Navigation Menu */}
             <nav className="hidden md:flex items-center gap-6">
               <Link to="/" className="text-sm font-bold text-foreground/80 hover:text-primary transition-colors">
                 Home
@@ -302,12 +303,10 @@ export default function Index() {
                 Roadmap
               </a>
             </nav>
-
-            {/* Connect Wallet / Account Button */}
             <WalletButton />
           </div>
         </div>
-      </header>
+      </header> */}
 
       {/* Hero Section - Super Cute! */}
       <section className="relative z-10 container mx-auto px-4 py-12 md:py-20">
@@ -424,7 +423,7 @@ export default function Index() {
                 scale: [1, 1.15, 1]
               }}
               transition={{ duration: 20, repeat: Infinity }}
-              className="absolute inset-0 bg-gradient-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-full blur-3xl"
+              className="absolute inset-0 bg-linear-to-r from-primary/40 via-accent/40 to-secondary/40 rounded-full blur-3xl"
             />
 
             {/* Floating Einstein Formulas Around Characters */}
@@ -500,7 +499,7 @@ export default function Index() {
                       opacity: [0.3, 0.6, 0.3]
                     }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-3xl blur-xl -z-10"
+                    className="absolute inset-0 bg-linear-to-r from-primary to-accent rounded-3xl blur-xl -z-10"
                   />
                 </motion.div>
               ))}
@@ -543,7 +542,7 @@ export default function Index() {
         {...animations.scrollFadeIn}
         className="relative z-10 container mx-auto px-4 py-20"
       >
-        <div className="bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 md:p-16 border-8 border-white shadow-2xl overflow-hidden relative">
+        <div className="bg-linear-to-br from-primary/10 via-accent/10 to-secondary/10 rounded-3xl p-8 md:p-16 border-8 border-white shadow-2xl overflow-hidden relative">
           {/* Space Background */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             {/* Stars */}
@@ -681,7 +680,7 @@ export default function Index() {
                 </div>
               </DialogTrigger>
 
-              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-white via-primary/5 to-accent/5 border-4 border-primary/30">
+              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto bg-linear-to-br from-white via-primary/5 to-accent/5 border-4 border-primary/30">
                 <DialogHeader>
                   <DialogTitle className="text-center">
                     <motion.div
@@ -733,7 +732,7 @@ export default function Index() {
                   {/* Current Value Card */}
                   <motion.div
                     whileHover={{ scale: 1.05, y: -5 }}
-                    className="bg-gradient-to-br from-accent/20 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl"
+                    className="bg-linear-to-br from-accent/20 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl"
                   >
                     <motion.div
                       animate={{
@@ -756,7 +755,7 @@ export default function Index() {
                     >
                       ${calculatedValues.current}
                     </motion.div>
-                    <div className="mt-3 bg-gradient-to-r from-accent to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
+                    <div className="mt-3 bg-linear-to-r from-accent to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
                       +138% Gain! 🎉
                     </div>
                   </motion.div>
@@ -764,7 +763,7 @@ export default function Index() {
                   {/* Target Value Card */}
                   <motion.div
                     whileHover={{ scale: 1.05, y: -5 }}
-                    className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-3xl p-6 border-4 border-white shadow-xl"
+                    className="bg-linear-to-br from-secondary/20 to-secondary/10 rounded-3xl p-6 border-4 border-white shadow-xl"
                   >
                     <motion.div
                       animate={{
@@ -787,7 +786,7 @@ export default function Index() {
                     >
                       ${calculatedValues.target}
                     </motion.div>
-                    <div className="mt-3 bg-gradient-to-r from-secondary to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
+                    <div className="mt-3 bg-linear-to-r from-secondary to-primary text-white px-4 py-2 rounded-full font-black text-center shadow-lg">
                       +900% Potential! 🌙
                     </div>
                   </motion.div>
@@ -797,7 +796,7 @@ export default function Index() {
                 <motion.div
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="mt-8 text-center bg-gradient-to-r from-primary/10 to-accent/10 rounded-2xl p-4 border-2 border-primary/20"
+                  className="mt-8 text-center bg-linear-to-r from-primary/10 to-accent/10 rounded-2xl p-4 border-2 border-primary/20"
                 >
                   <p className="text-sm text-foreground/70 font-bold flex items-center justify-center gap-2">
                     <span className="text-2xl">🧪</span>
@@ -830,7 +829,7 @@ export default function Index() {
               viewport={{ once: true }}
               className="mb-12"
             >
-              <Card className="border-8 border-white bg-gradient-to-br from-card via-accent/5 to-primary/5 shadow-2xl overflow-hidden rounded-3xl">
+              <Card className="border-8 border-white bg-linear-to-br from-card via-accent/5 to-primary/5 shadow-2xl overflow-hidden rounded-3xl">
                 <CardContent className="p-8 md:p-12">
                   <motion.div
                     animate={{ scale: [1, 1.05, 1] }}
@@ -907,7 +906,7 @@ export default function Index() {
                   </div>
 
                   {/* Cute Countdown */}
-                  <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 border-4 border-white shadow-xl mb-8">
+                  <div className="bg-linear-to-br from-primary/10 to-accent/10 rounded-3xl p-8 border-4 border-white shadow-xl mb-8">
                     <p className="text-center text-base md:text-lg text-foreground/80 font-bold mb-4">
                       ⏰ Hurry! Presale Ends In:
                     </p>
@@ -935,13 +934,13 @@ export default function Index() {
 
                   {/* Price Info */}
                   <div className="grid md:grid-cols-2 gap-4 mb-8">
-                    <div className="bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+                    <div className="bg-linear-to-br from-primary/20 to-primary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
                       <div className="flex justify-between items-center">
                         <span className="text-sm md:text-base font-bold text-foreground/70">Current Price 💎</span>
                         <span className="text-2xl md:text-3xl font-black text-primary">$0.0005</span>
                       </div>
                     </div>
-                    <div className="bg-gradient-to-br from-secondary/20 to-secondary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
+                    <div className="bg-linear-to-br from-secondary/20 to-secondary/10 rounded-2xl p-6 border-4 border-white shadow-lg">
                       <div className="flex justify-between items-center">
                         <span className="text-sm md:text-base font-bold text-foreground/70">Next Price 📈</span>
                         <span className="text-2xl md:text-3xl font-black text-secondary">$0.00065</span>
@@ -962,7 +961,7 @@ export default function Index() {
             </motion.div>
 
             {/* Rocket Launch Section */}
-            <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl p-8 md:p-12 border-4 border-white shadow-xl mb-8">
+            <div className="bg-linear-to-br from-primary/20 to-accent/20 rounded-3xl p-8 md:p-12 border-4 border-white shadow-xl mb-8">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-6">
                   <h3 className="text-4xl font-black text-primary flex items-center gap-3">
@@ -1115,7 +1114,7 @@ export default function Index() {
               transition={{ duration: 2, repeat: Infinity }}
               className="mt-12 text-center"
             >
-              <Button size="lg" className="bg-gradient-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-2xl md:text-3xl px-16 h-20 rounded-full shadow-2xl border-4 border-white">
+              <Button size="lg" className="bg-linear-to-r from-primary via-accent to-secondary hover:opacity-90 text-white font-black text-2xl md:text-3xl px-16 h-20 rounded-full shadow-2xl border-4 border-white">
                 <Rocket className="mr-3 w-8 h-8" />
                 Join the Journey! 🌙
                 <SparklesIcon className="ml-3 w-8 h-8" />
@@ -1182,7 +1181,7 @@ export default function Index() {
                       {info.icon}
                     </motion.div>
                     <p className="text-sm text-foreground/60 font-bold mb-1">{info.label}</p>
-                    <p className="text-lg md:text-xl font-black text-primary break-words">{info.value}</p>
+                    <p className="text-lg md:text-xl font-black text-primary wrap-break-word">{info.value}</p>
                   </motion.div>
                 ))}
               </div>
@@ -1220,7 +1219,7 @@ export default function Index() {
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
                       whileHover={{ scale: 1.02, x: 5 }}
-                      className="bg-gradient-to-r from-muted/50 to-muted/30 rounded-2xl p-4 border-2 border-primary/20"
+                      className="bg-linear-to-r from-muted/50 to-muted/30 rounded-2xl p-4 border-2 border-primary/20"
                     >
                       <div className="flex items-center justify-between mb-2">
                         <span className="font-black text-foreground flex items-center gap-2">
@@ -1235,7 +1234,7 @@ export default function Index() {
                           whileInView={{ width: `${item.percent}%` }}
                           viewport={{ once: true }}
                           transition={{ duration: 1, delay: i * 0.1 }}
-                          className={`h-full bg-gradient-to-r ${item.color} rounded-full`}
+                          className={`h-full bg-linear-to-r ${item.color} rounded-full`}
                         />
                       </div>
                     </motion.div>
@@ -1385,7 +1384,7 @@ export default function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Card className="border-6 border-white bg-gradient-to-br from-primary/5 to-accent/5 shadow-2xl rounded-3xl h-full">
+            <Card className="border-6 border-white bg-linear-to-br from-primary/5 to-accent/5 shadow-2xl rounded-3xl h-full">
               <CardContent className="p-8">
                 <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
                   <span className="text-4xl">⚡</span>
@@ -1424,7 +1423,7 @@ export default function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <Card className="border-6 border-white bg-gradient-to-br from-secondary/5 to-primary/5 shadow-2xl rounded-3xl h-full">
+            <Card className="border-6 border-white bg-linear-to-br from-secondary/5 to-primary/5 shadow-2xl rounded-3xl h-full">
               <CardContent className="p-8">
                 <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
                   <span className="text-4xl">🛡️</span>
@@ -1608,9 +1607,9 @@ export default function Index() {
               whileHover={animations.hoverLift}
               className="group"
             >
-              <Card className="h-full border-4 border-white bg-gradient-to-br from-white via-primary/5 to-accent/10 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-3xl relative overflow-hidden group-hover:border-primary/30">
+              <Card className="h-full border-4 border-white bg-linear-to-br from-white via-primary/5 to-accent/10 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-3xl relative overflow-hidden group-hover:border-primary/30">
                 {/* Gradient Border Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"
+                <div className="absolute inset-0 bg-linear-to-br opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"
                   style={{
                     background: `linear-gradient(135deg, transparent 0%, var(--tw-gradient-stops))`,
                     padding: '4px',
@@ -1716,7 +1715,7 @@ export default function Index() {
             >
               <Card className="border-4 border-white shadow-2xl rounded-3xl overflow-hidden bg-white">
                 <CardContent className="p-0">
-                  <div className={`bg-gradient-to-br ${item.color} p-6 text-white text-center relative`}>
+                  <div className={`bg-linear-to-br ${item.color} p-6 text-white text-center relative`}>
                     <motion.div
                       animate={{ scale: [1, 1.1, 1] }}
                       transition={{ duration: 1.5, repeat: Infinity }}
@@ -1746,6 +1745,17 @@ export default function Index() {
         </div>
       </motion.section>
 
+      <motion.section
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative z-10 py-20"
+        id="roadmap"
+      >
+        <ScrollRoadmap />
+      </motion.section>
+
       {/* CTA Section - Extra Cute with Social Proof */}
       <motion.section
         initial={{ opacity: 0, scale: 0.9 }}
@@ -1754,7 +1764,7 @@ export default function Index() {
         transition={{ duration: 0.8 }}
         className="relative z-10 container mx-auto px-4 py-20"
       >
-        <Card className="border-8 border-white bg-gradient-to-br from-primary/20 via-accent/20 to-secondary/20 shadow-2xl rounded-3xl overflow-hidden">
+        <Card className="border-8 border-white bg-linear-to-br from-primary/20 via-accent/20 to-secondary/20 shadow-2xl rounded-3xl overflow-hidden">
           <CardContent className="p-12 md:p-16 text-center space-y-8 relative">
             <motion.div
               animate={{ rotate: 360 }}

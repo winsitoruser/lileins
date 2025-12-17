@@ -149,7 +149,7 @@ export default function Einswap() {
               transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
               className="inline-block text-8xl mb-4"
             >
-              ⚗️
+              <img src="/images/pools.png" alt="Pools" className="w-35" />
             </motion.div>
             <h1 className="text-5xl md:text-6xl font-black text-primary mb-3">
               EinSwap 💜
@@ -165,7 +165,7 @@ export default function Einswap() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
           >
-            <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl rounded-3xl overflow-hidden">
+            <Card className="border-8 border-white bg-linear-to-br from-white via-primary/5 to-accent/5 shadow-2xl rounded-3xl overflow-hidden">
               <CardContent className="p-8 md:p-10">
                 {/* Cute Header */}
                 <motion.div
@@ -193,7 +193,7 @@ export default function Einswap() {
                   <p className="text-foreground/70 font-bold">Transform your tokens with Einstein's formula! 🧪</p>
                 </motion.div>
                 {/* From Token */}
-                <div className="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
+                <div className="bg-linear-to-br from-primary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
                   <div className="flex justify-between mb-2">
                     <span className="text-sm text-foreground/60 font-black flex items-center gap-1"><span className="text-xl">💰</span> From</span>
                     <span className="text-sm text-foreground/60 font-bold">
@@ -254,14 +254,14 @@ export default function Einswap() {
                     whileHover={{ scale: 1.1, rotate: 180 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={handleSwapTokens}
-                    className="w-14 h-14 rounded-full bg-gradient-to-br from-primary via-accent to-secondary flex items-center justify-center shadow-2xl border-4 border-white"
+                    className="w-14 h-14 rounded-full bg-linear-to-br from-primary via-accent to-secondary flex items-center justify-center shadow-2xl border-4 border-white"
                   >
                     <Repeat className="w-5 h-5 text-white" />
                   </motion.button>
                 </div>
 
                 {/* To Token */}
-                <div className="bg-gradient-to-br from-secondary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
+                <div className="bg-linear-to-br from-secondary/10 to-accent/10 rounded-3xl p-6 border-4 border-white shadow-xl">
                   <div className="flex justify-between mb-2">
                     <span className="text-sm text-foreground/60 font-black flex items-center gap-1"><span className="text-xl">🎁</span> To</span>
                     <span className="text-sm text-foreground/60 font-bold">
@@ -321,7 +321,7 @@ export default function Einswap() {
                   <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="bg-gradient-to-br from-yellow-100 to-orange-100 rounded-3xl p-6 border-4 border-white shadow-xl"
+                    className="bg-linear-to-br from-yellow-100 to-orange-100 rounded-3xl p-6 border-4 border-white shadow-xl"
                   >
                     <div className="flex items-center justify-between text-sm mb-2">
                       <span className="text-foreground/70 font-black flex items-center gap-2">

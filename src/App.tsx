@@ -8,11 +8,14 @@ import Pools from "./pages/Pools.tsx";
 import PoolDetail from "./pages/PoolDetail.tsx";
 import Explorer from "./pages/Explorer.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import ScrollToHash from "./components/partials/ScrollToHash.tsx";
+import Tokenomics from "./pages/Tokenomics.tsx";
 
 export default function App() {
   return (
     <DefaultProviders>
       <BrowserRouter>
+        <ScrollToHash />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/staking" element={<Staking />} />
@@ -20,6 +23,7 @@ export default function App() {
           <Route path="/pools" element={<Pools />} />
           <Route path="/pool/:id" element={<PoolDetail />} />
           <Route path="/explorer" element={<Explorer />} />
+          <Route path="/tokenomics" element={<Tokenomics />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

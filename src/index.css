@@ -59,6 +59,14 @@ html {
 
 :root {
   color-scheme: light;
+  /* PRIMARY COLOR COMBINATION */
+  --primary: #7b75ff;
+  --accent: #ffa5ec;
+  --secondary: #fe8d00;
+  /* --primary: #C2E2FA;
+  --accent: #FFBBE1;
+  --secondary: #FFF58A; */
+  /* OTHER COLOR */
   --radius: 1.5rem;
   --background: oklch(0.96 0.02 280);
   --foreground: oklch(0.25 0.08 285);
@@ -66,13 +74,10 @@ html {
   --card-foreground: oklch(0.25 0.08 285);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.25 0.08 285);
-  --primary: oklch(0.65 0.22 280);
   --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.75 0.18 60);
   --secondary-foreground: oklch(0.25 0.08 285);
   --muted: oklch(0.92 0.02 280);
   --muted-foreground: oklch(0.55 0.08 285);
-  --accent: oklch(0.85 0.15 340);
   --accent-foreground: oklch(0.25 0.08 285);
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.88 0.02 280);
@@ -131,6 +136,7 @@ html {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -140,6 +146,7 @@ html {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -147,4 +154,17 @@ html {
 
 .animate-spin-slow {
   animation: spin-slow 3s linear infinite;
+}
+
+.perspective-container {
+  perspective: 1200px;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }

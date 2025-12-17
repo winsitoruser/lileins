@@ -70,7 +70,7 @@ export default function Pools() {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
       {/* Cute Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['💧', '🌊', '💎', '⚡', '🚀', '✨', '💜', '🌟'].map((emoji, i) => (
@@ -135,7 +135,7 @@ export default function Pools() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-primary/10 to-accent/10 shadow-xl rounded-3xl">
+              <Card className="border-6 border-white bg-linear-to-br from-primary/10 to-accent/10 shadow-xl rounded-3xl">
                 <CardContent className="p-6 text-center">
                   <div className="text-5xl mb-3">💰</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">Total Value Locked</h3>
@@ -149,7 +149,7 @@ export default function Pools() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-secondary/10 to-accent/10 shadow-xl rounded-3xl">
+              <Card className="border-6 border-white bg-linear-to-br from-secondary/10 to-accent/10 shadow-xl rounded-3xl">
                 <CardContent className="p-6 text-center">
                   <div className="text-5xl mb-3">📊</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">24h Volume</h3>
@@ -163,7 +163,7 @@ export default function Pools() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-accent/10 to-primary/10 shadow-xl rounded-3xl">
+              <Card className="border-6 border-white bg-linear-to-br from-accent/10 to-primary/10 shadow-xl rounded-3xl">
                 <CardContent className="p-6 text-center">
                   <div className="text-5xl mb-3">🎁</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">Active Pools</h3>
@@ -236,7 +236,7 @@ export default function Pools() {
                 </div>
 
                 {/* Chart Display */}
-                <div className="bg-gradient-to-br from-primary/5 to-accent/5 rounded-3xl p-8 border-4 border-white shadow-inner">
+                <div className="bg-linear-to-br from-primary/5 to-accent/5 rounded-3xl p-8 border-4 border-white shadow-inner">
                   <div className="flex items-end justify-between h-64 gap-2">
                     {chartData[selectedChart].map((value, index) => {
                       const maxValue = Math.max(...chartData[selectedChart]);
@@ -356,16 +356,16 @@ export default function Pools() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
               >
-                <Card className="border-6 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-xl rounded-3xl hover:shadow-2xl transition-all hover:scale-[1.02]">
+                <Card className="border-6 border-white bg-linear-to-br from-white via-primary/5 to-accent/5 shadow-xl rounded-3xl hover:shadow-2xl transition-all hover:scale-[1.02]">
                   <CardContent className="p-6">
                     <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
                       {/* Token Pair */}
                       <div className="flex items-center gap-3 min-w-[200px]">
                         <div className="flex items-center -space-x-3">
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-accent flex items-center justify-center text-3xl border-4 border-white shadow-lg">
+                          <div className="w-16 h-16 rounded-full bg-linear-to-br from-primary to-accent flex items-center justify-center text-3xl border-4 border-white shadow-lg">
                             {pool.token0.icon}
                           </div>
-                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center text-3xl border-4 border-white shadow-lg">
+                          <div className="w-16 h-16 rounded-full bg-linear-to-br from-secondary to-accent flex items-center justify-center text-3xl border-4 border-white shadow-lg">
                             {pool.token1.icon}
                           </div>
                         </div>

@@ -148,7 +148,7 @@ export default function Explorer() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-primary/10 to-accent/10 shadow-xl rounded-3xl">
+              <Card className="border-6 border-white bg-linear-to-br from-primary/10 to-accent/10 shadow-xl rounded-3xl">
                 <CardContent className="p-6 text-center">
                   <div className="text-5xl mb-3">📦</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">Total Blocks</h3>
@@ -162,7 +162,7 @@ export default function Explorer() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-secondary/10 to-accent/10 shadow-xl rounded-3xl">
+              <Card className="border-6 border-white bg-linear-to-br from-secondary/10 to-accent/10 shadow-xl rounded-3xl">
                 <CardContent className="p-6 text-center">
                   <div className="text-5xl mb-3">⚡</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">Total Transactions</h3>
@@ -176,7 +176,7 @@ export default function Explorer() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-accent/10 to-primary/10 shadow-xl rounded-3xl">
+              <Card className="border-6 border-white bg-linear-to-br from-accent/10 to-primary/10 shadow-xl rounded-3xl">
                 <CardContent className="p-6 text-center">
                   <div className="text-5xl mb-3">👥</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">Active Addresses</h3>
@@ -190,7 +190,7 @@ export default function Explorer() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-purple-400/10 to-pink-400/10 shadow-xl rounded-3xl">
+              <Card className="border-6 border-white bg-linear-to-br from-purple-400/10 to-pink-400/10 shadow-xl rounded-3xl">
                 <CardContent className="p-6 text-center">
                   <div className="text-5xl mb-3">⏱️</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">Avg Block Time</h3>
@@ -261,14 +261,14 @@ export default function Explorer() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
-                  <Card className="border-6 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-xl rounded-3xl hover:shadow-2xl transition-all hover:scale-[1.01]">
+                  <Card className="border-6 border-white bg-linear-to-br from-white via-primary/5 to-accent/5 shadow-xl rounded-3xl hover:shadow-2xl transition-all hover:scale-[1.01]">
                     <CardContent className="p-6">
                       <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
                         {/* Status Icon */}
                         <div className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl border-4 border-white shadow-lg ${
                           tx.status === "success" 
-                            ? "bg-gradient-to-br from-green-400 to-emerald-500" 
-                            : "bg-gradient-to-br from-yellow-400 to-orange-500"
+                            ? "bg-linear-to-br from-green-400 to-emerald-500" 
+                            : "bg-linear-to-br from-yellow-400 to-orange-500"
                         }`}>
                           {tx.status === "success" ? "✅" : "⏳"}
                         </div>
@@ -334,11 +334,11 @@ export default function Explorer() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + index * 0.1 }}
                 >
-                  <Card className="border-6 border-white bg-gradient-to-br from-white via-secondary/5 to-accent/5 shadow-xl rounded-3xl hover:shadow-2xl transition-all hover:scale-[1.01]">
+                  <Card className="border-6 border-white bg-linear-to-br from-white via-secondary/5 to-accent/5 shadow-xl rounded-3xl hover:shadow-2xl transition-all hover:scale-[1.01]">
                     <CardContent className="p-6">
                       <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
                         {/* Block Icon */}
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center text-2xl border-4 border-white shadow-lg">
+                        <div className="w-12 h-12 rounded-full bg-linear-to-br from-secondary to-accent flex items-center justify-center text-2xl border-4 border-white shadow-lg">
                           📦
                         </div>
 

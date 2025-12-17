@@ -254,7 +254,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
   const inactiveStakes = stakes?.filter((s) => !s.isActive) || [];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-accent/20 via-background to-primary/10 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-br from-accent/20 via-background to-primary/10 relative overflow-hidden">
       {/* Enhanced Scientific Laboratory Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Beakers and Lab Equipment */}
@@ -329,7 +329,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
               repeat: Infinity,
               delay: Math.random() * 5,
             }}
-            className="absolute rounded-full bg-gradient-to-br from-accent/30 to-secondary/30 border-2 border-primary/20"
+            className="absolute rounded-full bg-linear-to-br from-accent/30 to-secondary/30 border-2 border-primary/20"
             style={{
               width: `${20 + Math.random() * 80}px`,
               height: `${20 + Math.random() * 80}px`,
@@ -430,7 +430,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           className="mb-12"
         >
-          <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl overflow-hidden">
+          <Card className="border-8 border-white bg-linear-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl overflow-hidden">
             <CardContent className="p-8 md:p-12">
               <div className="grid md:grid-cols-2 gap-8 items-center">
                 {/* Left: Text Content */}
@@ -487,7 +487,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                     transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                     className="relative z-10"
                   >
-                    <div className="w-64 h-64 md:w-80 md:h-80 mx-auto bg-gradient-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center border-8 border-white shadow-2xl">
+                    <div className="w-64 h-64 md:w-80 md:h-80 mx-auto bg-linear-to-br from-primary/20 to-accent/20 rounded-full flex items-center justify-center border-8 border-white shadow-2xl">
                       <motion.div
                         animate={{ rotate: [0, 360] }}
                         transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -589,8 +589,8 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
               transition={{ delay: i * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
             >
-              <Card className="border-6 border-white bg-gradient-to-br from-white to-primary/5 shadow-2xl overflow-hidden relative">
-                <div className={`absolute inset-0 bg-gradient-to-br ${stat.gradient} opacity-10`} />
+              <Card className="border-6 border-white bg-linear-to-br from-white to-primary/5 shadow-2xl overflow-hidden relative">
+                <div className={`absolute inset-0 bg-linear-to-br ${stat.gradient} opacity-10`} />
                 <CardContent className="p-6 text-center relative z-10">
                   <motion.div
                     animate={{ scale: [1, 1.2, 1] }}
@@ -614,8 +614,8 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
           transition={{ delay: 0.2 }}
           className="mb-12"
         >
-          <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl overflow-hidden relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-accent/5 opacity-50" />
+          <Card className="border-8 border-white bg-linear-to-br from-white via-primary/5 to-accent/5 shadow-2xl overflow-hidden relative">
+            <div className="absolute inset-0 bg-linear-to-br from-primary/5 to-accent/5 opacity-50" />
             <CardHeader className="relative z-10">
               <CardTitle className="text-3xl md:text-5xl font-black text-center flex items-center justify-center gap-3">
                 <motion.span
@@ -665,7 +665,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                           onClick={() => setCalcDuration(option.days)}
                           className={`rounded-xl p-4 border-4 shadow-lg transition-all ${
                             calcDuration === option.days
-                              ? "border-primary bg-gradient-to-br " +
+                              ? "border-primary bg-linear-to-br " +
                                 option.color +
                                 " text-white"
                               : "border-primary/20 bg-white hover:border-primary/40"
@@ -682,7 +682,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
 
                 {/* Right: Results Section */}
                 <div className="space-y-4">
-                  <div className="bg-gradient-to-br from-accent/20 to-secondary/20 rounded-2xl p-6 border-4 border-white shadow-xl">
+                  <div className="bg-linear-to-br from-accent/20 to-secondary/20 rounded-2xl p-6 border-4 border-white shadow-xl">
                     <div className="flex items-center gap-2 mb-3">
                       <Gauge className="w-5 h-5 text-primary" />
                       <p className="text-sm font-bold text-foreground/70">Selected Plan</p>
@@ -695,7 +695,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-green-400/20 to-emerald-500/20 rounded-2xl p-6 border-4 border-white shadow-xl">
+                  <div className="bg-linear-to-br from-green-400/20 to-emerald-500/20 rounded-2xl p-6 border-4 border-white shadow-xl">
                     <div className="flex items-center gap-2 mb-3">
                       <TrendingUp className="w-5 h-5 text-green-600" />
                       <p className="text-sm font-bold text-foreground/70">Total Rewards</p>
@@ -713,7 +713,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                     </p>
                   </div>
 
-                  <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-2xl p-6 border-4 border-white shadow-xl">
+                  <div className="bg-linear-to-br from-primary/20 to-accent/20 rounded-2xl p-6 border-4 border-white shadow-xl">
                     <div className="flex items-center gap-2 mb-3">
                       <Trophy className="w-5 h-5 text-primary" />
                       <p className="text-sm font-bold text-foreground/70">Final Value</p>
@@ -807,7 +807,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4 }}
         >
-          <Card className="border-8 border-white bg-gradient-to-br from-white via-primary/5 to-accent/5 shadow-2xl mb-12">
+          <Card className="border-8 border-white bg-linear-to-br from-white via-primary/5 to-accent/5 shadow-2xl mb-12">
             <CardHeader>
               <CardTitle className="text-3xl md:text-4xl font-black text-center flex items-center justify-center gap-3">
                 <motion.span
@@ -856,7 +856,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                         !isConnected ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'
                       } ${
                         selectedDuration === option.days
-                          ? "border-primary bg-gradient-to-br " + option.color + " text-white"
+                          ? "border-primary bg-linear-to-br " + option.color + " text-white"
                           : "border-primary/20 bg-white hover:border-primary/40"
                       }`}
                     >
@@ -953,7 +953,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
             transition={{ delay: 0.5 }}
             className="mb-12"
           >
-            <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl overflow-hidden">
+            <Card className="border-8 border-white bg-linear-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl overflow-hidden">
               <CardContent className="p-8 md:p-12 text-center">
                 <motion.div
                   animate={{ 
@@ -1030,7 +1030,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                     transition={{ delay: i * 0.1 }}
                     whileHover={{ scale: 1.02 }}
                   >
-                    <Card className="border-6 border-white bg-gradient-to-br from-white to-primary/5 shadow-2xl">
+                    <Card className="border-6 border-white bg-linear-to-br from-white to-primary/5 shadow-2xl">
                       <CardContent className="p-6">
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center gap-3">
@@ -1198,7 +1198,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
             </p>
           </div>
 
-          <Card className="border-8 border-white bg-gradient-to-br from-white to-primary/5 shadow-2xl overflow-hidden max-w-4xl mx-auto">
+          <Card className="border-8 border-white bg-linear-to-br from-white to-primary/5 shadow-2xl overflow-hidden max-w-4xl mx-auto">
             <CardContent className="p-0">
               <div className="space-y-0">
                 {[
@@ -1304,7 +1304,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
                 <Card className={`border-6 border-white shadow-2xl overflow-hidden relative ${
                   milestone.achieved ? "ring-4 ring-green-400" : ""
                 }`}>
-                  <div className={`absolute inset-0 bg-gradient-to-br ${milestone.color} ${
+                  <div className={`absolute inset-0 bg-linear-to-br ${milestone.color} ${
                     milestone.achieved ? "opacity-20" : "opacity-10"
                   }`} />
                   {milestone.achieved && (
@@ -1443,7 +1443,7 @@ function StakingPageInner({ isConnected = false }: { isConnected?: boolean }) {
           viewport={{ once: true }}
           className="text-center"
         >
-          <Card className="border-8 border-white bg-gradient-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl p-8 md:p-12">
+          <Card className="border-8 border-white bg-linear-to-br from-primary/10 via-accent/10 to-secondary/10 shadow-2xl p-8 md:p-12">
             <motion.div
               animate={{ rotate: [0, 10, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -1488,7 +1488,7 @@ export default function Staking() {
   return (
     <>
       <AuthLoading>
-        <div className="min-h-screen bg-gradient-to-br from-accent/20 via-background to-primary/10 flex items-center justify-center p-4">
+        <div className="min-h-screen bg-linear-to-br from-accent/20 via-background to-primary/10 flex items-center justify-center p-4">
           <div className="space-y-4 w-full max-w-4xl">
             <Skeleton className="h-32 w-full" />
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

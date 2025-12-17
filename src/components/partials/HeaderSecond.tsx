@@ -27,12 +27,17 @@ function HeaderSecond() {
                     </div>
                 </Link>
                 <div className="flex items-center gap-3">
-                    <Link to="/">
-                        <Button variant="outline" className="border-2 border-primary/30 font-bold rounded-full hidden md:flex">
-                            <Heart className="mr-1 w-4 h-4 fill-primary text-primary" />
-                            Home
-                        </Button>
-                    </Link>
+                    <NavLink to="/">
+                        {({ isActive }) => (
+                            <Button
+                                variant="outline"
+                                className={isActive ? activeClass : inactiveClass}
+                            >
+                                <Heart className="mr-1 w-4 h-4 fill-primary text-primary" />
+                                Home
+                            </Button>
+                        )}
+                    </NavLink>
                     <NavLink to="/einswap">
                         {({ isActive }) => (
                             <Button
@@ -90,17 +95,15 @@ function HeaderSecond() {
                         )}
                     </NavLink>
 
-                    <NavLink to="/roadmap">
-                        {({ isActive }) => (
+                    <Link to="/#roadmap">
                             <Button
                                 variant="outline"
-                                className={isActive ? activeClass : inactiveClass}
+                                className={inactiveClass}
                             >
                                 <CircleIcon className="mr-1 w-4 h-4" />
                                 Roadmap
                             </Button>
-                        )}
-                    </NavLink>
+                    </Link>
                     <WalletButton />
                     {/* <Button
                         variant="outline"
