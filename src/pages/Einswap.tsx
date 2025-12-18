@@ -28,7 +28,7 @@ const RECENT_SWAPS = [
 
 export default function Einswap() {
   const { isConnected, address, displayAddress } = useWallet();
-  
+
   const [fromToken, setFromToken] = useState(TOKENS[1]); // ETH
   const [toToken, setToToken] = useState(TOKENS[0]); // LILEIN
   const [fromAmount, setFromAmount] = useState("");
@@ -67,12 +67,12 @@ export default function Einswap() {
       });
       return;
     }
-    
+
     if (!fromAmount || parseFloat(fromAmount) <= 0) {
       toast.error("Please enter a valid amount");
       return;
     }
-    
+
     // Calculate price impact
     const impact = calculatePriceImpact(fromAmount);
     if (impact > 10) {
@@ -80,20 +80,20 @@ export default function Einswap() {
         description: "Consider reducing your swap amount"
       });
     }
-    
+
     // Handle swap logic here
     toast.success("Swap initiated! 🎉", {
       description: `Swapping ${fromAmount} ${fromToken.symbol} to ${toAmount} ${toToken.symbol}`
     });
     console.log("Swapping:", fromAmount, fromToken.symbol, "to", toToken.symbol);
   };
-  
+
   // Filter tokens based on search
-  const filteredTokens = TOKENS.filter(t => 
+  const filteredTokens = TOKENS.filter(t =>
     t.symbol.toLowerCase().includes(searchQuery.toLowerCase()) ||
     t.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  
+
   // Calculate price impact
   const calculatePriceImpact = (amount: string) => {
     const numAmount = parseFloat(amount) || 0;
@@ -137,7 +137,7 @@ export default function Einswap() {
         <HeaderSecond />
 
         {/* Main Content */}
-        <div className="container mx-auto px-4 py-8 max-w-2xl">
+        <div className="container mx-auto px-4 py-8 max-w-3xl">
           {/* Page Title */}
           <motion.div
             initial={{ opacity: 0, y: -30 }}
@@ -217,7 +217,7 @@ export default function Einswap() {
                         <span className="font-black text-white text-lg">{fromToken.symbol}</span>
                         <ChevronDown className="w-5 h-5 text-white" />
                       </button>
-                      
+
                       {/* Token Dropdown */}
                       {showFromTokens && (
                         <motion.div
@@ -285,7 +285,7 @@ export default function Einswap() {
                         <span className="font-black text-white text-lg">{toToken.symbol}</span>
                         <ChevronDown className="w-5 h-5 text-white" />
                       </button>
-                      
+
                       {/* Token Dropdown */}
                       {showToTokens && (
                         <motion.div
@@ -414,25 +414,137 @@ export default function Einswap() {
             </motion.div>
           </div>
 
+          <motion.div
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mt-20 mb-18"
+          >
+            <h1 className="text-3xl md:text-4xl font-black text-primary mb-4">
+              Core Features Section: Little <br />Einstein Labs ✨
+            </h1>
+            <p className="text-xl text-foreground/70 font-bold">
+              (Emphasize these three core features) ⚡💎
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 bg-linear-to-r bg-white rounded-3xl p-8 border-4 border-primary/20 shadow-xl"
+          >
+            <div className="flex items-start gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-secondary mb-3 flex items-center gap-2">
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    ⚡
+                  </motion.span>
+                  $EinzSWAP: The Fusion Engine
+                </h3>
+                <ul className="list-disc pl-10 space-y-3">
+                  <li>
+                    <p className="text-base text-foreground/80 font-normal">
+                      <strong>Focus:</strong> A highly optimized Decentralized Exchange (DEX) engineered for low gas fees. It is backed by a dedicated 11% liquidity allocation to ensure smooth trading with minimal slippage.
+                    </p>
+                  </li>
+                  <li>
+                    <p className="text-base text-foreground/80 font-normal">
+                      <strong>Your Benefit:</strong> Trade intelligently, without friction, supported by deep liquidity.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 bg-linear-to-r bg-white rounded-3xl p-8 border-4 border-primary/20 shadow-xl"
+          >
+            <div className="flex items-start gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-primary mb-3 flex items-center gap-2">
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    🔒
+                  </motion.span>
+                  $EinzSTAKE: The Growth Accelerator
+                </h3>
+                <ul className="list-disc pl-10 space-y-3">
+                  <li>
+                    <p className="text-base text-foreground/80 font-normal">
+                      <strong>Focus:</strong> A Staking Platform offering passive rewards drawn from the Einstein Endowment (20% token allocation). Smart contracts adjust APY based on the lock-up duration.
+                    </p>
+                  </li>
+                  <li>
+                    <p className="text-base text-foreground/80 font-normal">
+                      <strong>Your Benefit:</strong> Turn your token holdings into a productive asset and earn sustainable rewards.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="mt-8 bg-linear-to-r bg-white rounded-3xl p-8 border-4 border-primary/20 shadow-xl"
+          >
+            <div className="flex items-start gap-4">
+              <div>
+                <h3 className="text-2xl font-bold text-accent mb-3 flex items-center gap-2">
+                  <motion.span
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 1.5, repeat: Infinity }}
+                  >
+                    🔭
+                  </motion.span>
+                  $EinzEXPLORER: The Transparency Lens
+                </h3>
+                <ul className="list-disc pl-10 space-y-3">
+                  <li>
+                    <p className="text-base text-foreground/80 font-normal">
+                      <strong>Focus:</strong> The window to on-chain truth. Track every transaction, circulating supply, and most importantly: verify the vesting status (locks) of every token allocation in <strong>real-time</strong>.
+                    </p>
+                  </li>
+                  <li>
+                    <p className="text-base text-foreground/80 font-normal">
+                      <strong>Your Benefit:</strong> 100% accountability, 0% doubt.
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Info Banner */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-            className="mt-8 bg-gradient-to-r from-purple-100 via-pink-100 to-yellow-100 rounded-3xl p-8 border-4 border-white shadow-xl"
+            className="mt-8 bg-linear-to-r from-purple-100 via-pink-100 to-yellow-100 rounded-3xl p-8 border-4 border-white shadow-xl"
           >
             <div className="flex items-start gap-4">
               <motion.div
-                animate={{ 
+                animate={{
                   rotate: [0, 10, -10, 0],
                   scale: [1, 1.1, 1]
                 }}
                 transition={{ duration: 2, repeat: Infinity }}
-                className="flex-shrink-0 w-16 h-16"
+                className="shrink-0 w-16 h-16"
               >
-                <img 
-                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                  alt="Little Einstein" 
+                <img
+                  src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys"
+                  alt="Little Einstein"
                   className="w-full h-full object-contain drop-shadow-xl"
                 />
               </motion.div>
@@ -447,7 +559,7 @@ export default function Einswap() {
                   </motion.span>
                 </h3>
                 <p className="text-base text-foreground/80 font-bold">
-                  EinSwap uses advanced algorithms to find the best exchange rates across multiple liquidity pools, 
+                  EinSwap uses advanced algorithms to find the best exchange rates across multiple liquidity pools,
                   ensuring you get the most $Einz for your tokens. E=mc² efficiency!
                 </p>
               </div>
@@ -485,31 +597,31 @@ export default function Einswap() {
               );
             })}
           </div>
-          
+
           <div className="container mx-auto px-4 py-12 relative z-10">
             <div className="text-center space-y-6">
-              <motion.div 
+              <motion.div
                 whileHover={{ scale: 1.08, y: -5 }}
                 className="inline-flex items-center gap-4 mb-4"
               >
                 <div className="relative">
                   <motion.div
-                    animate={{ 
+                    animate={{
                       rotate: [0, 360],
                       scale: [1, 1.15, 1]
                     }}
                     transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
                     className="w-20 h-20 relative z-10"
                   >
-                    <img 
-                      src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys" 
-                      alt="Little Einstein" 
+                    <img
+                      src="https://cdn.hercules.app/file_M4JirWbGZiXJPCbh2GIEp7ys"
+                      alt="Little Einstein"
                       className="w-full h-full object-contain drop-shadow-2xl"
                     />
                   </motion.div>
                   {/* Glow effect */}
                   <motion.div
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.5, 1],
                       opacity: [0.3, 0.7, 0.3]
                     }}
@@ -540,11 +652,11 @@ export default function Einswap() {
                   </p>
                 </div>
               </motion.div>
-              
+
               <p className="text-lg text-foreground/70 max-w-2xl mx-auto font-medium">
                 The cutest genius meme token revolutionizing crypto with community-driven innovation! 🧪✨
               </p>
-              
+
               <div className="flex justify-center gap-4 py-6">
                 {["Twitter", "Telegram", "Discord"].map((platform, i) => (
                   <motion.div
@@ -558,7 +670,7 @@ export default function Einswap() {
                   </motion.div>
                 ))}
               </div>
-              
+
               <div className="border-t-4 border-primary/20 pt-8">
                 <p className="text-foreground/60 font-medium text-lg">
                   © {new Date().getFullYear()} Little Einstein 💜 All rights reserved.
