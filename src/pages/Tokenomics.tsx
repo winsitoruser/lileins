@@ -1,90 +1,70 @@
 import { motion } from "motion/react";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button.tsx";
 import { Card, CardContent } from "@/components/ui/card.tsx";
-import { Input } from "@/components/ui/input.tsx";
-import { Star, Heart, Search, TrendingUp, Droplets, Zap, Package, Users, Activity, Hash, Clock, ArrowRight, Copy, ExternalLink } from "lucide-react";
 import HeaderSecond from "@/components/partials/HeaderSecond";
 
-// Mock blockchain data
-const RECENT_TRANSACTIONS = [
-  {
-    hash: "0x1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d",
-    from: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-    to: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-    value: "1,250,000 LILEIN",
-    time: "2 mins ago",
-    status: "success"
-  },
-  {
-    hash: "0x2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e",
-    from: "0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE",
-    to: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-    value: "500,000 LILEIN",
-    time: "5 mins ago",
-    status: "success"
-  },
-  {
-    hash: "0x3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f",
-    from: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-    to: "0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE",
-    value: "2,000,000 LILEIN",
-    time: "8 mins ago",
-    status: "success"
-  },
-  {
-    hash: "0x4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a",
-    from: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-    to: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-    value: "750,000 LILEIN",
-    time: "12 mins ago",
-    status: "pending"
-  }
-];
-
-const RECENT_BLOCKS = [
-  {
-    number: 15234567,
-    hash: "0xa1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6",
-    transactions: 156,
-    miner: "0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb",
-    time: "12 secs ago",
-    reward: "2.5 LILEIN"
-  },
-  {
-    number: 15234566,
-    hash: "0xb2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7",
-    transactions: 142,
-    miner: "0x8ba1f109551bD432803012645Ac136ddd64DBA72",
-    time: "24 secs ago",
-    reward: "2.5 LILEIN"
-  },
-  {
-    number: 15234565,
-    hash: "0xc3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
-    transactions: 178,
-    miner: "0x3f5CE5FBFe3E9af3971dD833D26bA9b5C936f0bE",
-    time: "36 secs ago",
-    reward: "2.5 LILEIN"
-  }
-];
-
 export default function Tokenomics() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState<"transactions" | "blocks">("transactions");
+  const headers = [
+    "Category",
+    "Allocation (Tokens)",
+    "Percentage",
+    "Strategic Purpose",
+  ];
 
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text);
-  };
+  const rows = [
+    {
+      category: "Presale",
+      allocation: "5,000,000,000",
+      percentage: "25%",
+      purpose: "Initial Distribution and Fundraising.",
+    },
+    {
+      category: "Staking & Rewards",
+      allocation: "4,000,000,000",
+      percentage: "20%",
+      purpose: "Einstein Endowment - Funding for $EinzStake.",
+    },
+    {
+      category: "Chain Reserves/Treasury",
+      allocation: "4,400,000,000",
+      percentage: "22%",
+      purpose: "Future Ecosystem Development and Maintenance.",
+    },
+    {
+      category: "Liquidity (DEX)",
+      allocation: "2,200,000,000",
+      percentage: "11%",
+      purpose: "Providing Liquidity for $EinzSwap.",
+    },
+    {
+      category: "CEX Reserves",
+      allocation: "2,200,000,000",
+      percentage: "11%",
+      purpose: "Reserves for Centralized Exchange Listings.",
+    },
+    {
+      category: "Marketing & Partnership",
+      allocation: "2,200,000,000",
+      percentage: "11%",
+      purpose: "Market Expansion and User Acquisition.",
+    },
+  ];
 
-  const truncateHash = (hash: string) => {
-    return `${hash.slice(0, 10)}...${hash.slice(-8)}`;
-  };
+  const MotionRow = ({ children, mb = "mb-2" }: { children: React.ReactNode; mb?: string }) => (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.1 }}
+      whileHover={{ scale: 1.03, x: 5 }}
+      className={`flex items-center gap-3 bg-white rounded-xl p-4 border-2 border-primary/20 shadow ${mb}`}
+    >
+      <div className="w-full grid grid-cols-4 gap-5">{children}</div>
+    </motion.div>
+  );
 
   return (
     <div className="min-h-screen bg-linear-to-br from-background via-primary/5 to-accent/5 relative overflow-hidden">
-      {/* Cute Floating Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {['🔍', '⛓️', '📦', '⚡', '🚀', '✨', '💜', '🌟'].map((emoji, i) => (
           <motion.div
@@ -112,7 +92,6 @@ export default function Tokenomics() {
       </div>
 
       <div className="relative z-10">
-        {/* Cute Header */}
         <HeaderSecond />
 
         {/* Main Content */}
@@ -195,6 +174,226 @@ export default function Tokenomics() {
                   <div className="text-5xl mb-3">🔒</div>
                   <h3 className="text-sm text-foreground/60 font-bold mb-2">Liquidity & CEX</h3>
                   <p className="text-3xl font-black text-purple-600">22%</p>
+                </CardContent>
+              </Card>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mb-12 py-20"
+          >
+            <div className="text-center mb-8">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="inline-block text-6xl mb-4"
+              >
+                💎
+              </motion.div>
+              <h2 className="text-4xl md:text-5xl font-black text-primary mb-4">
+                Abstract & Introduction 🚀
+              </h2>
+              <p className="text-lg md:text-xl text-foreground/70 font-semibold max-w-7xl mx-auto">
+                Little Einstein ($Einz) is a digital asset built on the principle of Smart Utility, aiming to address common liquidity and transparency issues within the DeFi space. We introduce $EinzSwap, $EinzStake, and $EinzExplorer as the pillars of our ecosystem. This document details the tokenomic architecture and growth strategy.
+              </p>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <Card className="border-6 border-white bg-linear-to-br from-secondary/10 to-accent/10 shadow-xl rounded-3xl">
+                <CardContent className="py-6 px-10 text-center">
+
+                  {/* Header */}
+                  <MotionRow mb="mb-3">
+                    {headers.map((title) => (
+                      <div key={title} className="flex items-center gap-2">
+                        <span className="text-xl">✨</span>
+                        <span className="font-bold text-foreground">{title}</span>
+                      </div>
+                    ))}
+                  </MotionRow>
+
+                  {/* Rows */}
+                  {rows.map((row, idx) => (
+                    <MotionRow key={idx}>
+                      <div className="flex items-center gap-2">
+                        <span>✨</span>
+                        <span>{row.category}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span>✨</span>
+                        <span>{row.allocation}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span>✨</span>
+                        <span>{row.percentage}</span>
+                      </div>
+                      <div className="flex items-center text-left gap-2">
+                        <span>✨</span>
+                        <span>{row.purpose}</span>
+                      </div>
+                    </MotionRow>
+                  ))}
+
+                  {/* TOTAL */}
+                  <MotionRow>
+                    <div className="flex items-center gap-2">
+                      <span>✨</span>
+                      <span className="font-bold">TOTAL</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>✨</span>
+                      <span className="font-bold">20,000,000,000</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span>✨</span>
+                      <span className="font-bold">100%</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span></span>
+                      <span></span>
+                    </div>
+                  </MotionRow>
+
+                </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-8 mb-12">
+            {/* Distribution Chart */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-6 border-white bg-white shadow-2xl rounded-3xl h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
+                    <span className="text-4xl">🥧</span>
+                    Token Distribution
+                  </h3>
+                  <div className="space-y-4">
+                    {[
+                      { label: "Presale", percent: 25, color: "from-primary to-accent", icon: "🚀" },
+                      { label: "Staking & Rewards", percent: 20, color: "from-accent to-secondary", icon: "💧" },
+                      { label: "Chain Reserves/Treasury", percent: 22, color: "from-secondary to-primary", icon: "📢" },
+                      { label: "Liquidity (DEX)", percent: 11, color: "from-primary via-accent to-secondary", icon: "👥" },
+                      { label: "CEX Reserves", percent: 11, color: "from-accent to-primary", icon: "🔧" },
+                      { label: "Marketing & Partnership", percent: 11, color: "from-secondary to-accent", icon: "🎁" }
+                    ].map((item, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        whileHover={{ scale: 1.02, x: 5 }}
+                        className="bg-linear-to-r from-muted/50 to-muted/30 rounded-2xl p-4 border-2 border-primary/20"
+                      >
+                        <div className="flex items-center justify-between mb-2">
+                          <span className="font-black text-foreground flex items-center gap-2">
+                            <span className="text-2xl">{item.icon}</span>
+                            {item.label}
+                          </span>
+                          <span className="text-2xl font-black text-primary">{item.percent}%</span>
+                        </div>
+                        <div className="relative h-3 bg-muted rounded-full overflow-hidden">
+                          <motion.div
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${item.percent}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, delay: i * 0.1 }}
+                            className={`h-full bg-linear-to-r ${item.color} rounded-full`}
+                          />
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Vesting Schedule */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <Card className="border-6 border-white bg-white shadow-2xl rounded-3xl h-full">
+                <CardContent className="p-8">
+                  <h3 className="text-3xl font-black text-primary mb-6 flex items-center gap-3">
+                    <span className="text-4xl">📅</span>
+                    Vesting Schedule
+                  </h3>
+                  <div className="space-y-6">
+                    {[
+                      {
+                        category: "Presale Investors",
+                        tge: "0%",
+                        cliff: "2 Months",
+                        release: "15% each month after the cliff ends. (Full release achieved after 6.67 months post-cliff).",
+                        icon: "🚀",
+                        color: "primary"
+                      },
+                      // {
+                      //   category: "Liquidity",
+                      //   tge: "0%",
+                      //   cliff: "2 Months",
+                      //   release: "-",
+                      //   icon: "🔒",
+                      //   color: "accent"
+                      // },
+                      {
+                        category: "Marketing",
+                        tge: "0%",
+                        cliff: "2 Months",
+                        release: "10% each month after the cliff ends.",
+                        icon: "📢",
+                        color: "primary"
+                      },
+                      {
+                        category: "Partnership",
+                        tge: "0%",
+                        cliff: "2 Months",
+                        release: "10% each month after the cliff ends.",
+                        icon: "👥",
+                        color: "secondary"
+                      }
+                    ].map((item, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1 }}
+                        whileHover={{ scale: 1.02, y: -3 }}
+                        className="bg-linear-to-br from-muted/30 to-muted/10 rounded-2xl p-4 border-2 border-primary/20"
+                      >
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className="text-3xl">{item.icon}</span>
+                          <span className="font-black text-lg text-foreground">{item.category}</span>
+                        </div>
+                        <div className="pl-11 space-y-1">
+                          <p className="text-sm font-bold text-foreground/70">
+                            <span className="text-primary">Token Unlock at TGE:</span> {item.tge}
+                          </p>
+                          <p className="text-sm font-bold text-foreground/70">
+                            <span className="text-primary">Cliff Period:</span> {item.cliff}
+                          </p>
+                          <p className="text-sm font-bold text-foreground/70">
+                            <span className="text-secondary">Monthly Release:</span> {item.release}
+                          </p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
                 </CardContent>
               </Card>
             </motion.div>
