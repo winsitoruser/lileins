@@ -874,7 +874,7 @@ export default function Tokenomics() {
                       opacity: [0.3, 0.7, 0.3]
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
-                    className="absolute inset-0 bg-gradient-to-r from-primary via-accent to-secondary rounded-full blur-2xl"
+                    className="absolute inset-0 bg-linear-to-r from-primary via-accent to-secondary rounded-full blur-2xl"
                   />
                 </div>
                 <div className="text-left">
